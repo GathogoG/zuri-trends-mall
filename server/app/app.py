@@ -13,7 +13,14 @@ def create_app(config_class='server.config.Config'):
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from server.app.routes import catalog_bp, product_bp, user_bp, review_bp, wishlist_bp, cart_bp, payment_bp
+    from server.app.routes.catalog import catalog_bp
+    from server.app.routes.product import product_bp
+    from server.app.routes.user import user_bp
+    from server.app.routes.review import review_bp
+    from server.app.routes.wishlist import wishlist_bp
+    from server.app.routes.cart import cart_bp
+    from server.app.routes.payment import payment_bp
+
     app.register_blueprint(catalog_bp, url_prefix='/catalog')
     app.register_blueprint(product_bp, url_prefix='/product')
     app.register_blueprint(user_bp, url_prefix='/user')
