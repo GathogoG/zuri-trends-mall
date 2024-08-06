@@ -1,7 +1,11 @@
 from flask import Flask
-from .extensions import db, migrate
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from .models import Catalog, Product, User, Review, Wishlist, Cart, CartItem, Payment
 from .routes import catalog_bp, product_bp, user_bp, review_bp, wishlist_bp, cart_bp, payment_bp
+
+db = SQLAlchemy()
+migrate = Migrate()
 
 def create_app(config_class='config.Config'):
     app = Flask(__name__)
@@ -20,10 +24,7 @@ def create_app(config_class='config.Config'):
     
     @app.before_first_request
     def create_tables():
-        db.create_all()
+        with app.app_context():
+            db.create_all()
     
     return app
-
-if __name__ == '__main__':
-    app = create_app()
-    app.run(debug=True, host='127.0.0.1', port=5000)
