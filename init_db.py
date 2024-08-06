@@ -1,3 +1,8 @@
+import os
+import sys
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
 from server.app.app import create_app, db
 from server.app.models import Catalog, Product, User, Review, Wishlist, Cart, CartItem, Payment
 
@@ -78,8 +83,8 @@ def seed_reviews():
         {'product_id': 6, 'user_id': 6, 'rating': 4, 'comment': 'Comfortable and great for summer.'},
         {'product_id': 7, 'user_id': 7, 'rating': 5, 'comment': 'Quality belt and stylish.'},
         {'product_id': 8, 'user_id': 8, 'rating': 4, 'comment': 'Great sunglasses, very trendy.'},
-        {'product_id': 9, 'user_id': 9, 'rating': 4, 'comment': 'Good shoes for running.'},
-        {'product_id': 10, 'user_id': 10, 'rating': 5, 'comment': 'Love these loafers, very elegant.'}
+        {'product_id': 9, 'user_id': 9, 'rating': 5, 'comment': 'Perfect for running, very comfortable.'},
+        {'product_id': 10, 'user_id': 10, 'rating': 4, 'comment': 'Love these loafers, very elegant.'}
     ]
     
     for review in reviews:
@@ -166,7 +171,9 @@ def seed_payments():
 if __name__ == '__main__':
     app = create_app()
     with app.app_context():
-        db.create_all()
+        from flask_migrate import upgrade
+        upgrade()
+        
         seed_catalogs()
         seed_products()
         seed_users()
