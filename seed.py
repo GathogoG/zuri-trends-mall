@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9a69cb5 (done with seeding)
 from server.app import create_app
 from server.app.models import Catalog, Product, User, Review, Wishlist, Cart, CartItem, Payment
 from server.app.extensions import db
@@ -237,5 +240,8 @@ def clear_existing_users():
 
 if __name__ == "__main__":
     seed_all()
+<<<<<<< HEAD
 =======
 >>>>>>> 9486e85 (redoing seeding)
+=======
+>>>>>>> 9a69cb5 (done with seeding)
