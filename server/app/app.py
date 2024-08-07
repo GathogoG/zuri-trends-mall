@@ -1,5 +1,5 @@
 from flask import Flask
-from server.app.extensions import db, migrate  # Import from extensions.py
+from server.app.extensions import db, migrate  
 from server.app.config import Config
 import click
 
