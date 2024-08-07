@@ -3,6 +3,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, Card, Button } from 'react-bootstrap';
 import NavigationBar from './NavigationBar';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Spinner, Card, Button } from 'react-bootstrap';
+import NavigationBar from './NavigationBar';
 
 function CropHoodies() {
   const [products, setProducts] = useState([]);
@@ -12,8 +17,8 @@ function CropHoodies() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:5000/products', { timeout: 10000 });
-        console.log('API response:', response.data);
+        const response = await axios.get('http://localhost:3000/property', { timeout: 10000 });
+        console.log('API response:', response.data); // Log the response
         if (Array.isArray(response.data)) {
           setProducts(response.data);
         } else {
@@ -58,6 +63,32 @@ function CropHoodies() {
       </div>
     </div>
   );
+    <div>
+      <NavigationBar />
+      <div>
+        {loading ? (
+          <Spinner animation="border" variant="light" />
+        ) : (
+          <div>
+            {products.map((product) => (
+              <Card key={product.id}>
+                <Card.Img variant="top" src={product.image} alt={product.name} />
+                <Card.Body>
+                  <Card.Title>{product.name}</Card.Title>
+                  <Card.Text>{product.description}</Card.Text>
+                  <Button variant="primary" onClick={() => handleOrder(product)}>
+                    Quick Preview
+                  </Button>
+                </Card.Body>
+              </Card>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
+
+export default CropHoodies;
 
 export default CropHoodies;
