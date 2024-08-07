@@ -18,12 +18,35 @@ import CropHoodies from './components/Crop-Hoodies';
 import OrderHistory from './pages/OrderHistory';
 import ProductReview from './components/ProductReview';
 import ProductManager from './components/ProductManager';
+import ProductPage from './components/ProductPage';
+import DeliveryPage from './pages/Delivery'; 
+import PaymentPage from './pages/Payment';
+
+const productDetails = {
+  title: 'Sample Product',
+  description: 'This is a sample product description.',
+  price: 1500,
+};
 
 function App() {
+  const [deliveryDetails, setDeliveryDetails] = React.useState({ location: '', fee: 0 });
   return (
     <div className="app">
       <Router>
         <Routes>
+        <Route
+            path="/delivery"
+            element={<DeliveryPage setDeliveryDetails={setDeliveryDetails} />}
+          />
+          <Route
+            path="/payment"
+            element={
+              <PaymentPage
+                deliveryDetails={deliveryDetails}
+                productDetails={productDetails}
+              />
+            }
+          />
         <Route path="/login" element={<LogIn />} />
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<Catalog />} />
@@ -39,6 +62,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/orderhistory" element={<OrderHistory />} />
+          <Route path="/product/:productId" element={<ProductPage />} />
         </Routes>
       </Router>
     </div>
