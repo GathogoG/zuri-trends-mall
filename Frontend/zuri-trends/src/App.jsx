@@ -19,6 +19,7 @@ import SweatShirts from './components/Sweat-Shirts';
 import CropHoodies from './components/Crop-Hoodies';
 import OrderHistory from './pages/OrderHistory';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import ProductReview from './components/ProductReview';
 import ProductManager from './components/ProductManager';
 =======
@@ -36,6 +37,10 @@ const productDetails = {
   price: 1500,
 };
 >>>>>>> e21b4c9 (home)
+=======
+import ProductReview from './components/ProductReview';
+import ProductManager from './components/ProductManager';
+>>>>>>> 3ab8bda (1)
 
 function App() {
   const [deliveryDetails, setDeliveryDetails] = React.useState({ location: '', fee: 0 });
