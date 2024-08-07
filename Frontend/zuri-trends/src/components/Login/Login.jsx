@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -171,3 +172,5 @@ export default Login;
 
 export default Login;
 >>>>>>> 2e5ecdd (login)
+=======
+>>>>>>> 7994107 (change)
