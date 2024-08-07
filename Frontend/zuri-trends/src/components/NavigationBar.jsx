@@ -37,7 +37,7 @@ function NavigationBar() {
             <Nav.Link eventKey={2} href="/wishlist">
               WISHLIST
             </Nav.Link>
-            <Nav.Link href="/logout">LOGOUT</Nav.Link>
+            <Nav.Link href="/login">LOGIN</Nav.Link>
             <Form inline="true">
             <Nav.Link eventKey={2} href="/orderhistory">
               ORDER HISTORY
