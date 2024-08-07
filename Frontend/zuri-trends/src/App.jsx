@@ -1,8 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+<<<<<<< HEAD
 
 // Import pages and components
+=======
+>>>>>>> 2e5ecdd (login)
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Contact from './pages/Contact';
@@ -33,9 +36,14 @@ import LandingPage from './pages/LandingPage';
 import NavigationBar from './components/NavigationBar'; 
 =======
 import ProductPage from './components/ProductPage';
-import DeliveryPage from './pages/Delivery'; 
+import DeliveryPage from './pages/Delivery';
 import PaymentPage from './pages/Payment';
+<<<<<<< HEAD
 >>>>>>> e21b4c9 (home)
+=======
+import Login from './components/Login/Login';
+import SignUp from './components/Signup/Signup';
+>>>>>>> 2e5ecdd (login)
 
 const productDetails = {
   title: 'Sample Product',
@@ -52,15 +60,19 @@ import ProductManager from './components/ProductManager';
 function App() {
   const [deliveryDetails, setDeliveryDetails] = React.useState({ location: '', fee: 0 });
 
+<<<<<<< HEAD
 =======
 
 function App() {
   const [deliveryDetails, setDeliveryDetails] = React.useState({ location: '', fee: 0 });
 >>>>>>> e21b4c9 (home)
+=======
+>>>>>>> 2e5ecdd (login)
   return (
     <div className="app">
       <Router>
         <Routes>
+<<<<<<< HEAD
 <<<<<<< HEAD
           <Route path="/" element={<LandingPage />} /> {/* LandingPage as the default route */}
           <Route path="/home" element={<><NavigationBar /><Home /></>} />
@@ -85,6 +97,9 @@ function App() {
           <Route path="/product/:productId" element={<><NavigationBar /><ProductPage /></>} />
 =======
         <Route
+=======
+          <Route
+>>>>>>> 2e5ecdd (login)
             path="/delivery"
             element={<DeliveryPage setDeliveryDetails={setDeliveryDetails} />}
           />
@@ -97,7 +112,8 @@ function App() {
               />
             }
           />
-        <Route path="/login" element={<LogIn />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} /> 
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/contact" element={<Contact />} />
