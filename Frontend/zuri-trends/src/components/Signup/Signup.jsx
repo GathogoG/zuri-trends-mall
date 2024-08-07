@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // src/components/Signup/Signup.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +23,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 >>>>>>> 5401a78 (fixed login and signup)
+=======
+// src/components/Signup/Signup.jsx
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Signup.css";  // Ensure this CSS file exists
+>>>>>>> 8a2a33b (authentication)
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -29,6 +36,7 @@ function Signup() {
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -40,6 +48,9 @@ function Signup() {
 =======
   const navigate = useNavigate();
 >>>>>>> 5401a78 (fixed login and signup)
+=======
+  const navigate = useNavigate();
+>>>>>>> 8a2a33b (authentication)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,6 +67,7 @@ function Signup() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       const response = await fetch("http://127.0.0.1:5000/user", {
 =======
       const response = await fetch("http://127.0.0.1:5000/users", {
@@ -66,6 +78,9 @@ function Signup() {
 =======
       const response = await fetch("http://127.0.0.1:5000/users", {
 >>>>>>> 5401a78 (fixed login and signup)
+=======
+      const response = await fetch("http://127.0.0.1:5000/user", {
+>>>>>>> 8a2a33b (authentication)
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,10 +91,14 @@ function Signup() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8a2a33b (authentication)
       if (!response.ok) {
         const errorData = await response.json();
         setError(errorData.message || "Something went wrong!");
         return;
+<<<<<<< HEAD
       }
 
       const data = await response.json();
@@ -104,12 +123,26 @@ function Signup() {
 <<<<<<< HEAD
       } else {
         setError(data.message || "Something went wrong!");
+=======
+>>>>>>> 8a2a33b (authentication)
       }
+
+      const data = await response.json();
+      setSuccess(true);
+      console.log("User created:", data);
+      
+      // Navigate to the homepage upon successful sign-up
+      navigate("/home");
+
     } catch (err) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 2e5ecdd (login)
 =======
 >>>>>>> 25c4b52 (login)
+=======
+      setError("Network error. Please try again later.");
+>>>>>>> 8a2a33b (authentication)
       console.error("Error:", err);
 =======
         navigate("/login"); 
@@ -163,6 +196,7 @@ function Signup() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <a href="/login">Already have an account? Log in</a>
 =======
           <Link to="/login">Already have an account? Log in</Link>
@@ -173,12 +207,16 @@ function Signup() {
 =======
           <Link to="/login">Already have an account? Log in</Link>
 >>>>>>> 5401a78 (fixed login and signup)
+=======
+          <a href="/login">Already have an account? Log in</a>
+>>>>>>> 8a2a33b (authentication)
         </div>
       </form>
     </div>
   );
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -196,3 +234,6 @@ export default Signup;
 =======
 export default Signup;
 >>>>>>> 5401a78 (fixed login and signup)
+=======
+export default Signup;
+>>>>>>> 8a2a33b (authentication)

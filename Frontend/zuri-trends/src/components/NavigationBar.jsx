@@ -6,6 +6,9 @@ function NavigationBar() {
   return (
     <div className='navbar container-fluid navbar-expand-lg bg-body-tertiary'>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8a2a33b (authentication)
       <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
         <Container>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -45,6 +48,7 @@ function NavigationBar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+<<<<<<< HEAD
 =======
         <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container >
@@ -102,6 +106,8 @@ function NavigationBar() {
       </Container>
     </Navbar>
 >>>>>>> 2e5ecdd (login)
+=======
+>>>>>>> 8a2a33b (authentication)
     </div>
   );
 }

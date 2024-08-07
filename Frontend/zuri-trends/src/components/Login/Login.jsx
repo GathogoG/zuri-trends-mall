@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -59,23 +60,37 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 >>>>>>> d6540ae (added toaat message)
 import "./Login.css";
+=======
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+>>>>>>> 8a2a33b (authentication)
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   const navigate = useNavigate();
 >>>>>>> 5401a78 (fixed login and signup)
+=======
+  const navigate = useNavigate();
+>>>>>>> 8a2a33b (authentication)
 
-  const handleSubmit = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
     setError(null);
+    setSuccess(false);
+
+    const userData = {
+      email,
+      password,
+    };
 
     try {
+<<<<<<< HEAD
       const response = await fetch(
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -116,9 +131,27 @@ function Login() {
 
       const data = await response.json();
 
+=======
+      const response = await fetch("http://127.0.0.1:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(errorData.error || "Login failed!");
+        return;
+      }
+
+      const data = await response.json();
+>>>>>>> 8a2a33b (authentication)
       setSuccess(true);
       toast.success(`${name} successfully logged in!`);
       console.log("User logged in:", data);
+<<<<<<< HEAD
 <<<<<<< HEAD
     } catch (err) {
       setError(err.message);
@@ -126,6 +159,12 @@ function Login() {
 >>>>>>> 2e5ecdd (login)
 =======
 >>>>>>> 25c4b52 (login)
+=======
+      navigate("/home"); // Redirect to home upon successful login
+
+    } catch (err) {
+      setError("Network error. Please try again later.");
+>>>>>>> 8a2a33b (authentication)
       console.error("Error:", err);
     }
   };
@@ -133,12 +172,16 @@ function Login() {
   return (
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8a2a33b (authentication)
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-6">
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
         <h2 className="text-2xl font-semibold mb-6 text-gray-800">Log In</h2>
         {success && <p className="text-green-500 mb-4">Logged in successfully!</p>}
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleLogin} className="space-y-4">
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 25c4b52 (login)
@@ -175,12 +218,15 @@ function Login() {
 >>>>>>> 25c4b52 (login)
 =======
 >>>>>>> 5401a78 (fixed login and signup)
+=======
+>>>>>>> 8a2a33b (authentication)
           <input
             type="email"
             placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -201,12 +247,17 @@ function Login() {
         </div>
         <div className="input-group">
 >>>>>>> 5401a78 (fixed login and signup)
+=======
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+>>>>>>> 8a2a33b (authentication)
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -247,11 +298,33 @@ export default Login;
           <Link to="/signup">Create an account</Link>
         </div>
       </form>
+=======
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Log In
+          </button>
+        </form>
+        <p className="mt-4 text-center">
+          Don't have an account?{' '}
+          <a
+            href="/signup"
+            className="text-blue-600 hover:underline"
+          >
+            Sign Up
+          </a>
+        </p>
+      </div>
+>>>>>>> 8a2a33b (authentication)
     </div>
   );
-}
+};
 
 export default Login;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 2e5ecdd (login)
@@ -263,3 +336,5 @@ export default Login;
 >>>>>>> 6fb504f (redoing login and signup)
 =======
 >>>>>>> 5401a78 (fixed login and signup)
+=======
+>>>>>>> 8a2a33b (authentication)

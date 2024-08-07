@@ -1,11 +1,17 @@
+// src/App.jsx
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 // Import pages and components
 =======
 >>>>>>> 2e5ecdd (login)
+=======
+
+// Import pages and components
+>>>>>>> 8a2a33b (authentication)
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Contact from './pages/Contact';
@@ -33,6 +39,7 @@ import PaymentPage from './pages/Payment';
 import Login from './components/Login/Login';
 import SignUp from './components/Signup/Signup';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import LandingPage from './pages/LandingPage';
 import NavigationBar from './components/NavigationBar'; 
 =======
@@ -48,6 +55,10 @@ import SignUp from './components/Signup/Signup';
 =======
 import { Toaster } from 'react-hot-toast';
 >>>>>>> d6540ae (added toaat message)
+=======
+import LandingPage from './pages/LandingPage'; // Import LandingPage
+import NavigationBar from './components/NavigationBar'; // Import NavigationBar
+>>>>>>> 8a2a33b (authentication)
 
 const productDetails = {
   title: 'Sample Product',
@@ -79,6 +90,9 @@ function App() {
         <Routes>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8a2a33b (authentication)
           <Route path="/" element={<LandingPage />} /> {/* LandingPage as the default route */}
           <Route path="/home" element={<><NavigationBar /><Home /></>} />
           <Route path="/delivery" element={<><NavigationBar /><DeliveryPage setDeliveryDetails={setDeliveryDetails} /></>} />
@@ -96,6 +110,7 @@ function App() {
           <Route path="/logout" element={<><NavigationBar /><LogOut /></>} />
           <Route path="/wishlist" element={<><NavigationBar /><Wishlist /></>} />
           <Route path="/cart" element={<><NavigationBar /><Cart /></>} />
+<<<<<<< HEAD
           <Route path="/checkout" element={<><NavigationBar /><Checkout /></>} /> 
           <Route path="/about" element={<><NavigationBar /><AboutUs /></>} />
           <Route path="/orderhistory" element={<><NavigationBar /><OrderHistory /></>} />
@@ -135,6 +150,11 @@ function App() {
           <Route path="/orderhistory" element={<OrderHistory />} />
           <Route path="/product/:productId" element={<ProductPage />} />
 >>>>>>> e21b4c9 (home)
+=======
+          <Route path="/about" element={<><NavigationBar /><AboutUs /></>} />
+          <Route path="/orderhistory" element={<><NavigationBar /><OrderHistory /></>} />
+          <Route path="/product/:productId" element={<><NavigationBar /><ProductPage /></>} />
+>>>>>>> 8a2a33b (authentication)
         </Routes>
       </Router>
     </div>
