@@ -1,7 +1,6 @@
-import React from 'react'
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LogIn from './pages/LogIn';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Contact from './pages/Contact';
@@ -19,8 +18,10 @@ import OrderHistory from './pages/OrderHistory';
 import ProductReview from './components/ProductReview';
 import ProductManager from './components/ProductManager';
 import ProductPage from './components/ProductPage';
-import DeliveryPage from './pages/Delivery'; 
+import DeliveryPage from './pages/Delivery';
 import PaymentPage from './pages/Payment';
+import Login from './components/Login/Login';
+import SignUp from './components/Signup/Signup';
 
 const productDetails = {
   title: 'Sample Product',
@@ -30,11 +31,12 @@ const productDetails = {
 
 function App() {
   const [deliveryDetails, setDeliveryDetails] = React.useState({ location: '', fee: 0 });
+
   return (
     <div className="app">
       <Router>
         <Routes>
-        <Route
+          <Route
             path="/delivery"
             element={<DeliveryPage setDeliveryDetails={setDeliveryDetails} />}
           />
@@ -47,7 +49,8 @@ function App() {
               />
             }
           />
-        <Route path="/login" element={<LogIn />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} /> 
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/contact" element={<Contact />} />
@@ -66,7 +69,7 @@ function App() {
         </Routes>
       </Router>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
