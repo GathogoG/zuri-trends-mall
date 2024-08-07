@@ -1,23 +1,41 @@
 import React from 'react';
+<<<<<<< HEAD
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
+=======
+import { useLocation } from 'react-router-dom';
+
+// Sample payment cards
+>>>>>>> e21b4c9 (home)
 const sampleCards = [
   { id: '1', name: 'Visa', number: '**** **** **** 1234', expDate: '12/25' },
   { id: '2', name: 'MasterCard', number: '**** **** **** 5678', expDate: '11/24' },
   { id: '3', name: 'American Express', number: '**** **** **** 9012', expDate: '10/23' },
 ];
 
+<<<<<<< HEAD
 const mpesaOption = {
   id: '4',
   name: 'M-Pesa',
   icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/M-Pesa_Logo.png/640px-M-Pesa_Logo.png',
+=======
+// M-Pesa option with an icon
+const mpesaOption = {
+  id: '4',
+  name: 'M-Pesa',
+  icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/M-Pesa_Logo.png/640px-M-Pesa_Logo.png', // Example M-Pesa icon
+>>>>>>> e21b4c9 (home)
 };
 
 export default function PaymentPage() {
   const location = useLocation();
   const { deliveryDetails = {}, productDetails = {} } = location.state || {};
 
+<<<<<<< HEAD
+=======
+  // Remove currency symbols and convert to numbers
+>>>>>>> e21b4c9 (home)
   const parsePrice = (priceStr) => parseFloat(priceStr.replace(/[^\d.-]/g, '')) || 0;
   const price = parsePrice(productDetails.price);
   const fee = parseFloat(deliveryDetails.fee) || 0;
@@ -28,6 +46,7 @@ export default function PaymentPage() {
   const handleCardSelect = (card) => {
     setSelectedCard(card);
   };
+<<<<<<< HEAD
 
   const handleContinueToPayment = async () => {
     if (!selectedCard) {
@@ -52,6 +71,8 @@ export default function PaymentPage() {
       alert('An error occurred while initiating payment');
     }
   };
+=======
+>>>>>>> e21b4c9 (home)
 
   return (
     <div className="px-6 py-24 bg-white isolate sm:py-32 lg:px-8">
@@ -60,6 +81,10 @@ export default function PaymentPage() {
         <p className="mt-2 text-lg leading-8 text-gray-600">Complete your payment details below.</p>
       </div>
       <div className="max-w-xl mx-auto mt-16 sm:mt-20">
+<<<<<<< HEAD
+=======
+        {/* Delivery Details */}
+>>>>>>> e21b4c9 (home)
         <div className="bg-gray-50 p-4 rounded-lg shadow-lg mb-8">
           <h3 className="text-xl font-bold">Delivery Details</h3>
           <p>Name: {deliveryDetails.name}</p>
@@ -70,6 +95,10 @@ export default function PaymentPage() {
           <p>Delivery Fee: KSh {fee.toFixed(2).toLocaleString()}</p>
         </div>
 
+<<<<<<< HEAD
+=======
+        {/* Product Details */}
+>>>>>>> e21b4c9 (home)
         <div className="bg-gray-50 p-4 rounded-lg shadow-lg mb-8">
           <h3 className="text-xl font-bold">{productDetails.title}</h3>
           <p className="text-gray-700 mb-2">{productDetails.description}</p>
@@ -83,6 +112,10 @@ export default function PaymentPage() {
           </div>
         </div>
 
+<<<<<<< HEAD
+=======
+        {/* Payment Method Selection */}
+>>>>>>> e21b4c9 (home)
         <div className="mt-10">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Select a Payment Method</h3>
           <ul className="space-y-4">
@@ -97,6 +130,10 @@ export default function PaymentPage() {
                 <p className="text-sm text-gray-600">Expiry Date: {card.expDate}</p>
               </li>
             ))}
+<<<<<<< HEAD
+=======
+            {/* M-Pesa Option */}
+>>>>>>> e21b4c9 (home)
             <li
               key={mpesaOption.id}
               className={`p-4 border rounded-md cursor-pointer ${selectedCard?.id === mpesaOption.id ? 'bg-gray-100 border-indigo-600' : 'border-gray-300'}`}
@@ -114,9 +151,14 @@ export default function PaymentPage() {
           <button
             type="button"
             className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+<<<<<<< HEAD
             onClick={handleContinueToPayment}
           >
             Continue to Payment
+=======
+          >
+            Complete Payment
+>>>>>>> e21b4c9 (home)
           </button>
         </div>
       </div>

@@ -54,7 +54,11 @@ const Home = () => {
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="p-4 text-6xl font-bold text-white bg-gray-800 bg-opacity-50 rounded-lg">
+<<<<<<< HEAD
               Welcome To Zuri Trends
+=======
+              Welcome To Tisap
+>>>>>>> e21b4c9 (home)
             </div>
           </div>
         </div>
