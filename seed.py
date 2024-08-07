@@ -1,12 +1,12 @@
-import os
-import sys
-
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-
-from server.app.app import create_app, db
+from server.app import create_app
 from server.app.models import Catalog, Product, User, Review, Wishlist, Cart, CartItem, Payment
+from server.app.extensions import db
+from sqlalchemy.exc import IntegrityError
+
+app = create_app()
 
 def seed_catalogs():
+    print("Seeding catalogs...")
     catalogs = [
         {'name': 'Men\'s Apparel'},
         {'name': 'Women\'s Apparel'},
@@ -20,12 +20,14 @@ def seed_catalogs():
         {'name': 'Swimwear'}
     ]
     
-    for catalog in catalogs:
-        db.session.add(Catalog(**catalog))
-    
-    db.session.commit()
+    with app.app_context():
+        for catalog in catalogs:
+            db.session.add(Catalog(**catalog))
+        db.session.commit()
+    print("Catalogs seeded.")
 
 def seed_products():
+    print("Seeding products...")
     products = [
         {'name': 'Men\'s T-Shirt', 'price': 25.00, 'image_path': 'tshirt.jpg', 'quantity': 100, 'catalog_id': 1, 'size': 'L', 'color': 'Blue', 'description': 'Comfortable cotton t-shirt'},
         {'name': 'Men\'s Jeans', 'price': 40.00, 'image_path': 'jeans.jpg', 'quantity': 50, 'catalog_id': 1, 'size': '32', 'color': 'Dark Blue', 'description': 'Stylish denim jeans'},
@@ -49,12 +51,14 @@ def seed_products():
         {'name': 'Beach Shorts', 'price': 25.00, 'image_path': 'beach_shorts.jpg', 'quantity': 30, 'catalog_id': 10, 'size': 'L', 'color': 'Turquoise', 'description': 'Comfortable beach shorts'}
     ]
     
-    for product in products:
-        db.session.add(Product(**product))
-    
-    db.session.commit()
+    with app.app_context():
+        for product in products:
+            db.session.add(Product(**product))
+        db.session.commit()
+    print("Products seeded.")
 
 def seed_users():
+    print("Seeding users...")
     users = [
         {'name': 'John Doe', 'password': 'hashed_password_1', 'email': 'john.doe@example.com'},
         {'name': 'Jane Smith', 'password': 'hashed_password_2', 'email': 'jane.smith@example.com'},
@@ -68,12 +72,18 @@ def seed_users():
         {'name': 'Laura Martinez', 'password': 'hashed_password_10', 'email': 'laura.martinez@example.com'}
     ]
     
-    for user in users:
-        db.session.add(User(**user))
-    
-    db.session.commit()
+    with app.app_context():
+        for user in users:
+            try:
+                db.session.add(User(**user))
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
+                print(f"User with email {user['email']} already exists. Skipping.")
+    print("Users seeded.")
 
 def seed_reviews():
+    print("Seeding reviews...")
     reviews = [
         {'product_id': 1, 'user_id': 1, 'rating': 4, 'comment': 'Good quality t-shirt.'},
         {'product_id': 2, 'user_id': 2, 'rating': 5, 'comment': 'Perfect fit and great material.'},
@@ -81,37 +91,62 @@ def seed_reviews():
         {'product_id': 4, 'user_id': 4, 'rating': 4, 'comment': 'Nice skirt, would recommend.'},
         {'product_id': 5, 'user_id': 5, 'rating': 5, 'comment': 'My child loves this hoodie.'},
         {'product_id': 6, 'user_id': 6, 'rating': 4, 'comment': 'Comfortable and great for summer.'},
-        {'product_id': 7, 'user_id': 7, 'rating': 5, 'comment': 'Quality belt and stylish.'},
-        {'product_id': 8, 'user_id': 8, 'rating': 4, 'comment': 'Great sunglasses, very trendy.'},
-        {'product_id': 9, 'user_id': 9, 'rating': 5, 'comment': 'Perfect for running, very comfortable.'},
-        {'product_id': 10, 'user_id': 10, 'rating': 4, 'comment': 'Love these loafers, very elegant.'}
+        {'product_id': 7, 'user_id': 7, 'rating': 5, 'comment': 'The belt is very durable.'},
+        {'product_id': 8, 'user_id': 8, 'rating': 3, 'comment': 'Sunglasses are okay but not great.'},
+        {'product_id': 9, 'user_id': 9, 'rating': 5, 'comment': 'Excellent shoes for running.'},
+        {'product_id': 10, 'user_id': 10, 'rating': 4, 'comment': 'Very stylish loafers.'}
     ]
     
-    for review in reviews:
-        db.session.add(Review(**review))
-    
-    db.session.commit()
+    with app.app_context():
+        for review in reviews:
+            db.session.add(Review(**review))
+        db.session.commit()
+    print("Reviews seeded.")
 
 def seed_wishlists():
+    print("Seeding wishlists...")
     wishlists = [
-        {'name': 'John\'s Wishlist', 'user_id': 1},
-        {'name': 'Jane\'s Wishlist', 'user_id': 2},
-        {'name': 'Emily\'s Wishlist', 'user_id': 3},
-        {'name': 'Michael\'s Wishlist', 'user_id': 4},
-        {'name': 'Chris\'s Wishlist', 'user_id': 5},
-        {'name': 'Amanda\'s Wishlist', 'user_id': 6},
-        {'name': 'Sarah\'s Wishlist', 'user_id': 7},
-        {'name': 'James\'s Wishlist', 'user_id': 8},
-        {'name': 'David\'s Wishlist', 'user_id': 9},
-        {'name': 'Laura\'s Wishlist', 'user_id': 10}
+        {'user_id': 1, 'product_id': 1},
+        {'user_id': 2, 'product_id': 2},
+        {'user_id': 3, 'product_id': 3},
+        {'user_id': 4, 'product_id': 4},
+        {'user_id': 5, 'product_id': 5},
+        {'user_id': 6, 'product_id': 6},
+        {'user_id': 7, 'product_id': 7},
+        {'user_id': 8, 'product_id': 8},
+        {'user_id': 9, 'product_id': 9},
+        {'user_id': 10, 'product_id': 10}
     ]
     
-    for wishlist in wishlists:
-        db.session.add(Wishlist(**wishlist))
+    with app.app_context():
+        for wishlist in wishlists:
+            db.session.add(Wishlist(**wishlist))
+        db.session.commit()
+    print("Wishlists seeded.")
+
+def seed_cart_items():
+    print("Seeding cart items...")
+    cart_items = [
+        {'cart_id': 1, 'product_id': 1, 'quantity': 1, 'list_price': 25.00},
+        {'cart_id': 2, 'product_id': 2, 'quantity': 2, 'list_price': 40.00},
+        {'cart_id': 3, 'product_id': 3, 'quantity': 1, 'list_price': 60.00},
+        {'cart_id': 4, 'product_id': 4, 'quantity': 3, 'list_price': 35.00},
+        {'cart_id': 5, 'product_id': 5, 'quantity': 1, 'list_price': 30.00},
+        {'cart_id': 6, 'product_id': 6, 'quantity': 2, 'list_price': 20.00},
+        {'cart_id': 7, 'product_id': 7, 'quantity': 1, 'list_price': 20.00},
+        {'cart_id': 8, 'product_id': 8, 'quantity': 1, 'list_price': 15.00},
+        {'cart_id': 9, 'product_id': 9, 'quantity': 1, 'list_price': 55.00},
+        {'cart_id': 10, 'product_id': 10, 'quantity': 1, 'list_price': 70.00}
+    ]
     
-    db.session.commit()
+    with app.app_context():
+        for cart_item in cart_items:
+            db.session.add(CartItem(**cart_item))
+        db.session.commit()
+    print("Cart items seeded.")
 
 def seed_carts():
+    print("Seeding carts...")
     carts = [
         {'user_id': 1},
         {'user_id': 2},
@@ -125,60 +160,57 @@ def seed_carts():
         {'user_id': 10}
     ]
     
-    for cart in carts:
-        db.session.add(Cart(**cart))
-    
-    db.session.commit()
-
-def seed_cart_items():
-    cart_items = [
-        {'cart_id': 1, 'product_id': 1, 'quantity': 2},
-        {'cart_id': 1, 'product_id': 2, 'quantity': 1},
-        {'cart_id': 2, 'product_id': 3, 'quantity': 1},
-        {'cart_id': 2, 'product_id': 4, 'quantity': 3},
-        {'cart_id': 3, 'product_id': 5, 'quantity': 1},
-        {'cart_id': 4, 'product_id': 6, 'quantity': 2},
-        {'cart_id': 5, 'product_id': 7, 'quantity': 1},
-        {'cart_id': 6, 'product_id': 8, 'quantity': 2},
-        {'cart_id': 7, 'product_id': 9, 'quantity': 1},
-        {'cart_id': 8, 'product_id': 10, 'quantity': 1}
-    ]
-    
-    for cart_item in cart_items:
-        db.session.add(CartItem(**cart_item))
-    
-    db.session.commit()
-
-def seed_payments():
-    payments = [
-        {'cart_id': 1, 'user_id': 1, 'transaction_id': 'MPESA001', 'amount': 50.00, 'status': 'Completed'},
-        {'cart_id': 2, 'user_id': 2, 'transaction_id': 'MPESA002', 'amount': 40.00, 'status': 'Completed'},
-        {'cart_id': 3, 'user_id': 3, 'transaction_id': 'MPESA003', 'amount': 60.00, 'status': 'Completed'},
-        {'cart_id': 4, 'user_id': 4, 'transaction_id': 'MPESA004', 'amount': 105.00, 'status': 'Completed'},
-        {'cart_id': 5, 'user_id': 5, 'transaction_id': 'MPESA005', 'amount': 60.00, 'status': 'Pending'},
-        {'cart_id': 6, 'user_id': 6, 'transaction_id': 'MPESA006', 'amount': 20.00, 'status': 'Completed'},
-        {'cart_id': 7, 'user_id': 7, 'transaction_id': 'MPESA007', 'amount': 20.00, 'status': 'Completed'},
-        {'cart_id': 8, 'user_id': 8, 'transaction_id': 'MPESA008', 'amount': 15.00, 'status': 'Pending'},
-        {'cart_id': 9, 'user_id': 9, 'transaction_id': 'MPESA009', 'amount': 55.00, 'status': 'Completed'},
-        {'cart_id': 10, 'user_id': 10, 'transaction_id': 'MPESA010', 'amount': 70.00, 'status': 'Completed'}
-    ]
-    
-    for payment in payments:
-        db.session.add(Payment(**payment))
-    
-    db.session.commit()
-
-if __name__ == '__main__':
-    app = create_app()
     with app.app_context():
-        from flask_migrate import upgrade
-        upgrade()
-        
+        cart_ids = {}
+        for cart in carts:
+            cart_instance = Cart(**cart)
+            db.session.add(cart_instance)
+            db.session.commit()
+            cart_ids[cart_instance.user_id] = cart_instance.id
+        print("Carts seeded.")
+        return cart_ids
+
+def seed_payments(cart_ids):
+    print("Seeding payments...")
+    payments = [
+        {'user_id': 1, 'cart_id': cart_ids[1], 'transaction_id': 'txn_001', 'amount': 50.00, 'status': 'Completed'},
+        {'user_id': 2, 'cart_id': cart_ids[2], 'transaction_id': 'txn_002', 'amount': 40.00, 'status': 'Completed'},
+        {'user_id': 3, 'cart_id': cart_ids[3], 'transaction_id': 'txn_003', 'amount': 70.00, 'status': 'Pending'},
+        {'user_id': 4, 'cart_id': cart_ids[4], 'transaction_id': 'txn_004', 'amount': 30.00, 'status': 'Completed'},
+        {'user_id': 5, 'cart_id': cart_ids[5], 'transaction_id': 'txn_005', 'amount': 90.00, 'status': 'Failed'},
+        {'user_id': 6, 'cart_id': cart_ids[6], 'transaction_id': 'txn_006', 'amount': 60.00, 'status': 'Completed'},
+        {'user_id': 7, 'cart_id': cart_ids[7], 'transaction_id': 'txn_007', 'amount': 20.00, 'status': 'Completed'},
+        {'user_id': 8, 'cart_id': cart_ids[8], 'transaction_id': 'txn_008', 'amount': 15.00, 'status': 'Completed'},
+        {'user_id': 9, 'cart_id': cart_ids[9], 'transaction_id': 'txn_009', 'amount': 55.00, 'status': 'Pending'},
+        {'user_id': 10, 'cart_id': cart_ids[10], 'transaction_id': 'txn_010', 'amount': 150.00, 'status': 'Completed'}
+    ]
+    
+    with app.app_context():
+        for payment in payments:
+            db.session.add(Payment(**payment))
+        db.session.commit()
+    print("Payments seeded.")
+
+def seed_all():
+    print("Starting seed process...")
+    with app.app_context():
+        clear_existing_users()
         seed_catalogs()
         seed_products()
+        cart_ids = seed_carts()
         seed_users()
         seed_reviews()
         seed_wishlists()
-        seed_carts()
         seed_cart_items()
-        seed_payments()
+        seed_payments(cart_ids)
+    print("Seed process completed.")
+
+def clear_existing_users():
+    print("Clearing existing users...")
+    with app.app_context():
+        db.session.query(User).delete()
+        db.session.commit()
+    print("Existing users cleared.")
+
+if __name__ == "__main__":
+    seed_all()

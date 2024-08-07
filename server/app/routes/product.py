@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from app.models import Product
-from app.extensions import db
+from server.app.models import Product
+from server.app.extensions import db
 
 product_bp = Blueprint('product_bp', __name__)
 
@@ -17,6 +17,9 @@ def get_product(id):
 @product_bp.route('/products', methods=['POST'])
 def create_product():
     data = request.get_json()
+    if not data or not all(key in data for key in ['name', 'price', 'quantity', 'catalog_id']):
+        return jsonify({'error': 'Invalid input'}), 400
+    
     product = Product(
         name=data['name'],
         price=data['price'],
@@ -27,28 +30,44 @@ def create_product():
         color=data.get('color'),
         description=data.get('description')
     )
-    db.session.add(product)
-    db.session.commit()
+    try:
+        db.session.add(product)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
     return jsonify(product.as_dict()), 201
 
 @product_bp.route('/products/<int:id>', methods=['PUT'])
 def update_product(id):
     data = request.get_json()
+    if not data:
+        return jsonify({'error': 'Invalid input'}), 400
+
     product = Product.query.get_or_404(id)
-    product.name = data['name']
-    product.price = data['price']
-    product.image_path = data.get('image_path')
-    product.quantity = data['quantity']
-    product.catalog_id = data['catalog_id']
-    product.size = data.get('size')
-    product.color = data.get('color')
-    product.description = data.get('description')
-    db.session.commit()
+    product.name = data.get('name', product.name)
+    product.price = data.get('price', product.price)
+    product.image_path = data.get('image_path', product.image_path)
+    product.quantity = data.get('quantity', product.quantity)
+    product.catalog_id = data.get('catalog_id', product.catalog_id)
+    product.size = data.get('size', product.size)
+    product.color = data.get('color', product.color)
+    product.description = data.get('description', product.description)
+    
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
     return jsonify(product.as_dict())
 
 @product_bp.route('/products/<int:id>', methods=['DELETE'])
 def delete_product(id):
     product = Product.query.get_or_404(id)
-    db.session.delete(product)
-    db.session.commit()
+    try:
+        db.session.delete(product)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
     return '', 204

@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from app.models import Wishlist
-from app.extensions import db
+from server.app.models import Wishlist
+from server.app.extensions import db
 
 wishlist_bp = Blueprint('wishlist_bp', __name__)
 
@@ -17,26 +17,45 @@ def get_wishlist(id):
 @wishlist_bp.route('/wishlists', methods=['POST'])
 def create_wishlist():
     data = request.get_json()
+    if not data or not all(key in data for key in ['user_id', 'product_id']):
+        return jsonify({'error': 'Invalid input'}), 400
+
     wishlist = Wishlist(
         user_id=data['user_id'],
         product_id=data['product_id']
     )
-    db.session.add(wishlist)
-    db.session.commit()
+    try:
+        db.session.add(wishlist)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
     return jsonify(wishlist.as_dict()), 201
 
 @wishlist_bp.route('/wishlists/<int:id>', methods=['PUT'])
 def update_wishlist(id):
     data = request.get_json()
+    if not data:
+        return jsonify({'error': 'Invalid input'}), 400
+
     wishlist = Wishlist.query.get_or_404(id)
-    wishlist.user_id = data['user_id']
-    wishlist.product_id = data['product_id']
-    db.session.commit()
+    wishlist.user_id = data.get('user_id', wishlist.user_id)
+    wishlist.product_id = data.get('product_id', wishlist.product_id)
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
     return jsonify(wishlist.as_dict())
 
 @wishlist_bp.route('/wishlists/<int:id>', methods=['DELETE'])
 def delete_wishlist(id):
     wishlist = Wishlist.query.get_or_404(id)
-    db.session.delete(wishlist)
-    db.session.commit()
+    try:
+        db.session.delete(wishlist)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
     return '', 204
