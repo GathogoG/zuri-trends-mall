@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -43,6 +44,8 @@ const Login = () => {
     } catch (err) {
       setError("Network error. Please try again later.");
 =======
+=======
+>>>>>>> 25c4b52 (login)
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
@@ -82,12 +85,16 @@ function Login() {
       console.log("User logged in:", data);
     } catch (err) {
       setError(err.message);
+<<<<<<< HEAD
 >>>>>>> 2e5ecdd (login)
+=======
+>>>>>>> 25c4b52 (login)
       console.error("Error:", err);
     }
   };
 
   return (
+<<<<<<< HEAD
 <<<<<<< HEAD
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-6">
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
@@ -96,6 +103,8 @@ function Login() {
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleLogin} className="space-y-4">
 =======
+=======
+>>>>>>> 25c4b52 (login)
     <div className="login-container">
       <form onSubmit={handleSubmit}>
         <h2>LOGIN</h2>
@@ -111,13 +120,17 @@ function Login() {
           />
         </div>
         <div className="input-group">
+<<<<<<< HEAD
 >>>>>>> 2e5ecdd (login)
+=======
+>>>>>>> 25c4b52 (login)
           <input
             type="email"
             placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+<<<<<<< HEAD
 <<<<<<< HEAD
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -126,12 +139,18 @@ function Login() {
         </div>
         <div className="input-group">
 >>>>>>> 2e5ecdd (login)
+=======
+          />
+        </div>
+        <div className="input-group">
+>>>>>>> 25c4b52 (login)
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+<<<<<<< HEAD
 <<<<<<< HEAD
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -158,6 +177,8 @@ function Login() {
 
 export default Login;
 =======
+=======
+>>>>>>> 25c4b52 (login)
           />
         </div>
         <button type="submit">SIGN IN</button>
@@ -171,6 +192,9 @@ export default Login;
 }
 
 export default Login;
+<<<<<<< HEAD
 >>>>>>> 2e5ecdd (login)
 =======
 >>>>>>> 7994107 (change)
+=======
+>>>>>>> 25c4b52 (login)

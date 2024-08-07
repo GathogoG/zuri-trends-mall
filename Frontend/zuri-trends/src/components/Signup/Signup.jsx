@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // src/components/Signup/Signup.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +10,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Signup.css";
 >>>>>>> 2e5ecdd (login)
+=======
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./Signup.css";
+>>>>>>> 25c4b52 (login)
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -17,9 +23,12 @@ function Signup() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 <<<<<<< HEAD
+<<<<<<< HEAD
   const navigate = useNavigate();
 =======
 >>>>>>> 2e5ecdd (login)
+=======
+>>>>>>> 25c4b52 (login)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,10 +43,14 @@ function Signup() {
 
     try {
 <<<<<<< HEAD
+<<<<<<< HEAD
       const response = await fetch("http://127.0.0.1:5000/user", {
 =======
       const response = await fetch("http://127.0.0.1:5000/users", {
 >>>>>>> 2e5ecdd (login)
+=======
+      const response = await fetch("http://127.0.0.1:5000/users", {
+>>>>>>> 25c4b52 (login)
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,6 +58,7 @@ function Signup() {
         body: JSON.stringify(userData),
       });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
       if (!response.ok) {
         const errorData = await response.json();
@@ -62,6 +76,8 @@ function Signup() {
     } catch (err) {
       setError("Network error. Please try again later.");
 =======
+=======
+>>>>>>> 25c4b52 (login)
       const data = await response.json();
 
       if (response.ok) {
@@ -71,7 +87,10 @@ function Signup() {
         setError(data.message || "Something went wrong!");
       }
     } catch (err) {
+<<<<<<< HEAD
 >>>>>>> 2e5ecdd (login)
+=======
+>>>>>>> 25c4b52 (login)
       console.error("Error:", err);
     }
   };
@@ -114,10 +133,14 @@ function Signup() {
         <button type="submit">SIGN UP</button>
         <div className="extra-links">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <a href="/login">Already have an account? Log in</a>
 =======
           <Link to="/login">Already have an account? Log in</Link>
 >>>>>>> 2e5ecdd (login)
+=======
+          <Link to="/login">Already have an account? Log in</Link>
+>>>>>>> 25c4b52 (login)
         </div>
       </form>
     </div>
@@ -125,9 +148,13 @@ function Signup() {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default Signup;
 =======
 export default Signup;
 >>>>>>> 2e5ecdd (login)
 =======
 >>>>>>> 7994107 (change)
+=======
+export default Signup;
+>>>>>>> 25c4b52 (login)
