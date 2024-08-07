@@ -1,6 +1,7 @@
+// src/components/Signup/Signup.jsx
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./Signup.css";
+import { useNavigate } from "react-router-dom";
+import "./Signup.css";  // Ensure this CSS file exists
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -8,6 +9,7 @@ function Signup() {
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,7 +23,7 @@ function Signup() {
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/users", {
+      const response = await fetch("http://127.0.0.1:5000/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,15 +31,21 @@ function Signup() {
         body: JSON.stringify(userData),
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        setSuccess(true);
-        console.log("User created:", data);
-      } else {
-        setError(data.message || "Something went wrong!");
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(errorData.message || "Something went wrong!");
+        return;
       }
+
+      const data = await response.json();
+      setSuccess(true);
+      console.log("User created:", data);
+      
+      // Navigate to the homepage upon successful sign-up
+      navigate("/home");
+
     } catch (err) {
+      setError("Network error. Please try again later.");
       console.error("Error:", err);
     }
   };
@@ -79,7 +87,7 @@ function Signup() {
         </div>
         <button type="submit">SIGN UP</button>
         <div className="extra-links">
-          <Link to="/login">Already have an account? Log in</Link>
+          <a href="/login">Already have an account? Log in</a>
         </div>
       </form>
     </div>
