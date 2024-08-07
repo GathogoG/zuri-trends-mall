@@ -16,7 +16,8 @@ import Jackets from './components/Jackets';
 import SweatShirts from './components/Sweat-Shirts';
 import CropHoodies from './components/Crop-Hoodies';
 import OrderHistory from './pages/OrderHistory';
-
+import ProductReview from './components/ProductReview';
+import ProductManager from './components/ProductManager';
 
 function App() {
   return (
