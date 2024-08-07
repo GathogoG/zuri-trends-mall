@@ -1,7 +1,12 @@
 from flask import Blueprint, request, jsonify
 <<<<<<< HEAD
+<<<<<<< HEAD
 from server.app.models import Payment
 from server.app.extensions import db
+=======
+from app.models import Payment
+from app.extensions import db
+>>>>>>> b7416a3 (made changes on payment.py  on main)
 =======
 from app.models import Payment
 from app.extensions import db
@@ -11,6 +16,7 @@ import requests
 import base64
 import json
 from datetime import datetime
+<<<<<<< HEAD
 import uuid
 
 payment_bp = Blueprint('payment_bp', __name__)
@@ -19,10 +25,17 @@ payment_bp = Blueprint('payment_bp', __name__)
 =======
 
 >>>>>>> b7416a3 (made changes on payment.py  on main)
+=======
+
+payment_bp = Blueprint('payment_bp', __name__)
+
+
+>>>>>>> b7416a3 (made changes on payment.py  on main)
 CONSUMER_KEY = 'yty83hjgw0EEGrxoV9j3AAQxVJL2hmjcvYMPxsjXH2ghL8AF'
 CONSUMER_SECRET = 'asJhwuTM0XXBWyTJwCWgPWITuucxPoDkNiQWfeTQGgjGraLyl5KO6Ay93sxrSwIm'
 BUSINESS_SHORT_CODE = '174379'
 LIPA_NA_MPESA_ONLINE_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
+<<<<<<< HEAD
 <<<<<<< HEAD
 CALLBACK_URL = 'https://yourdomain.com/path'
 COMPANY_NAME = 'Zuri-Trends'
@@ -45,6 +58,8 @@ def lipa_na_mpesa_online(amount, phone_number, transaction_id):
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> b7416a3 (made changes on payment.py  on main)
 CALLBACK_URL = 'https://mydomain.com/path'
 phonenumber ='0115743312'
 
@@ -58,6 +73,7 @@ def get_access_token():
 
 def lipa_na_mpesa_online(amount, phone_number, transaction_id):
     access_token = get_access_token()
+<<<<<<< HEAD
 >>>>>>> b7416a3 (made changes on payment.py  on main)
 =======
 def lipa_na_mpesa_online(amount, phone_number):
@@ -69,6 +85,8 @@ def lipa_na_mpesa_online(amount, phone_number):
 >>>>>>> f095982 (Made changes to the payment route)
 =======
 >>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
+=======
+>>>>>>> b7416a3 (made changes on payment.py  on main)
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     password = base64.b64encode((BUSINESS_SHORT_CODE + LIPA_NA_MPESA_ONLINE_PASSKEY + timestamp).encode()).decode('utf-8')
     payload = {
@@ -81,6 +99,7 @@ def lipa_na_mpesa_online(amount, phone_number):
         "PartyB": BUSINESS_SHORT_CODE,
         "PhoneNumber": phone_number,
         "CallBackURL": CALLBACK_URL,
+<<<<<<< HEAD
 <<<<<<< HEAD
         "AccountReference": transaction_id,
 <<<<<<< HEAD
@@ -95,11 +114,16 @@ def lipa_na_mpesa_online(amount, phone_number):
 =======
         "TransactionDesc": f"Payment to {COMPANY_NAME} for Transaction ID {transaction_id} and Amount KSh {amount}"
 >>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
+=======
+        "AccountReference": transaction_id,  
+        "TransactionDesc": "Payment for goods"
+>>>>>>> b7416a3 (made changes on payment.py  on main)
     }
     headers = {
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json"
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -116,19 +140,29 @@ def lipa_na_mpesa_online(amount, phone_number):
     except requests.RequestException as e:
         return {'error': str(e)}
 =======
+=======
+>>>>>>> b7416a3 (made changes on payment.py  on main)
     url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
     response = requests.post(url, json=payload, headers=headers)
     return response.json()
 
+<<<<<<< HEAD
 >>>>>>> b7416a3 (made changes on payment.py  on main)
 
 <<<<<<< HEAD
+=======
+
+>>>>>>> b7416a3 (made changes on payment.py  on main)
 @payment_bp.route('/payments', methods=['GET'])
 def get_payments():
     payments = Payment.query.all()
     return jsonify([payment.as_dict() for payment in payments])
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> b7416a3 (made changes on payment.py  on main)
 =======
 
 >>>>>>> b7416a3 (made changes on payment.py  on main)
@@ -137,6 +171,7 @@ def get_payment(id):
     payment = Payment.query.get_or_404(id)
     return jsonify(payment.as_dict())
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
@@ -160,6 +195,8 @@ def create_payment():
     payment_status = 'Pending'
     if response.get('ResponseCode') == '0':
 =======
+=======
+>>>>>>> b7416a3 (made changes on payment.py  on main)
 
 @payment_bp.route('/payments', methods=['POST'])
 def create_payment():
@@ -172,6 +209,7 @@ def create_payment():
     response = lipa_na_mpesa_online(amount, phone_number, transaction_id)
     payment_status = 'Pending'
     if response['ResponseCode'] == '0':
+<<<<<<< HEAD
 >>>>>>> b7416a3 (made changes on payment.py  on main)
         payment_status = 'Successful'
     else:
@@ -179,6 +217,14 @@ def create_payment():
 
     payment = Payment(
         user_id=user_id,
+=======
+        payment_status = 'Successful'
+    else:
+        payment_status = 'Failed'
+    
+    payment = Payment(
+        user_id=data['user_id'],
+>>>>>>> b7416a3 (made changes on payment.py  on main)
         amount=amount,
         transaction_id=transaction_id,
         status=payment_status
@@ -191,15 +237,21 @@ def create_payment():
         'mpesa_response': response
     }), 201
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
+
+>>>>>>> b7416a3 (made changes on payment.py  on main)
+=======
+
 
 >>>>>>> b7416a3 (made changes on payment.py  on main)
 @payment_bp.route('/payments/<int:id>', methods=['PUT'])
 def update_payment(id):
     data = request.get_json()
     payment = Payment.query.get_or_404(id)
+<<<<<<< HEAD
 <<<<<<< HEAD
     
     if 'user_id' in data:
@@ -215,6 +267,8 @@ def update_payment(id):
     return jsonify(payment.as_dict())
 
 =======
+=======
+>>>>>>> b7416a3 (made changes on payment.py  on main)
     payment.user_id = data['user_id']
     payment.amount = data['amount']
     payment.transaction_id = data['transaction_id']
@@ -223,6 +277,9 @@ def update_payment(id):
     return jsonify(payment.as_dict())
 
 
+<<<<<<< HEAD
+>>>>>>> b7416a3 (made changes on payment.py  on main)
+=======
 >>>>>>> b7416a3 (made changes on payment.py  on main)
 @payment_bp.route('/payments/<int:id>', methods=['DELETE'])
 def delete_payment(id):
@@ -230,6 +287,9 @@ def delete_payment(id):
     db.session.delete(payment)
     db.session.commit()
     return '', 204
+<<<<<<< HEAD
 
 =======
 >>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
+=======
+>>>>>>> b7416a3 (made changes on payment.py  on main)
