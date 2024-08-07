@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
-from app.models import User
-from app.extensions import db
+from server.app.models import User
+from server.app.extensions import db
+from server.app.app import db 
 
 user_bp = Blueprint('user_bp', __name__)
 

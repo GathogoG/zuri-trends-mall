@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
-from app.models import Payment
-from app.extensions import db
+from server.app.models import Payment
+from server.app.extensions import db
+from server.app.app import db 
 from requests.auth import HTTPBasicAuth
 import requests
 import base64

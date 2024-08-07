@@ -1,12 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate, MigrateCommand
-from flask_script import Manager
+from flask_migrate import Migrate
+import click
 
 db = SQLAlchemy()
 migrate = Migrate()
 
-def create_app(config_class='server.config.Config'):
+def create_app(config_class='server.app.config.Config'):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
@@ -28,20 +28,15 @@ def create_app(config_class='server.config.Config'):
     app.register_blueprint(wishlist_bp, url_prefix='/wishlist')
     app.register_blueprint(cart_bp, url_prefix='/cart')
     app.register_blueprint(payment_bp, url_prefix='/payment')
-    
-    @app.before_first_request
-    def create_tables():
-        with app.app_context():
-            db.create_all()
-    
+
+    @app.cli.command('seed')
+    @click.argument('type', default='all')
+    def seed(type):
+        """Seed the database."""
+        from server.scripts.seed import seed_all
+        if type == 'all':
+            seed_all()
+        else:
+            click.echo(f"Unknown seed type: {type}")
+
     return app
-
-app = create_app()
-
-manager = Manager(app)
-migrate.init_app(app, db)
-
-manager.add_command('db', MigrateCommand)
-
-if __name__ == '__main__':
-    manager.run()

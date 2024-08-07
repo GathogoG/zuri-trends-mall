@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from app.models import Cart
-from app.extensions import db
+from server.app.models import Cart
+from server.app.extensions import db
 
 cart_bp = Blueprint('cart_bp', __name__)
 
@@ -17,6 +17,8 @@ def get_cart(id):
 @cart_bp.route('/carts', methods=['POST'])
 def create_cart():
     data = request.get_json()
+    if not data or not all(key in data for key in ['user_id', 'product_id']):
+        return jsonify({'error': 'Invalid input'}), 400
     cart = Cart(
         user_id=data['user_id'],
         product_id=data['product_id']
@@ -29,8 +31,10 @@ def create_cart():
 def update_cart(id):
     data = request.get_json()
     cart = Cart.query.get_or_404(id)
-    cart.user_id = data['user_id']
-    cart.product_id = data['product_id']
+    if 'user_id' in data:
+        cart.user_id = data['user_id']
+    if 'product_id' in data:
+        cart.product_id = data['product_id']
     db.session.commit()
     return jsonify(cart.as_dict())
 

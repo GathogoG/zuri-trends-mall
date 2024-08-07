@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
-from app.models import Wishlist
-from app.extensions import db
+from server.app.models import Wishlist
+from server.app.extensions import db
+from server.app.app import db 
 
 wishlist_bp = Blueprint('wishlist_bp', __name__)
 

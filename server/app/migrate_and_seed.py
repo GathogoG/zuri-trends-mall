@@ -8,9 +8,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///zuri_trends.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-from app.models import Catalog, Product, User, Review, Wishlist, Cart, CartItem, Payment
+from server.app.models import Catalog, Product, User, Review, Wishlist, Cart, CartItem, Payment
 
-from seed import (
+from server.scripts.seed import (
     seed_catalogs,
     seed_products,
     seed_users,

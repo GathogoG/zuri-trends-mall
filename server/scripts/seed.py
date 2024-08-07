@@ -1,10 +1,7 @@
-import os
-import sys
-
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-
-from server.app.app import create_app, db
+from server.app import create_app, db
 from server.app.models import Catalog, Product, User, Review, Wishlist, Cart, CartItem, Payment
+
+app = create_app()
 
 def seed_catalogs():
     catalogs = [
@@ -20,10 +17,10 @@ def seed_catalogs():
         {'name': 'Swimwear'}
     ]
     
-    for catalog in catalogs:
-        db.session.add(Catalog(**catalog))
-    
-    db.session.commit()
+    with app.app_context():
+        for catalog in catalogs:
+            db.session.add(Catalog(**catalog))
+        db.session.commit()
 
 def seed_products():
     products = [
@@ -49,10 +46,10 @@ def seed_products():
         {'name': 'Beach Shorts', 'price': 25.00, 'image_path': 'beach_shorts.jpg', 'quantity': 30, 'catalog_id': 10, 'size': 'L', 'color': 'Turquoise', 'description': 'Comfortable beach shorts'}
     ]
     
-    for product in products:
-        db.session.add(Product(**product))
-    
-    db.session.commit()
+    with app.app_context():
+        for product in products:
+            db.session.add(Product(**product))
+        db.session.commit()
 
 def seed_users():
     users = [
@@ -68,10 +65,10 @@ def seed_users():
         {'name': 'Laura Martinez', 'password': 'hashed_password_10', 'email': 'laura.martinez@example.com'}
     ]
     
-    for user in users:
-        db.session.add(User(**user))
-    
-    db.session.commit()
+    with app.app_context():
+        for user in users:
+            db.session.add(User(**user))
+        db.session.commit()
 
 def seed_reviews():
     reviews = [
@@ -81,35 +78,35 @@ def seed_reviews():
         {'product_id': 4, 'user_id': 4, 'rating': 4, 'comment': 'Nice skirt, would recommend.'},
         {'product_id': 5, 'user_id': 5, 'rating': 5, 'comment': 'My child loves this hoodie.'},
         {'product_id': 6, 'user_id': 6, 'rating': 4, 'comment': 'Comfortable and great for summer.'},
-        {'product_id': 7, 'user_id': 7, 'rating': 5, 'comment': 'Quality belt and stylish.'},
-        {'product_id': 8, 'user_id': 8, 'rating': 4, 'comment': 'Great sunglasses, very trendy.'},
-        {'product_id': 9, 'user_id': 9, 'rating': 5, 'comment': 'Perfect for running, very comfortable.'},
-        {'product_id': 10, 'user_id': 10, 'rating': 4, 'comment': 'Love these loafers, very elegant.'}
+        {'product_id': 7, 'user_id': 7, 'rating': 5, 'comment': 'The belt is very durable.'},
+        {'product_id': 8, 'user_id': 8, 'rating': 3, 'comment': 'Sunglasses are okay, but not very durable.'},
+        {'product_id': 9, 'user_id': 9, 'rating': 4, 'comment': 'Great for running, comfortable.'},
+        {'product_id': 10, 'user_id': 10, 'rating': 5, 'comment': 'Perfect loafers for formal events.'}
     ]
     
-    for review in reviews:
-        db.session.add(Review(**review))
-    
-    db.session.commit()
+    with app.app_context():
+        for review in reviews:
+            db.session.add(Review(**review))
+        db.session.commit()
 
 def seed_wishlists():
     wishlists = [
-        {'name': 'John\'s Wishlist', 'user_id': 1},
-        {'name': 'Jane\'s Wishlist', 'user_id': 2},
-        {'name': 'Emily\'s Wishlist', 'user_id': 3},
-        {'name': 'Michael\'s Wishlist', 'user_id': 4},
-        {'name': 'Chris\'s Wishlist', 'user_id': 5},
-        {'name': 'Amanda\'s Wishlist', 'user_id': 6},
-        {'name': 'Sarah\'s Wishlist', 'user_id': 7},
-        {'name': 'James\'s Wishlist', 'user_id': 8},
-        {'name': 'David\'s Wishlist', 'user_id': 9},
-        {'name': 'Laura\'s Wishlist', 'user_id': 10}
+        {'user_id': 1, 'product_id': 1},
+        {'user_id': 1, 'product_id': 2},
+        {'user_id': 2, 'product_id': 3},
+        {'user_id': 3, 'product_id': 4},
+        {'user_id': 4, 'product_id': 5},
+        {'user_id': 5, 'product_id': 6},
+        {'user_id': 6, 'product_id': 7},
+        {'user_id': 7, 'product_id': 8},
+        {'user_id': 8, 'product_id': 9},
+        {'user_id': 9, 'product_id': 10}
     ]
     
-    for wishlist in wishlists:
-        db.session.add(Wishlist(**wishlist))
-    
-    db.session.commit()
+    with app.app_context():
+        for wishlist in wishlists:
+            db.session.add(Wishlist(**wishlist))
+        db.session.commit()
 
 def seed_carts():
     carts = [
@@ -125,55 +122,51 @@ def seed_carts():
         {'user_id': 10}
     ]
     
-    for cart in carts:
-        db.session.add(Cart(**cart))
-    
-    db.session.commit()
+    with app.app_context():
+        for cart in carts:
+            db.session.add(Cart(**cart))
+        db.session.commit()
 
 def seed_cart_items():
     cart_items = [
         {'cart_id': 1, 'product_id': 1, 'quantity': 2},
         {'cart_id': 1, 'product_id': 2, 'quantity': 1},
         {'cart_id': 2, 'product_id': 3, 'quantity': 1},
-        {'cart_id': 2, 'product_id': 4, 'quantity': 3},
-        {'cart_id': 3, 'product_id': 5, 'quantity': 1},
-        {'cart_id': 4, 'product_id': 6, 'quantity': 2},
-        {'cart_id': 5, 'product_id': 7, 'quantity': 1},
-        {'cart_id': 6, 'product_id': 8, 'quantity': 2},
-        {'cart_id': 7, 'product_id': 9, 'quantity': 1},
-        {'cart_id': 8, 'product_id': 10, 'quantity': 1}
+        {'cart_id': 3, 'product_id': 4, 'quantity': 3},
+        {'cart_id': 4, 'product_id': 5, 'quantity': 1},
+        {'cart_id': 5, 'product_id': 6, 'quantity': 2},
+        {'cart_id': 6, 'product_id': 7, 'quantity': 1},
+        {'cart_id': 7, 'product_id': 8, 'quantity': 2},
+        {'cart_id': 8, 'product_id': 9, 'quantity': 1},
+        {'cart_id': 9, 'product_id': 10, 'quantity': 1}
     ]
     
-    for cart_item in cart_items:
-        db.session.add(CartItem(**cart_item))
-    
-    db.session.commit()
+    with app.app_context():
+        for cart_item in cart_items:
+            db.session.add(CartItem(**cart_item))
+        db.session.commit()
 
 def seed_payments():
     payments = [
-        {'cart_id': 1, 'user_id': 1, 'transaction_id': 'MPESA001', 'amount': 50.00, 'status': 'Completed'},
-        {'cart_id': 2, 'user_id': 2, 'transaction_id': 'MPESA002', 'amount': 40.00, 'status': 'Completed'},
-        {'cart_id': 3, 'user_id': 3, 'transaction_id': 'MPESA003', 'amount': 60.00, 'status': 'Completed'},
-        {'cart_id': 4, 'user_id': 4, 'transaction_id': 'MPESA004', 'amount': 105.00, 'status': 'Completed'},
-        {'cart_id': 5, 'user_id': 5, 'transaction_id': 'MPESA005', 'amount': 60.00, 'status': 'Pending'},
-        {'cart_id': 6, 'user_id': 6, 'transaction_id': 'MPESA006', 'amount': 20.00, 'status': 'Completed'},
-        {'cart_id': 7, 'user_id': 7, 'transaction_id': 'MPESA007', 'amount': 20.00, 'status': 'Completed'},
-        {'cart_id': 8, 'user_id': 8, 'transaction_id': 'MPESA008', 'amount': 15.00, 'status': 'Pending'},
-        {'cart_id': 9, 'user_id': 9, 'transaction_id': 'MPESA009', 'amount': 55.00, 'status': 'Completed'},
-        {'cart_id': 10, 'user_id': 10, 'transaction_id': 'MPESA010', 'amount': 70.00, 'status': 'Completed'}
+        {'user_id': 1, 'amount': 50.00, 'status': 'Completed'},
+        {'user_id': 2, 'amount': 35.00, 'status': 'Pending'},
+        {'user_id': 3, 'amount': 60.00, 'status': 'Completed'},
+        {'user_id': 4, 'amount': 80.00, 'status': 'Failed'},
+        {'user_id': 5, 'amount': 40.00, 'status': 'Completed'},
+        {'user_id': 6, 'amount': 30.00, 'status': 'Pending'},
+        {'user_id': 7, 'amount': 55.00, 'status': 'Completed'},
+        {'user_id': 8, 'amount': 20.00, 'status': 'Completed'},
+        {'user_id': 9, 'amount': 45.00, 'status': 'Pending'},
+        {'user_id': 10, 'amount': 25.00, 'status': 'Completed'}
     ]
     
-    for payment in payments:
-        db.session.add(Payment(**payment))
-    
-    db.session.commit()
-
-if __name__ == '__main__':
-    app = create_app()
     with app.app_context():
-        from flask_migrate import upgrade
-        upgrade()
-        
+        for payment in payments:
+            db.session.add(Payment(**payment))
+        db.session.commit()
+
+def seed_all():
+    with app.app_context():
         seed_catalogs()
         seed_products()
         seed_users()
@@ -182,3 +175,6 @@ if __name__ == '__main__':
         seed_carts()
         seed_cart_items()
         seed_payments()
+
+if __name__ == "__main__":
+    seed_all()

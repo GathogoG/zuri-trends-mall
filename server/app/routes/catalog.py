@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
-from app.models import Catalog
-from app.extensions import db
+from server.app.models import Catalog
+from server.app.extensions import db
 
-catalog_bp = Blueprint('catalog_bp', __name__)
+catalog_bp = Blueprint('catalog', __name__)
 
 @catalog_bp.route('/catalogs', methods=['GET'])
 def get_catalogs():
@@ -17,6 +17,8 @@ def get_catalog(id):
 @catalog_bp.route('/catalogs', methods=['POST'])
 def create_catalog():
     data = request.get_json()
+    if not data or 'name' not in data:
+        return jsonify({'error': 'Invalid input'}), 400
     catalog = Catalog(name=data['name'])
     db.session.add(catalog)
     db.session.commit()
@@ -26,9 +28,11 @@ def create_catalog():
 def update_catalog(id):
     data = request.get_json()
     catalog = Catalog.query.get_or_404(id)
-    catalog.name = data['name']
-    db.session.commit()
-    return jsonify(catalog.as_dict())
+    if 'name' in data:
+        catalog.name = data['name']
+        db.session.commit()
+        return jsonify(catalog.as_dict())
+    return jsonify({'error': 'Invalid input'}), 400
 
 @catalog_bp.route('/catalogs/<int:id>', methods=['DELETE'])
 def delete_catalog(id):

@@ -1,22 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///zuri_trends.db'
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
-from server.app.models import Catalog, Product, User, Review, Wishlist, Cart, CartItem, Payment
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate, MigrateCommand
-from flask_script import Manager
+from server.app.config import Config
 
 db = SQLAlchemy()
 migrate = Migrate()
 
-def create_app(config_class='server.config.Config'):
+def create_app(config_class='server.app.config.Config'):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
@@ -39,19 +29,4 @@ def create_app(config_class='server.config.Config'):
     app.register_blueprint(cart_bp, url_prefix='/cart')
     app.register_blueprint(payment_bp, url_prefix='/payment')
     
-    @app.before_first_request
-    def create_tables():
-        with app.app_context():
-            db.create_all()
-    
     return app
-
-app = create_app()
-
-manager = Manager(app)
-migrate.init_app(app, db)
-
-manager.add_command('db', MigrateCommand)
-
-if __name__ == '__main__':
-    manager.run()
