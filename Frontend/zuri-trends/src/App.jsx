@@ -32,6 +32,7 @@ import DeliveryPage from './pages/Delivery';
 import PaymentPage from './pages/Payment';
 import Login from './components/Login/Login';
 import SignUp from './components/Signup/Signup';
+<<<<<<< HEAD
 import LandingPage from './pages/LandingPage';
 import NavigationBar from './components/NavigationBar'; 
 =======
@@ -44,6 +45,9 @@ import PaymentPage from './pages/Payment';
 import Login from './components/Login/Login';
 import SignUp from './components/Signup/Signup';
 >>>>>>> 2e5ecdd (login)
+=======
+import { Toaster } from 'react-hot-toast';
+>>>>>>> d6540ae (added toaat message)
 
 const productDetails = {
   title: 'Sample Product',
@@ -70,6 +74,7 @@ function App() {
 >>>>>>> 2e5ecdd (login)
   return (
     <div className="app">
+      <Toaster />
       <Router>
         <Routes>
 <<<<<<< HEAD
