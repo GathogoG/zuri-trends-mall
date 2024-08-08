@@ -1,7 +1,9 @@
 // src/components/Signup/Signup.jsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Signup.css";  // Ensure this CSS file exists
+
+import { Link, useNavigate } from "react-router-dom";
+import "./Signup.css";
+
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -44,9 +46,19 @@ function Signup() {
       // Navigate to the homepage upon successful sign-up
       navigate("/home");
 
+
+      if (response.ok) {
+        setSuccess(true);
+        console.log("User created:", data);
+        navigate("/login"); 
+      } else {
+        setError(data.error || "Something went wrong!");
+      }
+
     } catch (err) {
       setError("Network error. Please try again later.");
       console.error("Error:", err);
+      setError("Failed to sign up");
     }
   };
 

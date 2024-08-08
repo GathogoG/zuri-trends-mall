@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import "./Login.css";
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -19,28 +23,42 @@ const Login = () => {
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+
+      const response = await fetch(
+        `http://127.0.0.1:5000/users?email=${encodeURIComponent(
+          email
+        )}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(
+          name
+        )}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
-        const errorData = await response.json();
-        setError(errorData.error || "Login failed!");
-        return;
+        if (response.status === 401) {
+          throw new Error("Invalid name, email, or password!");
+        } else {
+          throw new Error("Something went wrong!");
+        }
       }
 
       const data = await response.json();
+
+
       setSuccess(true);
+      toast.success(`${name} successfully logged in!`);
       console.log("User logged in:", data);
-      navigate("/home"); // Redirect to home upon successful login
+
+      navigate("/"); // Redirect to the home page on successful login
 
     } catch (err) {
       setError("Network error. Please try again later.");
       console.error("Error:", err);
+      toast.error(err.message);
     }
   };
 
@@ -67,23 +85,15 @@ const Login = () => {
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <button
-            type="submit"
-            className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            Log In
-          </button>
-        </form>
-        <p className="mt-4 text-center">
-          Don't have an account?{' '}
-          <a
-            href="/signup"
-            className="text-blue-600 hover:underline"
-          >
-            Sign Up
-          </a>
-        </p>
-      </div>
+
+        </div>
+        <button type="submit">LOGIN</button>
+        <div className="extra-links">
+          <a href="#">Forgot your password?</a>
+          <Link to="/signup">Create an account</Link>
+        </div>
+      </form>
+
     </div>
   );
 };

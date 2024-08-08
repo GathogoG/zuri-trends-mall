@@ -25,8 +25,12 @@ import DeliveryPage from './pages/Delivery';
 import PaymentPage from './pages/Payment';
 import Login from './components/Login/Login';
 import SignUp from './components/Signup/Signup';
+
+import { Toaster } from 'react-hot-toast';
+
 import LandingPage from './pages/LandingPage';
 import NavigationBar from './components/NavigationBar'; 
+
 
 const productDetails = {
   title: 'Sample Product',
@@ -39,6 +43,7 @@ function App() {
 
   return (
     <div className="app">
+      <Toaster />
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} /> {/* LandingPage as the default route */}
