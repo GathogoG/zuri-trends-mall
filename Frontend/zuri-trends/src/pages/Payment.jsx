@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios'; 
-
 
 const sampleCards = [
   { id: '1', name: 'Visa', number: '**** **** **** 1234', expDate: '12/25' },
@@ -12,20 +11,19 @@ const sampleCards = [
 const mpesaOption = {
   id: '4',
   name: 'M-Pesa',
-  icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/M-Pesa_Logo.png/640px-M-Pesa_Logo.png', // Example M-Pesa icon
+  icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/M-Pesa_Logo.png/640px-M-Pesa_Logo.png',
 };
 
 export default function PaymentPage() {
   const location = useLocation();
   const { deliveryDetails = {}, productDetails = {} } = location.state || {};
 
-
   const parsePrice = (priceStr) => parseFloat(priceStr.replace(/[^\d.-]/g, '')) || 0;
   const price = parsePrice(productDetails.price);
   const fee = parseFloat(deliveryDetails.fee) || 0;
   const totalAmount = (price + fee).toFixed(2);
 
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCard, setSelectedCard] = React.useState(null);
 
   const handleCardSelect = (card) => {
     setSelectedCard(card);
@@ -37,11 +35,9 @@ export default function PaymentPage() {
       return;
     }
 
-    const paymentMethod = selectedCard.id;
     const paymentData = {
       amount: totalAmount,
-      phone_number: '0115743312', 
-      user_id: 1, 
+      phone_number: '0115743312',
     };
 
     try {
@@ -64,7 +60,6 @@ export default function PaymentPage() {
         <p className="mt-2 text-lg leading-8 text-gray-600">Complete your payment details below.</p>
       </div>
       <div className="max-w-xl mx-auto mt-16 sm:mt-20">
-        {/* Delivery Details */}
         <div className="bg-gray-50 p-4 rounded-lg shadow-lg mb-8">
           <h3 className="text-xl font-bold">Delivery Details</h3>
           <p>Name: {deliveryDetails.name}</p>
@@ -75,7 +70,6 @@ export default function PaymentPage() {
           <p>Delivery Fee: KSh {fee.toFixed(2).toLocaleString()}</p>
         </div>
 
-        {/* Product Details */}
         <div className="bg-gray-50 p-4 rounded-lg shadow-lg mb-8">
           <h3 className="text-xl font-bold">{productDetails.title}</h3>
           <p className="text-gray-700 mb-2">{productDetails.description}</p>
@@ -89,7 +83,6 @@ export default function PaymentPage() {
           </div>
         </div>
 
-        {/* Payment Method Selection */}
         <div className="mt-10">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Select a Payment Method</h3>
           <ul className="space-y-4">
@@ -104,7 +97,6 @@ export default function PaymentPage() {
                 <p className="text-sm text-gray-600">Expiry Date: {card.expDate}</p>
               </li>
             ))}
-            {/* M-Pesa Option */}
             <li
               key={mpesaOption.id}
               className={`p-4 border rounded-md cursor-pointer ${selectedCard?.id === mpesaOption.id ? 'bg-gray-100 border-indigo-600' : 'border-gray-300'}`}
