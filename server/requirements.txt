@@ -3,3 +3,4 @@ Flask-SQLAlchemy
 Flask-Migrate==4.0.7
 python-dotenv
 flask_script
+requests
