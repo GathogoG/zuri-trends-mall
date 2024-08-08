@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -10,6 +9,7 @@ import Contact from './pages/Contact';
 import LogOut from './pages/LogOut';
 import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout'; 
 import AboutUs from './components/AboutUs';
 import TShirts from './components/T-Shirts';
 import Croptops from './components/Crop-Tops';
@@ -27,8 +27,8 @@ import DeliveryPage from './pages/Delivery';
 import PaymentPage from './pages/Payment';
 import Login from './components/Login/Login';
 import SignUp from './components/Signup/Signup';
-import LandingPage from './pages/LandingPage'; // Import LandingPage
-import NavigationBar from './components/NavigationBar'; // Import NavigationBar
+import LandingPage from './pages/LandingPage';
+import NavigationBar from './components/NavigationBar'; 
 
 const productDetails = {
   title: 'Sample Product',
@@ -61,6 +61,7 @@ function App() {
           <Route path="/logout" element={<><NavigationBar /><LogOut /></>} />
           <Route path="/wishlist" element={<><NavigationBar /><Wishlist /></>} />
           <Route path="/cart" element={<><NavigationBar /><Cart /></>} />
+          <Route path="/checkout" element={<><NavigationBar /><Checkout /></>} /> 
           <Route path="/about" element={<><NavigationBar /><AboutUs /></>} />
           <Route path="/orderhistory" element={<><NavigationBar /><OrderHistory /></>} />
           <Route path="/product/:productId" element={<><NavigationBar /><ProductPage /></>} />
