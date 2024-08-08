@@ -27,8 +27,6 @@ import Login from './components/Login/Login';
 import SignUp from './components/Signup/Signup';
 
 import { Toaster } from 'react-hot-toast';
-
-import LandingPage from './pages/LandingPage';
 import NavigationBar from './components/NavigationBar'; 
 
 
@@ -46,12 +44,12 @@ function App() {
       <Toaster />
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />} /> {/* LandingPage as the default route */}
+          
           <Route path="/home" element={<><NavigationBar /><Home /></>} />
           <Route path="/delivery" element={<><NavigationBar /><DeliveryPage setDeliveryDetails={setDeliveryDetails} /></>} />
           <Route path="/payment" element={<><NavigationBar /><PaymentPage deliveryDetails={deliveryDetails} productDetails={productDetails} /></>} />
-          <Route path="/login" element={<><NavigationBar /><Login /></>} />
-          <Route path="/signup" element={<><NavigationBar /><SignUp /></>} />
+          <Route path="/" element={<><Login /></>} />
+          <Route path="/signup" element={<><SignUp /></>} />
           <Route path="/catalog" element={<><NavigationBar /><Catalog /></>} />
           <Route path="/contact" element={<><NavigationBar /><Contact /></>} />
           <Route path="/t-shirts" element={<><NavigationBar /><TShirts /></>} />

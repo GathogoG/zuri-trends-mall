@@ -1,9 +1,6 @@
-// src/components/Signup/Signup.jsx
 import React, { useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
-
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -25,7 +22,7 @@ function Signup() {
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/user", {
+      const response = await fetch("http://127.0.0.1:5000/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,30 +30,16 @@ function Signup() {
         body: JSON.stringify(userData),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        setError(errorData.message || "Something went wrong!");
-        return;
-      }
-
       const data = await response.json();
-      setSuccess(true);
-      console.log("User created:", data);
-      
-      // Navigate to the homepage upon successful sign-up
-      navigate("/home");
-
 
       if (response.ok) {
         setSuccess(true);
         console.log("User created:", data);
-        navigate("/login"); 
+        navigate("/");
       } else {
         setError(data.error || "Something went wrong!");
       }
-
     } catch (err) {
-      setError("Network error. Please try again later.");
       console.error("Error:", err);
       setError("Failed to sign up");
     }
@@ -99,7 +82,7 @@ function Signup() {
         </div>
         <button type="submit">SIGN UP</button>
         <div className="extra-links">
-          <a href="/login">Already have an account? Log in</a>
+          <Link to="/">Already have an account? Log in</Link>
         </div>
       </form>
     </div>

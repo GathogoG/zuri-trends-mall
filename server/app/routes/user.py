@@ -11,10 +11,15 @@ def get_users():
     password = request.args.get('password')
     name = request.args.get('name')
 
+
+    # Validate input
     if not email or not password or not name:
         return jsonify({'error': 'Invalid input'}), 400
 
+    # Find user by email and name
     user = User.query.filter_by(email=email, name=name).first()
+
+    # Check if user exists and if password is correct
 
     if user and check_password_hash(user.password, password):
         return jsonify(user.as_dict()), 200
@@ -32,8 +37,10 @@ def create_user():
     if not data or not all(key in data for key in ['name', 'password', 'email']):
         return jsonify({'error': 'Invalid input'}), 400
 
-    existing_user = User.query.filter_by(email=data['email']).first()
-    if existing_user:
+
+    user = User.query.filter_by(email=data['email']).first()
+    if user:
+
         return jsonify({'error': 'User already exists'}), 400
 
     new_user = User(
