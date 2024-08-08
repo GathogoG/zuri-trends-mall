@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -198,3 +199,5 @@ export default Login;
 >>>>>>> 7994107 (change)
 =======
 >>>>>>> 25c4b52 (login)
+=======
+>>>>>>> 6fb504f (redoing login and signup)

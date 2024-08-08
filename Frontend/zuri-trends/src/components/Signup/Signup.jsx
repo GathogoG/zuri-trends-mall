@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // src/components/Signup/Signup.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -158,3 +159,5 @@ export default Signup;
 =======
 export default Signup;
 >>>>>>> 25c4b52 (login)
+=======
+>>>>>>> 6fb504f (redoing login and signup)
