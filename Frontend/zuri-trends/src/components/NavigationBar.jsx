@@ -19,7 +19,7 @@ function NavigationBar() {
                 <NavDropdown.Item href="/sweatshirts">SWEAT-SHIRTS</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="/contact">CONTACT</Nav.Link>
-              <Nav.Link href="/home">HOME</Nav.Link> {/* Added Home link */}
+              <Nav.Link href="/home">HOME</Nav.Link> 
             </Nav>
             <Nav>
               <Nav.Link href="/about">ABOUT US</Nav.Link>
@@ -36,7 +36,7 @@ function NavigationBar() {
                     />
                   </Col>
                   <Col xs="auto">
-                    <Button type="submit" className='submit'>Submit</Button>
+                    {/* <Button type="submit" className='submit'>Submit</Button> */}
                   </Col>
                 </Row>
               </Form>
