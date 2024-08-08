@@ -1,7 +1,7 @@
 from flask import Flask
-from server.app.extensions import db, migrate  
+from flask_cors import CORS
+from server.app.extensions import db, migrate
 from server.app.config import Config
-import click
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -9,8 +9,13 @@ def create_app(config_class=Config):
 
     app.config['DEBUG'] = True
 
+
+    CORS(app, resources={r"/*": {"origins": "http://localhost:5174"}})
+
+    
     db.init_app(app)
     migrate.init_app(app, db)
+
 
     from server.app.routes.catalog import catalog_bp
     from server.app.routes.product import product_bp
