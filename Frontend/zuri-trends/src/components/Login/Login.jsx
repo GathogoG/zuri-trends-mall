@@ -31,13 +31,14 @@ function Login() {
       );
 
       if (!response.ok) {
-        throw new Error("Invalid name, email, or password!");
+        if (response.status === 401) {
+          throw new Error("Invalid name, email, or password!");
+        } else {
+          throw new Error("Something went wrong!");
+        }
       }
 
       const data = await response.json();
-      if (data.length === 0) {
-        throw new Error("Invalid name, email, or password!");
-      }
 
       setSuccess(true);
       toast.success(`${name} successfully logged in!`);
@@ -46,7 +47,7 @@ function Login() {
     } catch (err) {
       setError(err.message);
       console.error("Error:", err);
-      toast.error("Login failed. Please check your credentials.");
+      toast.error(err.message);
     }
   };
 
