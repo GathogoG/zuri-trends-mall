@@ -19,37 +19,63 @@ import SweatShirts from './components/Sweat-Shirts';
 import CropHoodies from './components/Crop-Hoodies';
 import OrderHistory from './pages/OrderHistory';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import ProductReview from './components/ProductReview';
 import ProductManager from './components/ProductManager';
 =======
+=======
+import ProductReview from './components/ProductReview';
+import ProductManager from './components/ProductManager';
+>>>>>>> refs/remotes/origin/main
 import ProductPage from './components/ProductPage';
 import DeliveryPage from './pages/Delivery';
 import PaymentPage from './pages/Payment';
 import Login from './components/Login/Login';
 import SignUp from './components/Signup/Signup';
+<<<<<<< HEAD
 import LandingPage from './pages/LandingPage';
 import NavigationBar from './components/NavigationBar'; 
 
+=======
+
+import { Toaster } from 'react-hot-toast';
+import NavigationBar from './components/NavigationBar'; 
+
+
+>>>>>>> refs/remotes/origin/main
 const productDetails = {
   title: 'Sample Product',
   description: 'This is a sample product description.',
   price: 1500,
 };
+<<<<<<< HEAD
 >>>>>>> e21b4c9 (home)
+=======
+>>>>>>> refs/remotes/origin/main
 
 function App() {
   const [deliveryDetails, setDeliveryDetails] = React.useState({ location: '', fee: 0 });
 
   return (
     <div className="app">
+      <Toaster />
       <Router>
         <Routes>
+<<<<<<< HEAD
           <Route path="/" element={<LandingPage />} /> {/* LandingPage as the default route */}
           <Route path="/home" element={<><NavigationBar /><Home /></>} />
           <Route path="/delivery" element={<><NavigationBar /><DeliveryPage setDeliveryDetails={setDeliveryDetails} /></>} />
           <Route path="/payment" element={<><NavigationBar /><PaymentPage deliveryDetails={deliveryDetails} productDetails={productDetails} /></>} />
           <Route path="/login" element={<><NavigationBar /><Login /></>} />
           <Route path="/signup" element={<><NavigationBar /><SignUp /></>} />
+=======
+          
+          <Route path="/home" element={<><NavigationBar /><Home /></>} />
+          <Route path="/delivery" element={<><NavigationBar /><DeliveryPage setDeliveryDetails={setDeliveryDetails} /></>} />
+          <Route path="/payment" element={<><NavigationBar /><PaymentPage deliveryDetails={deliveryDetails} productDetails={productDetails} /></>} />
+          <Route path="/" element={<><Login /></>} />
+          <Route path="/signup" element={<><SignUp /></>} />
+>>>>>>> refs/remotes/origin/main
           <Route path="/catalog" element={<><NavigationBar /><Catalog /></>} />
           <Route path="/contact" element={<><NavigationBar /><Contact /></>} />
           <Route path="/t-shirts" element={<><NavigationBar /><TShirts /></>} />
