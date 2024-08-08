@@ -11,6 +11,8 @@ import requests
 import base64
 import json
 from datetime import datetime
+import random
+import string
 
 payment_bp = Blueprint('payment_bp', __name__)
 
@@ -24,6 +26,11 @@ BUSINESS_SHORT_CODE = '174379'
 LIPA_NA_MPESA_ONLINE_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
 <<<<<<< HEAD
 CALLBACK_URL = 'https://yourdomain.com/path'
+COMPANY_NAME = 'Zuri-Trends' 
+
+def generate_transaction_id(length=12):
+    """Generate a random transaction ID."""
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
 
 def get_access_token():
     try:
@@ -33,13 +40,9 @@ def get_access_token():
         json_response = response.json()
         return json_response['access_token']
     except requests.RequestException as e:
-        return {'error': str(e)}
+        return {'error': str(e)}, 500
 
-def lipa_na_mpesa_online(amount, phone_number, transaction_id):
-    access_token = get_access_token()
-    if 'error' in access_token:
-        return access_token
-
+<<<<<<< HEAD
 =======
 CALLBACK_URL = 'https://mydomain.com/path'
 phonenumber ='0115743312'
@@ -55,30 +58,50 @@ def get_access_token():
 def lipa_na_mpesa_online(amount, phone_number, transaction_id):
     access_token = get_access_token()
 >>>>>>> b7416a3 (made changes on payment.py  on main)
+=======
+def lipa_na_mpesa_online(amount, phone_number):
+    access_token_response = get_access_token()
+    if isinstance(access_token_response, dict) and 'error' in access_token_response:
+        return access_token_response
+    
+    access_token = access_token_response
+>>>>>>> f095982 (Made changes to the payment route)
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     password = base64.b64encode((BUSINESS_SHORT_CODE + LIPA_NA_MPESA_ONLINE_PASSKEY + timestamp).encode()).decode('utf-8')
+    
+    transaction_id = generate_transaction_id()  
+
     payload = {
         "BusinessShortCode": BUSINESS_SHORT_CODE,
         "Password": password,
         "Timestamp": timestamp,
         "TransactionType": "CustomerPayBillOnline",
         "Amount": amount,
-        "PartyA": phone_number,
+        "PartyA": phone_number,  
         "PartyB": BUSINESS_SHORT_CODE,
-        "PhoneNumber": phone_number,
+        "PhoneNumber": phone_number,  
         "CallBackURL": CALLBACK_URL,
 <<<<<<< HEAD
         "AccountReference": transaction_id,
+<<<<<<< HEAD
 =======
         "AccountReference": transaction_id,  
 >>>>>>> b7416a3 (made changes on payment.py  on main)
         "TransactionDesc": "Payment for goods"
+=======
+        "TransactionDesc": f"Payment to {COMPANY_NAME} - ID: {transaction_id}, Amount: KSh {amount}"
+>>>>>>> f095982 (Made changes to the payment route)
     }
+    
     headers = {
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json"
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    
+>>>>>>> f095982 (Made changes to the payment route)
     try:
         url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
         response = requests.post(url, json=payload, headers=headers)
@@ -111,14 +134,13 @@ def get_payment(id):
 @payment_bp.route('/payments', methods=['POST'])
 def create_payment():
     data = request.get_json()
-    if not data or not all(key in data for key in ['amount', 'transaction_id', 'user_id']):
+    if not data or not all(key in data for key in ['amount', 'phone_number', 'user_id']):
         return jsonify({'error': 'Invalid input'}), 400
 
     amount = data['amount']
-    phone_number = '0115743312'
-    transaction_id = data['transaction_id']
+    phone_number = data['phone_number']
     
-    response = lipa_na_mpesa_online(amount, phone_number, transaction_id)
+    response = lipa_na_mpesa_online(amount, phone_number)
     if 'error' in response:
         return jsonify(response), 500
 
@@ -141,6 +163,9 @@ def create_payment():
         payment_status = 'Successful'
     else:
         payment_status = 'Failed'
+    
+
+    transaction_id = response.get('CheckoutRequestID', generate_transaction_id())
     
     payment = Payment(
         user_id=data['user_id'],
@@ -194,3 +219,4 @@ def delete_payment(id):
     db.session.delete(payment)
     db.session.commit()
     return '', 204
+
