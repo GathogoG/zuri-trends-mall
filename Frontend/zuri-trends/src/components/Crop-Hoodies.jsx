@@ -17,8 +17,8 @@ function CropHoodies() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/property', { timeout: 10000 });
-        console.log('API response:', response.data); // Log the response
+        const response = await axios.get('http://127.0.0.1:5000/products', { timeout: 10000 });
+        console.log('API response:', response.data);
         if (Array.isArray(response.data)) {
           setProducts(response.data);
         } else {
