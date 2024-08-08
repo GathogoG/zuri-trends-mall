@@ -1,13 +1,22 @@
+<<<<<<< HEAD
 import React from 'react';
 <<<<<<< HEAD
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
 =======
+=======
+import React, { useState } from 'react';
+>>>>>>> bf9e0d2 (Made changes to the payment page to add Mpesa intergration)
 import { useLocation } from 'react-router-dom';
+import axios from 'axios'; 
 
+
+<<<<<<< HEAD
 // Sample payment cards
 >>>>>>> e21b4c9 (home)
+=======
+>>>>>>> bf9e0d2 (Made changes to the payment page to add Mpesa intergration)
 const sampleCards = [
   { id: '1', name: 'Visa', number: '**** **** **** 1234', expDate: '12/25' },
   { id: '2', name: 'MasterCard', number: '**** **** **** 5678', expDate: '11/24' },
@@ -15,12 +24,15 @@ const sampleCards = [
 ];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const mpesaOption = {
   id: '4',
   name: 'M-Pesa',
   icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/M-Pesa_Logo.png/640px-M-Pesa_Logo.png',
 =======
 // M-Pesa option with an icon
+=======
+>>>>>>> bf9e0d2 (Made changes to the payment page to add Mpesa intergration)
 const mpesaOption = {
   id: '4',
   name: 'M-Pesa',
@@ -33,15 +45,19 @@ export default function PaymentPage() {
   const { deliveryDetails = {}, productDetails = {} } = location.state || {};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   // Remove currency symbols and convert to numbers
 >>>>>>> e21b4c9 (home)
+=======
+
+>>>>>>> bf9e0d2 (Made changes to the payment page to add Mpesa intergration)
   const parsePrice = (priceStr) => parseFloat(priceStr.replace(/[^\d.-]/g, '')) || 0;
   const price = parsePrice(productDetails.price);
   const fee = parseFloat(deliveryDetails.fee) || 0;
   const totalAmount = (price + fee).toFixed(2);
 
-  const [selectedCard, setSelectedCard] = React.useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const handleCardSelect = (card) => {
     setSelectedCard(card);
@@ -73,6 +89,32 @@ export default function PaymentPage() {
   };
 =======
 >>>>>>> e21b4c9 (home)
+
+  const handleContinueToPayment = async () => {
+    if (!selectedCard) {
+      alert('Please select a payment method');
+      return;
+    }
+
+    const paymentMethod = selectedCard.id;
+    const paymentData = {
+      amount: totalAmount,
+      phone_number: '0115743312', 
+      user_id: 1, 
+    };
+
+    try {
+      const response = await axios.post('http://localhost:5000/payments', paymentData);
+      if (response.status === 201) {
+        alert('Payment initiated. Please check your phone for the PIN prompt.');
+      } else {
+        alert('Failed to initiate payment');
+      }
+    } catch (error) {
+      console.error('Error initiating payment:', error);
+      alert('An error occurred while initiating payment');
+    }
+  };
 
   return (
     <div className="px-6 py-24 bg-white isolate sm:py-32 lg:px-8">
@@ -152,6 +194,7 @@ export default function PaymentPage() {
             type="button"
             className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 <<<<<<< HEAD
+<<<<<<< HEAD
             onClick={handleContinueToPayment}
           >
             Continue to Payment
@@ -159,6 +202,11 @@ export default function PaymentPage() {
           >
             Complete Payment
 >>>>>>> e21b4c9 (home)
+=======
+            onClick={handleContinueToPayment}
+          >
+            Continue to Payment
+>>>>>>> bf9e0d2 (Made changes to the payment page to add Mpesa intergration)
           </button>
         </div>
       </div>
