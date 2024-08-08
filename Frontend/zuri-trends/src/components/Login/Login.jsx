@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -49,6 +50,10 @@ const Login = () => {
 >>>>>>> 25c4b52 (login)
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+=======
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+>>>>>>> 5401a78 (fixed login and signup)
 import "./Login.css";
 
 function Login() {
@@ -57,6 +62,10 @@ function Login() {
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+<<<<<<< HEAD
+=======
+  const navigate = useNavigate();
+>>>>>>> 5401a78 (fixed login and signup)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -64,7 +73,11 @@ function Login() {
 
     try {
       const response = await fetch(
+<<<<<<< HEAD
         `http://127.0.0.1:5000/users`,
+=======
+        `http://127.0.0.1:5000/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(name)}`,
+>>>>>>> 5401a78 (fixed login and signup)
         {
           method: "GET",
           headers: {
@@ -74,7 +87,11 @@ function Login() {
       );
 
       if (!response.ok) {
+<<<<<<< HEAD
         throw new Error("Something went wrong!");
+=======
+        throw new Error("Invalid name, email, or password!");
+>>>>>>> 5401a78 (fixed login and signup)
       }
 
       const data = await response.json();
@@ -84,6 +101,7 @@ function Login() {
 
       setSuccess(true);
       console.log("User logged in:", data);
+<<<<<<< HEAD
     } catch (err) {
       setError(err.message);
 <<<<<<< HEAD
@@ -106,6 +124,17 @@ function Login() {
 =======
 =======
 >>>>>>> 25c4b52 (login)
+=======
+      navigate("/"); // Redirect to the home page on successful login
+    } catch (err) {
+      setError(err.message);
+      console.error("Error:", err);
+    }
+    
+  };
+
+  return (
+>>>>>>> 5401a78 (fixed login and signup)
     <div className="login-container">
       <form onSubmit={handleSubmit}>
         <h2>LOGIN</h2>
@@ -122,15 +151,19 @@ function Login() {
         </div>
         <div className="input-group">
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 2e5ecdd (login)
 =======
 >>>>>>> 25c4b52 (login)
+=======
+>>>>>>> 5401a78 (fixed login and signup)
           <input
             type="email"
             placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -145,12 +178,18 @@ function Login() {
         </div>
         <div className="input-group">
 >>>>>>> 25c4b52 (login)
+=======
+          />
+        </div>
+        <div className="input-group">
+>>>>>>> 5401a78 (fixed login and signup)
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -180,6 +219,8 @@ export default Login;
 =======
 =======
 >>>>>>> 25c4b52 (login)
+=======
+>>>>>>> 5401a78 (fixed login and signup)
           />
         </div>
         <button type="submit">SIGN IN</button>
@@ -194,6 +235,7 @@ export default Login;
 
 export default Login;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 2e5ecdd (login)
 =======
 >>>>>>> 7994107 (change)
@@ -201,3 +243,5 @@ export default Login;
 >>>>>>> 25c4b52 (login)
 =======
 >>>>>>> 6fb504f (redoing login and signup)
+=======
+>>>>>>> 5401a78 (fixed login and signup)

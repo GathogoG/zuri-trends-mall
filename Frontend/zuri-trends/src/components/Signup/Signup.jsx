@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // src/components/Signup/Signup.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +17,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Signup.css";
 >>>>>>> 25c4b52 (login)
+=======
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Signup.css";
+>>>>>>> 5401a78 (fixed login and signup)
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -25,11 +31,15 @@ function Signup() {
   const [success, setSuccess] = useState(false);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   const navigate = useNavigate();
 =======
 >>>>>>> 2e5ecdd (login)
 =======
 >>>>>>> 25c4b52 (login)
+=======
+  const navigate = useNavigate();
+>>>>>>> 5401a78 (fixed login and signup)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -45,6 +55,7 @@ function Signup() {
     try {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       const response = await fetch("http://127.0.0.1:5000/user", {
 =======
       const response = await fetch("http://127.0.0.1:5000/users", {
@@ -52,6 +63,9 @@ function Signup() {
 =======
       const response = await fetch("http://127.0.0.1:5000/users", {
 >>>>>>> 25c4b52 (login)
+=======
+      const response = await fetch("http://127.0.0.1:5000/users", {
+>>>>>>> 5401a78 (fixed login and signup)
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,6 +73,7 @@ function Signup() {
         body: JSON.stringify(userData),
       });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       if (!response.ok) {
@@ -79,11 +94,14 @@ function Signup() {
 =======
 =======
 >>>>>>> 25c4b52 (login)
+=======
+>>>>>>> 5401a78 (fixed login and signup)
       const data = await response.json();
 
       if (response.ok) {
         setSuccess(true);
         console.log("User created:", data);
+<<<<<<< HEAD
       } else {
         setError(data.message || "Something went wrong!");
       }
@@ -93,6 +111,15 @@ function Signup() {
 =======
 >>>>>>> 25c4b52 (login)
       console.error("Error:", err);
+=======
+        navigate("/login"); 
+      } else {
+        setError(data.error || "Something went wrong!");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      setError("Failed to sign up");
+>>>>>>> 5401a78 (fixed login and signup)
     }
   };
 
@@ -135,6 +162,7 @@ function Signup() {
         <div className="extra-links">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <a href="/login">Already have an account? Log in</a>
 =======
           <Link to="/login">Already have an account? Log in</Link>
@@ -142,12 +170,16 @@ function Signup() {
 =======
           <Link to="/login">Already have an account? Log in</Link>
 >>>>>>> 25c4b52 (login)
+=======
+          <Link to="/login">Already have an account? Log in</Link>
+>>>>>>> 5401a78 (fixed login and signup)
         </div>
       </form>
     </div>
   );
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 export default Signup;
@@ -161,3 +193,6 @@ export default Signup;
 >>>>>>> 25c4b52 (login)
 =======
 >>>>>>> 6fb504f (redoing login and signup)
+=======
+export default Signup;
+>>>>>>> 5401a78 (fixed login and signup)
