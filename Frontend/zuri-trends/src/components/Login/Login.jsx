@@ -100,16 +100,21 @@ function Login() {
 
       if (!response.ok) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         throw new Error("Something went wrong!");
 =======
         throw new Error("Invalid name, email, or password!");
 >>>>>>> 5401a78 (fixed login and signup)
+=======
+        if (response.status === 401) {
+          throw new Error("Invalid name, email, or password!");
+        } else {
+          throw new Error("Something went wrong!");
+        }
+>>>>>>> d9291fc (done with login)
       }
 
       const data = await response.json();
-      if (data.length === 0) {
-        throw new Error("Invalid name, email, or password!");
-      }
 
       setSuccess(true);
       toast.success(`${name} successfully logged in!`);
@@ -142,7 +147,7 @@ function Login() {
     } catch (err) {
       setError(err.message);
       console.error("Error:", err);
-      toast.error("Login failed. Please check your credentials.");
+      toast.error(err.message);
     }
   };
 
