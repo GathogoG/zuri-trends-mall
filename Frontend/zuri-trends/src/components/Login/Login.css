@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Login.css */
 
 =======
@@ -9,67 +10,80 @@ body {
   background-color: #f7f7f7;
   font-family: Arial, sans-serif;
 }
+=======
+>>>>>>> 3a46b7e (done with login)
 
 .login-container {
-  width: 100%;
-  max-width: 400px;
-  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
   padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 
 form {
-  display: flex;
-  flex-direction: column;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
 }
 
 h2 {
-  text-align: center;
-  color: #333;
+  font-size: 24px;
   margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.success-message {
+  color: #4caf50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.error-message {
+  color: #f44336;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .input-group {
   margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
 }
 
-.input-group input {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   font-size: 16px;
-  color: #333;
+  box-sizing: border-box;
 }
 
-.input-group input:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.3);
-}
-
-button[type="submit"] {
+button {
+  width: 100%;
   padding: 10px;
   background-color: #007bff;
-  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
+  color: #fff;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 10px;
+  transition: background-color 0.3s;
 }
 
-button[type="submit"]:hover {
+button:hover {
   background-color: #0056b3;
 }
 
 .extra-links {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .extra-links a {
@@ -81,6 +95,7 @@ button[type="submit"]:hover {
 .extra-links a:hover {
   text-decoration: underline;
 }
+<<<<<<< HEAD
 
 .success-message {
   color: #28a745;
@@ -269,3 +284,5 @@ button:hover {
   margin-bottom: 1em;
 }
 >>>>>>> 9486e85 (redoing seeding)
+=======
+>>>>>>> 3a46b7e (done with login)

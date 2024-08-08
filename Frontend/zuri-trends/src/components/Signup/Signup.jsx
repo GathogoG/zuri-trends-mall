@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // src/components/Signup/Signup.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -29,6 +30,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css";  // Ensure this CSS file exists
 >>>>>>> 8a2a33b (authentication)
+=======
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Signup.css";
+>>>>>>> 3a46b7e (done with login)
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -68,6 +74,7 @@ function Signup() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       const response = await fetch("http://127.0.0.1:5000/user", {
 =======
       const response = await fetch("http://127.0.0.1:5000/users", {
@@ -81,6 +88,9 @@ function Signup() {
 =======
       const response = await fetch("http://127.0.0.1:5000/user", {
 >>>>>>> 8a2a33b (authentication)
+=======
+      const response = await fetch("http://127.0.0.1:5000/users", {
+>>>>>>> 3a46b7e (done with login)
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -88,6 +98,7 @@ function Signup() {
         body: JSON.stringify(userData),
       });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -116,10 +127,14 @@ function Signup() {
 =======
 >>>>>>> 5401a78 (fixed login and signup)
       const data = await response.json();
+=======
+      const data = await response.json();
+>>>>>>> 3a46b7e (done with login)
 
       if (response.ok) {
         setSuccess(true);
         console.log("User created:", data);
+<<<<<<< HEAD
 <<<<<<< HEAD
       } else {
         setError(data.message || "Something went wrong!");
@@ -146,6 +161,9 @@ function Signup() {
       console.error("Error:", err);
 =======
         navigate("/login"); 
+=======
+        navigate("/");
+>>>>>>> 3a46b7e (done with login)
       } else {
         setError(data.error || "Something went wrong!");
       }
@@ -197,6 +215,7 @@ function Signup() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <a href="/login">Already have an account? Log in</a>
 =======
           <Link to="/login">Already have an account? Log in</Link>
@@ -210,6 +229,9 @@ function Signup() {
 =======
           <a href="/login">Already have an account? Log in</a>
 >>>>>>> 8a2a33b (authentication)
+=======
+          <Link to="/">Already have an account? Log in</Link>
+>>>>>>> 3a46b7e (done with login)
         </div>
       </form>
     </div>

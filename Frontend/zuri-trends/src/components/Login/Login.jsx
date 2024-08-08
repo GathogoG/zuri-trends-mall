@@ -4,27 +4,34 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+=======
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import "./Login.css";
+
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+>>>>>>> 3a46b7e (done with login)
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setError(null);
-    setSuccess(false);
-
-    const userData = {
-      email,
-      password,
-    };
 
     try {
+<<<<<<< HEAD
       const response = await fetch("http://127.0.0.1:5000/login", {
         method: "POST",
         headers: {
@@ -91,6 +98,8 @@ const Login = () => {
 
     try {
 <<<<<<< HEAD
+=======
+>>>>>>> 3a46b7e (done with login)
       const response = await fetch(
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -131,6 +140,7 @@ const Login = () => {
 
       const data = await response.json();
 
+<<<<<<< HEAD
 =======
       const response = await fetch("http://127.0.0.1:5000/login", {
         method: "POST",
@@ -165,11 +175,20 @@ const Login = () => {
     } catch (err) {
       setError("Network error. Please try again later.");
 >>>>>>> 8a2a33b (authentication)
+=======
+      setSuccess(true);
+      toast.success(`${name} successfully logged in!`);
+      console.log("User logged in:", data);
+      navigate("/"); // Redirect to the home page on successful login
+    } catch (err) {
+      setError(err.message);
+>>>>>>> 3a46b7e (done with login)
       console.error("Error:", err);
     }
   };
 
   return (
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -196,6 +215,8 @@ const Login = () => {
 
   return (
 >>>>>>> 5401a78 (fixed login and signup)
+=======
+>>>>>>> 3a46b7e (done with login)
     <div className="login-container">
       <form onSubmit={handleSubmit}>
         <h2>LOGIN</h2>
@@ -213,6 +234,7 @@ const Login = () => {
         <div className="input-group">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 2e5ecdd (login)
 =======
 >>>>>>> 25c4b52 (login)
@@ -220,6 +242,8 @@ const Login = () => {
 >>>>>>> 5401a78 (fixed login and signup)
 =======
 >>>>>>> 8a2a33b (authentication)
+=======
+>>>>>>> 3a46b7e (done with login)
           <input
             type="email"
             placeholder="Email Address"
@@ -230,6 +254,7 @@ const Login = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 =======
@@ -251,12 +276,18 @@ const Login = () => {
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 >>>>>>> 8a2a33b (authentication)
+=======
+          />
+        </div>
+        <div className="input-group">
+>>>>>>> 3a46b7e (done with login)
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -291,6 +322,9 @@ export default Login;
 =======
 >>>>>>> 5401a78 (fixed login and signup)
           />
+=======
+          />
+>>>>>>> 3a46b7e (done with login)
         </div>
         <button type="submit">LOGIN</button>
         <div className="extra-links">
@@ -298,6 +332,7 @@ export default Login;
           <Link to="/signup">Create an account</Link>
         </div>
       </form>
+<<<<<<< HEAD
 =======
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -319,9 +354,11 @@ export default Login;
         </p>
       </div>
 >>>>>>> 8a2a33b (authentication)
+=======
+>>>>>>> 3a46b7e (done with login)
     </div>
   );
-};
+}
 
 export default Login;
 <<<<<<< HEAD

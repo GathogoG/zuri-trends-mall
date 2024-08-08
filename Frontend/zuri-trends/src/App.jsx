@@ -40,7 +40,12 @@ import SignUp from './components/Signup/Signup';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import LandingPage from './pages/LandingPage';
+=======
+
+import { Toaster } from 'react-hot-toast';
+>>>>>>> 3a46b7e (done with login)
 import NavigationBar from './components/NavigationBar'; 
 =======
 import ProductPage from './components/ProductPage';
@@ -95,14 +100,18 @@ function App() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 8a2a33b (authentication)
           <Route path="/" element={<LandingPage />} /> {/* LandingPage as the default route */}
+=======
+          
+>>>>>>> 3a46b7e (done with login)
           <Route path="/home" element={<><NavigationBar /><Home /></>} />
           <Route path="/delivery" element={<><NavigationBar /><DeliveryPage setDeliveryDetails={setDeliveryDetails} /></>} />
           <Route path="/payment" element={<><NavigationBar /><PaymentPage deliveryDetails={deliveryDetails} productDetails={productDetails} /></>} />
-          <Route path="/login" element={<><NavigationBar /><Login /></>} />
-          <Route path="/signup" element={<><NavigationBar /><SignUp /></>} />
+          <Route path="/" element={<><Login /></>} />
+          <Route path="/signup" element={<><SignUp /></>} />
           <Route path="/catalog" element={<><NavigationBar /><Catalog /></>} />
           <Route path="/contact" element={<><NavigationBar /><Contact /></>} />
           <Route path="/t-shirts" element={<><NavigationBar /><TShirts /></>} />
