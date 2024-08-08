@@ -35,7 +35,7 @@ function Signup() {
       if (response.ok) {
         setSuccess(true);
         console.log("User created:", data);
-        navigate("/");
+        navigate("/"); 
       } else {
         setError(data.error || "Something went wrong!");
       }
