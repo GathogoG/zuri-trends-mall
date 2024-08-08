@@ -142,6 +142,7 @@ def lipa_na_mpesa_online(amount, phone_number):
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         "AccountReference": transaction_id,  
 >>>>>>> b7416a3 (made changes on payment.py  on main)
@@ -162,6 +163,9 @@ def lipa_na_mpesa_online(amount, phone_number):
 =======
         "TransactionDesc": f"Payment to {COMPANY_NAME} for Transaction ID {transaction_id} and Amount KSh {amount}"
 >>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
+=======
+        "TransactionDesc": f"Payment to {COMPANY_NAME} for Transaction ID {transaction_id} and Amount KSh {amount}"
+>>>>>>> refs/remotes/origin/main
     }
     headers = {
         "Authorization": f"Bearer {access_token}",
@@ -190,6 +194,7 @@ def lipa_na_mpesa_online(amount, phone_number):
         return response.json()
     except requests.RequestException as e:
         return {'error': str(e)}
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> b7416a3 (made changes on payment.py  on main)
@@ -227,6 +232,9 @@ def get_payment(id):
 <<<<<<< HEAD
 =======
 >>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
+=======
+
+>>>>>>> refs/remotes/origin/main
 @payment_bp.route('/payments', methods=['POST'])
 def create_payment():
     data = request.get_json()
@@ -316,6 +324,7 @@ def create_payment():
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -377,3 +386,5 @@ def delete_payment(id):
 >>>>>>> f095982 (Made changes to the payment route)
 =======
 >>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
+=======
+>>>>>>> refs/remotes/origin/main

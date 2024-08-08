@@ -23,7 +23,15 @@ function NavigationBar() {
                 <NavDropdown.Item href="/sweatshirts">SWEAT-SHIRTS</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="/contact">CONTACT</Nav.Link>
+<<<<<<< HEAD
               <Nav.Link href="/home">HOME</Nav.Link> 
+=======
+<<<<<<< HEAD
+              <Nav.Link href="/home">HOME</Nav.Link> {/* Added Home link */}
+=======
+              <Nav.Link href="/home">HOME</Nav.Link> 
+>>>>>>> refs/remotes/origin/main
+>>>>>>> refs/remotes/origin/main
             </Nav>
             <Nav>
               <Nav.Link href="/about">ABOUT US</Nav.Link>
@@ -40,7 +48,15 @@ function NavigationBar() {
                     />
                   </Col>
                   <Col xs="auto">
+<<<<<<< HEAD
                     {/* <Button type="submit" className='submit'>Submit</Button> */}
+=======
+<<<<<<< HEAD
+                    <Button type="submit" className='submit'>Submit</Button>
+=======
+                    {/* <Button type="submit" className='submit'>Submit</Button> */}
+>>>>>>> refs/remotes/origin/main
+>>>>>>> refs/remotes/origin/main
                   </Col>
                 </Row>
               </Form>

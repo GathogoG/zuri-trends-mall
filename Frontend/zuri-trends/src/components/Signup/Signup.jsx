@@ -5,12 +5,16 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/main
 // src/components/Signup/Signup.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css";  // Ensure this CSS file exists
 =======
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import "./Signup.css";
 >>>>>>> 2e5ecdd (login)
@@ -35,6 +39,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 >>>>>>> 3a46b7e (done with login)
+=======
+import { Link, useNavigate } from "react-router-dom";
+import "./Signup.css";
+>>>>>>> refs/remotes/origin/main
+>>>>>>> refs/remotes/origin/main
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -75,6 +84,7 @@ function Signup() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       const response = await fetch("http://127.0.0.1:5000/user", {
 =======
       const response = await fetch("http://127.0.0.1:5000/users", {
@@ -91,6 +101,12 @@ function Signup() {
 =======
       const response = await fetch("http://127.0.0.1:5000/users", {
 >>>>>>> 3a46b7e (done with login)
+=======
+      const response = await fetch("http://127.0.0.1:5000/user", {
+=======
+      const response = await fetch("http://127.0.0.1:5000/users", {
+>>>>>>> refs/remotes/origin/main
+>>>>>>> refs/remotes/origin/main
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -103,8 +119,11 @@ function Signup() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 8a2a33b (authentication)
+=======
+>>>>>>> refs/remotes/origin/main
       if (!response.ok) {
         const errorData = await response.json();
         setError(errorData.message || "Something went wrong!");
@@ -161,6 +180,7 @@ function Signup() {
 >>>>>>> 8a2a33b (authentication)
       console.error("Error:", err);
 =======
+<<<<<<< HEAD
         navigate("/login"); 
 =======
         navigate("/");
@@ -168,13 +188,25 @@ function Signup() {
 =======
         navigate("/"); 
 >>>>>>> 4937bec (done with login)
+=======
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess(true);
+        console.log("User created:", data);
+        navigate("/"); 
+>>>>>>> refs/remotes/origin/main
       } else {
         setError(data.error || "Something went wrong!");
       }
     } catch (err) {
       console.error("Error:", err);
       setError("Failed to sign up");
+<<<<<<< HEAD
 >>>>>>> 5401a78 (fixed login and signup)
+=======
+>>>>>>> refs/remotes/origin/main
+>>>>>>> refs/remotes/origin/main
     }
   };
 
@@ -220,6 +252,7 @@ function Signup() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <a href="/login">Already have an account? Log in</a>
 =======
           <Link to="/login">Already have an account? Log in</Link>
@@ -236,12 +269,19 @@ function Signup() {
 =======
           <Link to="/">Already have an account? Log in</Link>
 >>>>>>> 3a46b7e (done with login)
+=======
+          <a href="/login">Already have an account? Log in</a>
+=======
+          <Link to="/">Already have an account? Log in</Link>
+>>>>>>> refs/remotes/origin/main
+>>>>>>> refs/remotes/origin/main
         </div>
       </form>
     </div>
   );
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -267,3 +307,9 @@ export default Signup;
 =======
 export default Signup;
 >>>>>>> 4937bec (done with login)
+=======
+export default Signup;
+=======
+export default Signup;
+>>>>>>> refs/remotes/origin/main
+>>>>>>> refs/remotes/origin/main
