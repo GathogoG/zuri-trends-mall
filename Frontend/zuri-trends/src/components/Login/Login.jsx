@@ -6,45 +6,50 @@ import "./Login.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError(null);
+    setError("");
+
+    // Simple validation to check if email and password fields are filled
+    if (!email || !password) {
+      setError("Please fill in all fields");
+      return;
+    }
 
     try {
-      const response = await fetch(
-        `http://127.0.0.1:5000/users?email=${encodeURIComponent(
-          email
-        )}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(
-          name
-        )}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch("http://127.0.0.1:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }), // Sending email and password in the request body
+      });
+
+      const data = await response.json(); // Parsing the response data
+      console.log("Response data:", data); // Log the entire response data for debugging
 
       if (!response.ok) {
+        // Check for specific status codes and set error messages accordingly
         if (response.status === 401) {
-          throw new Error("Invalid name, email, or password!");
+          throw new Error("Invalid email or password!");
+        } else if (response.status === 400) {
+          throw new Error(data.error || "Bad Request: Check your input.");
         } else {
           throw new Error("Something went wrong!");
         }
       }
 
-      const data = await response.json();
-
+      // If the request is successful, set success to true and display a success message
       setSuccess(true);
-      toast.success(`${name} successfully logged in!`);
+      toast.success(`${data.name || "User"} successfully logged in!`);
       console.log("User logged in:", data);
-      navigate("/"); // Redirect to the home page on successful login
+      navigate("/home"); // Redirect to the home page on successful login
     } catch (err) {
+      // Handle errors by setting the error message and logging the error
       setError(err.message);
       console.error("Error:", err);
       toast.error(err.message);
@@ -57,15 +62,6 @@ function Login() {
         <h2>LOGIN</h2>
         {success && <p className="success-message">Login successful!</p>}
         {error && <p className="error-message">{error}</p>}
-        <div className="input-group">
-          <input
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
         <div className="input-group">
           <input
             type="email"
