@@ -136,6 +136,7 @@ function Signup() {
         console.log("User created:", data);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       } else {
         setError(data.message || "Something went wrong!");
 =======
@@ -164,6 +165,9 @@ function Signup() {
 =======
         navigate("/");
 >>>>>>> 3a46b7e (done with login)
+=======
+        navigate("/"); 
+>>>>>>> 4937bec (done with login)
       } else {
         setError(data.error || "Something went wrong!");
       }
@@ -242,6 +246,7 @@ function Signup() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default Signup;
 =======
 export default Signup;
@@ -259,3 +264,6 @@ export default Signup;
 =======
 export default Signup;
 >>>>>>> 8a2a33b (authentication)
+=======
+export default Signup;
+>>>>>>> 4937bec (done with login)

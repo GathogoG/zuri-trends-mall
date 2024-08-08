@@ -1,15 +1,14 @@
 from flask import Blueprint, request, jsonify
 from server.app.extensions import db
 from server.app.models import User
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 
 user_bp = Blueprint('user_bp', __name__)
 
-@user_bp.route('/users', methods=['GET'])
-def get_users():
-    email = request.args.get('email')
-    password = request.args.get('password')
-    name = request.args.get('name')
+# Route for logging in users
+@user_bp.route('/login', methods=['POST'])
+def login_user():
+    data = request.get_json()
 
 
     if not email or not password or not name:
@@ -17,19 +16,18 @@ def get_users():
 
     user = User.query.filter_by(email=email, name=name).first()
 
-    if user and check_password_hash(user.password, password):
+    if user and check_password_hash(user.password, data['password']):
+
         return jsonify(user.as_dict()), 200
     else:
         return jsonify({'error': 'Invalid credentials'}), 401
 
-@user_bp.route('/users/<int:id>', methods=['GET'])
-def get_user(id):
-    user = User.query.get_or_404(id)
-    return jsonify(user.as_dict())
-
+# Route for creating a new user
 @user_bp.route('/users', methods=['POST'])
 def create_user():
     data = request.get_json()
+
+    # Validate input
     if not data or not all(key in data for key in ['name', 'password', 'email']):
         return jsonify({'error': 'Invalid input'}), 400
 
@@ -37,9 +35,12 @@ def create_user():
     if user:
         return jsonify({'error': 'User already exists'}), 400
 
+    # Hash the user's password before saving to the database
+    hashed_password = generate_password_hash(data['password'])
+
     new_user = User(
         name=data['name'],
-        password=data['password'],
+        password=hashed_password,  # Store the hashed password
         email=data['email']
     )
     try:
@@ -50,6 +51,12 @@ def create_user():
         return jsonify({'error': str(e)}), 500
     return jsonify(new_user.as_dict()), 201
 
+# Route for fetching a user by ID
+@user_bp.route('/users/<int:id>', methods=['GET'])
+def get_user(id):
+    user = User.query.get_or_404(id)
+    return jsonify(user.as_dict())
+
 @user_bp.route('/users/<int:id>', methods=['PUT'])
 def update_user(id):
     data = request.get_json()
@@ -58,7 +65,7 @@ def update_user(id):
 
     user = User.query.get_or_404(id)
     user.name = data.get('name', user.name)
-    user.password = data.get('password', user.password)
+    user.password = generate_password_hash(data['password']) if 'password' in data else user.password
     user.email = data.get('email', user.email)
 
     try:

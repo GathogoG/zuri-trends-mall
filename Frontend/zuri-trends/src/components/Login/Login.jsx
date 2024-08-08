@@ -20,23 +20,37 @@ import "./Login.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+<<<<<<< HEAD
   const [name, setName] = useState("");
 >>>>>>> 3a46b7e (done with login)
   const [error, setError] = useState(null);
+=======
+  const [error, setError] = useState("");
+>>>>>>> 4937bec (done with login)
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError(null);
+    setError("");
+
+    // Simple validation to check if email and password fields are filled
+    if (!email || !password) {
+      setError("Please fill in all fields");
+      return;
+    }
 
     try {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4937bec (done with login)
       const response = await fetch("http://127.0.0.1:5000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+<<<<<<< HEAD
         body: JSON.stringify(userData),
       });
 
@@ -130,14 +144,27 @@ const Login = () => {
         throw new Error("Invalid name, email, or password!");
 >>>>>>> 5401a78 (fixed login and signup)
 =======
+=======
+        body: JSON.stringify({ email, password }), // Sending email and password in the request body
+      });
+
+      const data = await response.json(); // Parsing the response data
+      console.log("Response data:", data); // Log the entire response data for debugging
+
+      if (!response.ok) {
+        // Check for specific status codes and set error messages accordingly
+>>>>>>> 4937bec (done with login)
         if (response.status === 401) {
-          throw new Error("Invalid name, email, or password!");
+          throw new Error("Invalid email or password!");
+        } else if (response.status === 400) {
+          throw new Error(data.error || "Bad Request: Check your input.");
         } else {
           throw new Error("Something went wrong!");
         }
 >>>>>>> d9291fc (done with login)
       }
 
+<<<<<<< HEAD
       const data = await response.json();
 
 <<<<<<< HEAD
@@ -158,9 +185,13 @@ const Login = () => {
 
       const data = await response.json();
 >>>>>>> 8a2a33b (authentication)
+=======
+      // If the request is successful, set success to true and display a success message
+>>>>>>> 4937bec (done with login)
       setSuccess(true);
-      toast.success(`${name} successfully logged in!`);
+      toast.success(`${data.name || "User"} successfully logged in!`);
       console.log("User logged in:", data);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     } catch (err) {
@@ -206,7 +237,11 @@ const Login = () => {
 >>>>>>> 25c4b52 (login)
 =======
       navigate("/"); // Redirect to the home page on successful login
+=======
+      navigate("/home"); // Redirect to the home page on successful login
+>>>>>>> 4937bec (done with login)
     } catch (err) {
+      // Handle errors by setting the error message and logging the error
       setError(err.message);
       console.error("Error:", err);
       toast.error(err.message);
@@ -224,6 +259,7 @@ const Login = () => {
         {error && <p className="error-message">{error}</p>}
         <div className="input-group">
           <input
+<<<<<<< HEAD
             type="text"
             placeholder="Name"
             value={name}
@@ -245,6 +281,8 @@ const Login = () => {
 =======
 >>>>>>> 3a46b7e (done with login)
           <input
+=======
+>>>>>>> 4937bec (done with login)
             type="email"
             placeholder="Email Address"
             value={email}
