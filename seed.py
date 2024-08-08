@@ -30,7 +30,7 @@ def seed_products():
     print("Seeding products...")
     products = [
         # Men's Apparel
-        {'name': 'Men\'s T-Shirt', 'price': 2000.00, 'image_path': 'https://tisapthreads.com/cdn/shop/files/DSC01318-Edit-2_375x_crop_center.jpg?v=1716306045', 'quantity': 100, 'catalog_id': 1, 'size': 'L', 'color': 'Blue', 'description': 'Comfortable cotton t-shirt'},
+        {'name': 'Men\'s T-Shirt', 'price': 2000.00, 'image_path': 'https://i.pinimg.com/236x/71/a0/1e/71a01ebe169f0e79275c08717b952daf.jpg', 'quantity': 100, 'catalog_id': 1, 'size': 'L', 'color': 'Blue', 'description': 'Comfortable cotton t-shirt'},
         {'name': 'Men\'s Jeans', 'price': 1500.00, 'image_path': 'https://images.pexels.com/photos/4210863/pexels-photo-4210863.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 50, 'catalog_id': 1, 'size': '32', 'color': 'Dark Blue', 'description': 'Stylish denim jeans'},
         {'name': 'Men\'s Jacket', 'price': 3000.00, 'image_path': 'https://images.pexels.com/photos/6460791/pexels-photo-6460791.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 20, 'catalog_id': 1, 'size': 'XL', 'color': 'Black', 'description': 'Warm winter jacket'},
         
