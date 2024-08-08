@@ -18,11 +18,15 @@ import json
 from datetime import datetime
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import uuid
 =======
 import random
 import string
 >>>>>>> f095982 (Made changes to the payment route)
+=======
+import uuid
+>>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
 
 payment_bp = Blueprint('payment_bp', __name__)
 
@@ -44,6 +48,7 @@ LIPA_NA_MPESA_ONLINE_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78
 <<<<<<< HEAD
 CALLBACK_URL = 'https://yourdomain.com/path'
 <<<<<<< HEAD
+<<<<<<< HEAD
 COMPANY_NAME = 'Zuri-Trends'
 =======
 COMPANY_NAME = 'Zuri-Trends' 
@@ -52,6 +57,9 @@ def generate_transaction_id(length=12):
     """Generate a random transaction ID."""
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
 >>>>>>> f095982 (Made changes to the payment route)
+=======
+COMPANY_NAME = 'Zuri-Trends'
+>>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
 
 def get_access_token():
     try:
@@ -62,12 +70,16 @@ def get_access_token():
         return json_response['access_token']
     except requests.RequestException as e:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
         return jsonify({'error': str(e)}), 500
 
 def lipa_na_mpesa_online(amount, phone_number, transaction_id):
     access_token = get_access_token()
     if isinstance(access_token, dict):  
         return access_token
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -108,24 +120,25 @@ def lipa_na_mpesa_online(amount, phone_number):
 >>>>>>> b7416a3 (made changes on payment.py  on main)
 =======
 >>>>>>> f095982 (Made changes to the payment route)
+=======
+
+>>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     password = base64.b64encode((BUSINESS_SHORT_CODE + LIPA_NA_MPESA_ONLINE_PASSKEY + timestamp).encode()).decode('utf-8')
-    
-    transaction_id = generate_transaction_id()  
-
     payload = {
         "BusinessShortCode": BUSINESS_SHORT_CODE,
         "Password": password,
         "Timestamp": timestamp,
         "TransactionType": "CustomerPayBillOnline",
         "Amount": amount,
-        "PartyA": phone_number,  
+        "PartyA": phone_number,
         "PartyB": BUSINESS_SHORT_CODE,
-        "PhoneNumber": phone_number,  
+        "PhoneNumber": phone_number,
         "CallBackURL": CALLBACK_URL,
 <<<<<<< HEAD
 <<<<<<< HEAD
         "AccountReference": transaction_id,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -146,12 +159,15 @@ def lipa_na_mpesa_online(amount, phone_number):
 =======
         "TransactionDesc": f"Payment to {COMPANY_NAME} - ID: {transaction_id}, Amount: KSh {amount}"
 >>>>>>> f095982 (Made changes to the payment route)
+=======
+        "TransactionDesc": f"Payment to {COMPANY_NAME} for Transaction ID {transaction_id} and Amount KSh {amount}"
+>>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
     }
-    
     headers = {
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json"
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -165,6 +181,8 @@ def lipa_na_mpesa_online(amount, phone_number):
 =======
     
 >>>>>>> f095982 (Made changes to the payment route)
+=======
+>>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
     try:
         url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
         response = requests.post(url, json=payload, headers=headers)
@@ -179,6 +197,7 @@ def lipa_na_mpesa_online(amount, phone_number):
     response = requests.post(url, json=payload, headers=headers)
     return response.json()
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> b7416a3 (made changes on payment.py  on main)
 
@@ -216,6 +235,12 @@ def create_payment():
 =======
     if not data or not all(key in data for key in ['amount', 'phone_number', 'user_id']):
 >>>>>>> f095982 (Made changes to the payment route)
+=======
+@payment_bp.route('/payments', methods=['POST'])
+def create_payment():
+    data = request.get_json()
+    if not data or 'amount' not in data or 'phone_number' not in data:
+>>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
         return jsonify({'error': 'Invalid input'}), 400
 
    
@@ -224,6 +249,7 @@ def create_payment():
     amount = data['amount']
     phone_number = data['phone_number']
 <<<<<<< HEAD
+<<<<<<< HEAD
     transaction_id = str(uuid.uuid4())  
 
     response = lipa_na_mpesa_online(amount, phone_number, transaction_id)
@@ -231,6 +257,11 @@ def create_payment():
     
     response = lipa_na_mpesa_online(amount, phone_number)
 >>>>>>> f095982 (Made changes to the payment route)
+=======
+    transaction_id = str(uuid.uuid4())  
+
+    response = lipa_na_mpesa_online(amount, phone_number, transaction_id)
+>>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
     if 'error' in response:
         return jsonify(response), 500
 
@@ -263,13 +294,14 @@ def create_payment():
         payment_status = 'Successful'
     else:
         payment_status = 'Failed'
-    
 
-    transaction_id = response.get('CheckoutRequestID', generate_transaction_id())
-    
     payment = Payment(
+<<<<<<< HEAD
         user_id=data['user_id'],
 >>>>>>> b7416a3 (made changes on payment.py  on main)
+=======
+        user_id=user_id,
+>>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
         amount=amount,
         transaction_id=transaction_id,
         status=payment_status
@@ -281,6 +313,7 @@ def create_payment():
         'payment': payment.as_dict(),
         'mpesa_response': response
     }), 201
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -342,3 +375,5 @@ def delete_payment(id):
 =======
 
 >>>>>>> f095982 (Made changes to the payment route)
+=======
+>>>>>>> fb7a56d (Made changes to payment route to add random generation of user ID and Transaction ID)
