@@ -1,5 +1,6 @@
 from flask import Flask
-from server.app.extensions import db, migrate  # Import from extensions.py
+from flask_cors import CORS
+from server.app.extensions import db, migrate  
 from server.app.config import Config
 import click
 from flask_cors import CORS
@@ -10,6 +11,8 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     CORS(app)
     app.config.from_object(config_class)
+
+    CORS(app)
 
     app.config['DEBUG'] = True
 

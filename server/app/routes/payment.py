@@ -6,14 +6,16 @@ import requests
 import base64
 import json
 from datetime import datetime
+import uuid
 
 payment_bp = Blueprint('payment_bp', __name__)
 
-CONSUMER_KEY = 'your_consumer_key'
-CONSUMER_SECRET = 'your_consumer_secret'
-BUSINESS_SHORT_CODE = 'your_business_short_code'
-LIPA_NA_MPESA_ONLINE_PASSKEY = 'your_passkey'
+CONSUMER_KEY = 'yty83hjgw0EEGrxoV9j3AAQxVJL2hmjcvYMPxsjXH2ghL8AF'
+CONSUMER_SECRET = 'asJhwuTM0XXBWyTJwCWgPWITuucxPoDkNiQWfeTQGgjGraLyl5KO6Ay93sxrSwIm'
+BUSINESS_SHORT_CODE = '174379'
+LIPA_NA_MPESA_ONLINE_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
 CALLBACK_URL = 'https://yourdomain.com/path'
+COMPANY_NAME = 'Zuri-Trends'
 
 def get_access_token():
     try:
@@ -27,9 +29,9 @@ def get_access_token():
 
 def lipa_na_mpesa_online(amount, phone_number, transaction_id):
     access_token = get_access_token()
-    if isinstance(access_token, dict):  # Check if there's an error in getting the token
+    if isinstance(access_token, dict):  
         return access_token
-    
+
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     password = base64.b64encode((BUSINESS_SHORT_CODE + LIPA_NA_MPESA_ONLINE_PASSKEY + timestamp).encode()).decode('utf-8')
     payload = {
@@ -43,7 +45,7 @@ def lipa_na_mpesa_online(amount, phone_number, transaction_id):
         "PhoneNumber": phone_number,
         "CallBackURL": CALLBACK_URL,
         "AccountReference": transaction_id,
-        "TransactionDesc": "Payment for goods"
+        "TransactionDesc": f"Payment to {COMPANY_NAME} for Transaction ID {transaction_id} and Amount KSh {amount}"
     }
     headers = {
         "Authorization": f"Bearer {access_token}",
@@ -57,26 +59,19 @@ def lipa_na_mpesa_online(amount, phone_number, transaction_id):
     except requests.RequestException as e:
         return {'error': str(e)}
 
-@payment_bp.route('/payments', methods=['GET'])
-def get_payments():
-    payments = Payment.query.all()
-    return jsonify([payment.as_dict() for payment in payments])
-
-@payment_bp.route('/payments/<int:id>', methods=['GET'])
-def get_payment(id):
-    payment = Payment.query.get_or_404(id)
-    return jsonify(payment.as_dict())
-
 @payment_bp.route('/payments', methods=['POST'])
 def create_payment():
     data = request.get_json()
-    if not data or not all(key in data for key in ['amount', 'phone_number', 'transaction_id', 'user_id']):
+    if not data or 'amount' not in data or 'phone_number' not in data:
         return jsonify({'error': 'Invalid input'}), 400
+
+   
+    user_id = str(uuid.uuid4())
 
     amount = data['amount']
     phone_number = data['phone_number']
-    transaction_id = data['transaction_id']
-    
+    transaction_id = str(uuid.uuid4())  
+
     response = lipa_na_mpesa_online(amount, phone_number, transaction_id)
     if 'error' in response:
         return jsonify(response), 500
@@ -86,9 +81,9 @@ def create_payment():
         payment_status = 'Successful'
     else:
         payment_status = 'Failed'
-    
+
     payment = Payment(
-        user_id=data['user_id'],
+        user_id=user_id,
         amount=amount,
         transaction_id=transaction_id,
         status=payment_status
@@ -100,27 +95,3 @@ def create_payment():
         'payment': payment.as_dict(),
         'mpesa_response': response
     }), 201
-
-@payment_bp.route('/payments/<int:id>', methods=['PUT'])
-def update_payment(id):
-    data = request.get_json()
-    payment = Payment.query.get_or_404(id)
-    
-    if 'user_id' in data:
-        payment.user_id = data['user_id']
-    if 'amount' in data:
-        payment.amount = data['amount']
-    if 'transaction_id' in data:
-        payment.transaction_id = data['transaction_id']
-    if 'status' in data:
-        payment.status = data['status']
-    
-    db.session.commit()
-    return jsonify(payment.as_dict())
-
-@payment_bp.route('/payments/<int:id>', methods=['DELETE'])
-def delete_payment(id):
-    payment = Payment.query.get_or_404(id)
-    db.session.delete(payment)
-    db.session.commit()
-    return '', 204
