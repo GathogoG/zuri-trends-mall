@@ -63,6 +63,7 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/orderhistory" element={<OrderHistory />} />
           <Route path="/product/:productId" element={<ProductPage />} />
+          <Route path="/add-product" element={<ProductManager/>} />
         </Routes>
       </Router>
     </div>

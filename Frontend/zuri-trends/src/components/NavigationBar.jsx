@@ -37,11 +37,15 @@ function NavigationBar() {
             <Nav.Link eventKey={2} href="/wishlist">
               WISHLIST
             </Nav.Link>
+            <Nav.Link eventKey={2} href="/add-product">
+              ADD PRODUCT
+            </Nav.Link>
             <Nav.Link href="/logout">LOGOUT</Nav.Link>
             <Form inline="true">
             <Nav.Link eventKey={2} href="/orderhistory">
               ORDER HISTORY
             </Nav.Link>
+            
         <Row>
           <Col xs="auto">
             <Form.Control
