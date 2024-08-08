@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import "./Login.css";
 
 function Login() {
@@ -16,7 +17,11 @@ function Login() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(name)}`,
+        `http://127.0.0.1:5000/users?email=${encodeURIComponent(
+          email
+        )}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(
+          name
+        )}`,
         {
           method: "GET",
           headers: {
@@ -35,13 +40,14 @@ function Login() {
       }
 
       setSuccess(true);
+      toast.success(`${name} successfully logged in!`);
       console.log("User logged in:", data);
       navigate("/"); // Redirect to the home page on successful login
     } catch (err) {
       setError(err.message);
       console.error("Error:", err);
+      toast.error("Login failed. Please check your credentials.");
     }
-    
   };
 
   return (
@@ -77,7 +83,7 @@ function Login() {
             required
           />
         </div>
-        <button type="submit">SIGN IN</button>
+        <button type="submit">LOGIN</button>
         <div className="extra-links">
           <a href="#">Forgot your password?</a>
           <Link to="/signup">Create an account</Link>
