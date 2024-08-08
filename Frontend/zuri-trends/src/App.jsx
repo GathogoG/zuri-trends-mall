@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -40,6 +39,7 @@ import Login from './components/Login/Login';
 import SignUp from './components/Signup/Signup';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import LandingPage from './pages/LandingPage';
 import NavigationBar from './components/NavigationBar'; 
 =======
@@ -59,6 +59,10 @@ import { Toaster } from 'react-hot-toast';
 import LandingPage from './pages/LandingPage'; // Import LandingPage
 import NavigationBar from './components/NavigationBar'; // Import NavigationBar
 >>>>>>> 8a2a33b (authentication)
+=======
+import LandingPage from './pages/LandingPage';
+import NavigationBar from './components/NavigationBar'; 
+>>>>>>> 33ce0ba (cart)
 
 const productDetails = {
   title: 'Sample Product',
@@ -111,6 +115,9 @@ function App() {
           <Route path="/wishlist" element={<><NavigationBar /><Wishlist /></>} />
           <Route path="/cart" element={<><NavigationBar /><Cart /></>} />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 33ce0ba (cart)
           <Route path="/checkout" element={<><NavigationBar /><Checkout /></>} /> 
           <Route path="/about" element={<><NavigationBar /><AboutUs /></>} />
           <Route path="/orderhistory" element={<><NavigationBar /><OrderHistory /></>} />
