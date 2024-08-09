@@ -24,29 +24,35 @@ def login_user():
     else:
         return jsonify({'error': 'Invalid credentials'}), 401
 
-# Route for creating a new user
+user_bp = Blueprint('user_bp', __name__)
+
+@user_bp.route('/users', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    return jsonify([user.as_dict() for user in users])
+
+@user_bp.route('/users/<int:id>', methods=['GET'])
+def get_user(id):
+    user = User.query.get_or_404(id)
+    return jsonify(user.as_dict())
 @user_bp.route('/users', methods=['POST'])
 def create_user():
     data = request.get_json()
-
-    # Validate input
     if not data or not all(key in data for key in ['name', 'password', 'email']):
         return jsonify({'error': 'Invalid input'}), 400
 
-    user = User.query.filter_by(email=data['email']).first()
-    if user:
-        return jsonify({'error': 'User already exists'}), 400
-
-    # Hash the user's password before saving to the database
-    hashed_password = generate_password_hash(data['password'])
-
-    new_user = User(
+    user = User(
         name=data['name'],
         password=hashed_password,  # Store the hashed password
         email=data['email']
     )
     try:
         db.session.add(new_user)
+        password=data['password'],
+        email=data['email']
+    )
+    try:
+        db.session.add(user)
         db.session.commit()
     except Exception as e:
         db.session.rollback()
@@ -58,6 +64,8 @@ def create_user():
 def get_user(id):
     user = User.query.get_or_404(id)
     return jsonify(user.as_dict())
+    return jsonify(user.as_dict()), 201
+
 
 # Route for updating a user
 @user_bp.route('/users/<int:id>', methods=['PUT'])
@@ -70,6 +78,7 @@ def update_user(id):
     user.name = data.get('name', user.name)
     if 'password' in data:
         user.password = generate_password_hash(data['password'])
+    user.password = data.get('password', user.password)
     user.email = data.get('email', user.email)
 
     try:

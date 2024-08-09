@@ -12,7 +12,7 @@ import string
 
 payment_bp = Blueprint('payment_bp', __name__)
 
-# Constants
+payment_bp = Blueprint('payment_bp', __name__)
 CONSUMER_KEY = 'yty83hjgw0EEGrxoV9j3AAQxVJL2hmjcvYMPxsjXH2ghL8AF'
 CONSUMER_SECRET = 'asJhwuTM0XXBWyTJwCWgPWITuucxPoDkNiQWfeTQGgjGraLyl5KO6Ay93sxrSwIm'
 BUSINESS_SHORT_CODE = '174379'
@@ -32,12 +32,23 @@ def get_access_token():
         json_response = response.json()
         return json_response['access_token']
     except requests.RequestException as e:
+
         return {'error': str(e)}
 
 def lipa_na_mpesa_online(amount, phone_number, transaction_id):
     access_token = get_access_token()
     if isinstance(access_token, dict) and 'error' in access_token:
         return access_token
+
+=======
+        return jsonify({'error': str(e)}), 500
+
+def lipa_na_mpesa_online(amount, phone_number, transaction_id):
+    access_token_response = get_access_token()
+    if isinstance(access_token_response, dict) and 'error' in access_token_response:
+        return access_token_response
+    
+    access_token = access_token_response
 
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     password = base64.b64encode((BUSINESS_SHORT_CODE + LIPA_NA_MPESA_ONLINE_PASSKEY + timestamp).encode()).decode('utf-8')
@@ -81,7 +92,10 @@ def create_payment():
     data = request.get_json()
     if not data or not all(key in data for key in ['amount', 'phone_number']):
         return jsonify({'error': 'Invalid input'}), 400
+    if not data or 'amount' not in data or 'phone_number' not in data:
+        return jsonify({'error': 'Invalid input'}), 400
 
+    user_id = str(uuid.uuid4())
     amount = data['amount']
     phone_number = data['phone_number']
     transaction_id = str(uuid.uuid4())  
@@ -97,7 +111,9 @@ def create_payment():
         payment_status = 'Failed'
 
     payment = Payment(
+
         user_id=data.get('user_id', None),
+        user_id=user_id,
         amount=amount,
         transaction_id=transaction_id,
         status=payment_status

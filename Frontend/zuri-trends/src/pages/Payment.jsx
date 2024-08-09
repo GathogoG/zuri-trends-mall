@@ -14,8 +14,6 @@ const mpesaOption = {
   id: '4',
   name: 'M-Pesa',
   icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/M-Pesa_Logo.png/640px-M-Pesa_Logo.png',
-};
-
 export default function PaymentPage() {
   const location = useLocation();
   const { deliveryDetails = {}, productDetails = {} } = location.state || {};
@@ -27,6 +25,8 @@ export default function PaymentPage() {
   const totalAmount = (price + fee).toFixed(2);
 
   const [selectedCard, setSelectedCard] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleCardSelect = (card) => {
     setSelectedCard(card);
@@ -42,17 +42,35 @@ export default function PaymentPage() {
       amount: totalAmount,
       phone_number: '0115743312',
     };
+  const handlePayment = async () => {
+    if (!selectedCard) {
+      alert('Please select a payment method.');
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
 
     try {
+      const paymentData = {
+        amount: parseFloat(totalAmount), // Ensure amount is a number
+        phone_number: deliveryDetails.phone, // Assuming phone number for M-Pesa
+        transaction_id: `txn_${Date.now()}`, // Unique transaction ID
+        user_id: 'user123' // Replace with actual user ID
+      };
+
       const response = await axios.post('http://localhost:5000/payments', paymentData);
-      if (response.status === 201) {
-        alert('Payment initiated. Please check your phone for the PIN prompt.');
-      } else {
-        alert('Failed to initiate payment');
-      }
+      console.log('Payment Response:', response.data);
+      // Handle success, e.g., show a success message or redirect
+      alert('Payment successful!');
     } catch (error) {
-      console.error('Error initiating payment:', error);
-      alert('An error occurred while initiating payment');
+      console.error('Payment Error:', error);
+      if (error.response) {
+        console.error('Error Response:', error.response.data);
+      }
+      setError('Failed to process payment.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -72,7 +90,6 @@ export default function PaymentPage() {
           <p>Location: {deliveryDetails.location}</p>
           <p>Delivery Fee: KSh {fee.toFixed(2).toLocaleString()}</p>
         </div>
-
         <div className="bg-gray-50 p-4 rounded-lg shadow-lg mb-8">
           <h3 className="text-xl font-bold">{productDetails.title}</h3>
           <p className="text-gray-700 mb-2">{productDetails.description}</p>
@@ -85,7 +102,6 @@ export default function PaymentPage() {
             ))}
           </div>
         </div>
-
         <div className="mt-10">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Select a Payment Method</h3>
           <ul className="space-y-4">
@@ -100,6 +116,7 @@ export default function PaymentPage() {
                 <p className="text-sm text-gray-600">Expiry Date: {card.expDate}</p>
               </li>
             ))}
+            {/* M-Pesa Option */}
             <li
               key={mpesaOption.id}
               className={`p-4 border rounded-md cursor-pointer ${selectedCard?.id === mpesaOption.id ? 'bg-gray-100 border-indigo-600' : 'border-gray-300'}`}
@@ -120,7 +137,12 @@ export default function PaymentPage() {
             onClick={handleContinueToPayment}
           >
             Continue to Payment
+            onClick={handlePayment}
+            disabled={loading}
+          >
+            {loading ? 'Processing...' : 'Complete Payment'}
           </button>
+          {error && <p className="mt-4 text-red-600">{error}</p>}
         </div>
       </div>
     </div>
