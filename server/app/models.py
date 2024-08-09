@@ -88,6 +88,7 @@ class Review(db.Model):
 class Wishlist(db.Model):
     __tablename__ = 'wishlist'
     id = db.Column(db.Integer, primary_key=True)
+    image_path = db.Column(db.String, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
 
@@ -95,6 +96,7 @@ class Wishlist(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
+            'image_path': self.image_path,
             'product_id': self.product_id
         }
 

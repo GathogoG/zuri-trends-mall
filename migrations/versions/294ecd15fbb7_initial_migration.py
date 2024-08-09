@@ -1,8 +1,8 @@
-"""migrations
+"""initial migration
 
-Revision ID: 512878edee79
+Revision ID: 294ecd15fbb7
 Revises: 
-Create Date: 2024-08-07 23:06:20.301346
+Create Date: 2024-08-09 00:05:35.185519
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '512878edee79'
+revision = '294ecd15fbb7'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,6 +28,7 @@ def upgrade():
     sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('password', sa.String(length=200), nullable=False),
     sa.Column('email', sa.String(length=100), nullable=False),
+    sa.Column('comment', sa.String(length=500), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
@@ -41,7 +42,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
-    sa.Column('image_path', sa.String(length=200), nullable=True),
+    sa.Column('image_path', sa.String(), nullable=True),
     sa.Column('quantity', sa.Integer(), nullable=False),
     sa.Column('catalog_id', sa.Integer(), nullable=False),
     sa.Column('size', sa.String(length=10), nullable=True),
@@ -84,6 +85,7 @@ def upgrade():
     )
     op.create_table('wishlist',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('image_path', sa.String(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['product_id'], ['product.id'], ),

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const Product = ({ productId, productName }) => {
@@ -6,22 +7,26 @@ const Product = ({ productId, productName }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/products', { timeout: 10000 })
+    fetch('https://zuri-trends-mall.onrender.com/products', { timeout: 10000 })
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
   }, [productId]);
 
-  const handleMoreInfo = (productId) => {
-    navigate(`/product/${productId}`);
-  };
+  //const handleMoreInfo = (productId) => {
+   // navigate(`/product/${productId}`);
+  //};
 
-  const handleAddToWishlist = (productId) => {
-    navigate(`/wishlist/${productId}`);
-  };
+  //const handleAddToWishlist = (productId) => {
+   // navigate(`/wishlist/${productId}`);
+  ///};
 
-  const handleAddToCart = (productId) => {
-    navigate(`/cart/${productId}`);
+  //const handleAddToCart = (productId) => {
+  //  navigate(`/cart/${productId}`);
+  //};
+
+  const handleOrder = (product) => {
+    navigate('/order', { state: { product } });
   };
 
   return (
@@ -33,10 +38,11 @@ const Product = ({ productId, productName }) => {
             <img src={product.image_path} alt={product.name} />
             <h3>{product.name}</h3>
             <p>{product.description}</p>
-            <p>Price: ${product.price.toFixed(2)}</p>
-            <button onClick={() => handleMoreInfo(product.id)}>More Info</button>
-            <button onClick={() => handleAddToWishlist(product.id)}>Add to Wishlist</button>
-            <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
+            <p>{product.size}</p>
+            <p>Price: {product.price.toFixed(2)}</p>
+            <Button variant="primary" onClick={() => handleOrder(product)}>
+                  Order
+                </Button>
           </div>
         ))}
       </div>

@@ -128,16 +128,16 @@ def seed_reviews():
 def seed_wishlists():
     print("Seeding wishlists...")
     wishlists = [
-        {'user_id': 1, 'product_id': 1},
-        {'user_id': 2, 'product_id': 2},
-        {'user_id': 3, 'product_id': 3},
-        {'user_id': 4, 'product_id': 4},
-        {'user_id': 5, 'product_id': 5},
-        {'user_id': 6, 'product_id': 6},
-        {'user_id': 7, 'product_id': 7},
-        {'user_id': 8, 'product_id': 8},
-        {'user_id': 9, 'product_id': 9},
-        {'user_id': 10, 'product_id': 10}
+        {'user_id': 1, 'image_path': 'https://images.pexels.com/photos/6944381/pexels-photo-6944381.jpeg?auto=compress&cs=tinysrgb&w=400', 'product_id': 1},
+        {'user_id': 2, 'image_path': 'https://images.pexels.com/photos/8688558/pexels-photo-8688558.jpeg?auto=compress&cs=tinysrgb&w=400', 'product_id': 2},
+        {'user_id': 3, 'image_path': 'https://images.pexels.com/photos/1574898/pexels-photo-1574898.jpeg?auto=compress&cs=tinysrgb&w=400', 'product_id': 3},
+        {'user_id': 4, 'image_path': 'https://images.pexels.com/photos/6318276/pexels-photo-6318276.jpeg?auto=compress&cs=tinysrgb&w=400', 'product_id': 4},
+        {'user_id': 5, 'image_path': 'https://images.pexels.com/photos/6318276/pexels-photo-6318276.jpeg?auto=compress&cs=tinysrgb&w=400', 'product_id': 5},
+        {'user_id': 6, 'image_path': 'https://images.pexels.com/photos/704241/pexels-photo-704241.jpeg?auto=compress&cs=tinysrgb&w=400',  'product_id': 6},
+        {'user_id': 7, 'image_path': 'https://images.pexels.com/photos/704241/pexels-photo-704241.jpeg?auto=compress&cs=tinysrgb&w=400',  'product_id': 7},
+        {'user_id': 8, 'image_path': 'https://images.pexels.com/photos/2820793/pexels-photo-2820793.jpeg?auto=compress&cs=tinysrgb&w=400', 'product_id': 8},
+        {'user_id': 9, 'image_path': 'https://images.pexels.com/photos/6460791/pexels-photo-6460791.jpeg?auto=compress&cs=tinysrgb&w=400', 'product_id': 9},
+        {'user_id': 10, 'image_path': 'https://images.pexels.com/photos/325876/pexels-photo-325876.jpeg?auto=compress&cs=tinysrgb&w=400', 'product_id': 10}
     ]
     
     with app.app_context():

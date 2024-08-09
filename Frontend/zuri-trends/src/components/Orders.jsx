@@ -23,11 +23,8 @@ const Orders = () => {
           <Card.Body>
             <h2>No Product Selected</h2>
             <p>Please go back to the products page and select a product to order.</p>
-            <Button onClick={() => navigate('/cart')} variant="primary" style={styles.button}>
-              Cart
-            </Button>
-            <Button onClick={() => navigate('/wishlist')} variant="primary" style={styles.button}>
-              Wishlist
+            <Button onClick={() => navigate('/products')} variant="primary" style={styles.button}>
+              Go to products
             </Button>
           </Card.Body>
         </Card>
@@ -35,20 +32,6 @@ const Orders = () => {
         </div>
     );
   }
-
-  const handleAddToCart = async () => {
-    try {
-      const cartItem = { ...product, quantity };
-      await axios.post('/cart', cartItem);
-      console.log('Product added to cart:', cartItem);
-      setShowToast(true);
-      setTimeout(() => {
-        navigate('/cart');
-      }, 2000);
-    } catch (error) {
-      console.error('Error adding product to cart:', error);
-    }
-  };
 
   const increaseQuantity = () => {
     setQuantity((prev) => prev + 1);
@@ -86,8 +69,9 @@ const Orders = () => {
       <Card style={styles.card}>
         <Card.Body>
           <h2>Order {product.name}</h2>
-          <img src={product.image} alt={product.name} style={styles.image} />
+          <img src={product.image_path} alt={product.name} style={styles.image} />
           <p>{product.description}</p>
+          <p>{product.size}</p>
           <p style={styles.price}>Total Price: {totalPrice}</p>
           <div style={styles.quantityContainer}>
             <Button variant="secondary" onClick={decreaseQuantity} style={styles.quantityButton}>
@@ -104,9 +88,8 @@ const Orders = () => {
               +
             </Button>
           </div>
-          <Button variant="primary" onClick={handleAddToCart} style={styles.button}>
-            Add to Cart
-          </Button>
+          <Button onClick={() => navigate('/cart')} >Add to Cart</Button>
+          <Button onClick={() => navigate('/wishlist')}>Add to Wishlist</Button>
         </Card.Body>
       </Card>
 
@@ -127,7 +110,6 @@ const styles = {
   container: {
     fontFamily: 'Arial, sans-serif',
     minHeight: '100vh',
-    backgroundColor: '#343a40',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

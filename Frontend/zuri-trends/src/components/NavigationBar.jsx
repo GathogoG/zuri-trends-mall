@@ -7,7 +7,6 @@ function NavigationBar() {
     <div className='navbar container-fluid navbar-expand-lg bg-body-tertiary'>
         <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container >
-        <Navbar.Brand href="/" className='nav-brand'>ZURI TRENDS</Navbar.Brand>
         <Navbar.Brand href="/" className='nav-brand'>HOME</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -35,9 +34,6 @@ function NavigationBar() {
               ORDERS
             </Nav.Link>
             <Nav.Link href="/contact">CONTACT</Nav.Link>
-          </Nav>
-          <Nav>
-          <Navbar.Brand href="/" className='nav'>ZURI TRENDS</Navbar.Brand>
           </Nav>
           <Nav>
             <Nav.Link href="/about">ABOUT US</Nav.Link>

@@ -6,7 +6,6 @@ function Wishlist() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch initial wishlist data from the backend
     fetch("http://127.0.0.1:5000/wishlists")
       .then((response) => response.json())
       .then((data) => setWishlist(data))
@@ -14,7 +13,6 @@ function Wishlist() {
   }, []);
 
   const addToWishlist = (item) => {
-    // Add the item to the backend wishlist
     fetch("http://127.0.0.1:5000/wishlists", {
       method: "POST",
       headers: {
@@ -30,7 +28,6 @@ function Wishlist() {
   };
 
   const updateWishlistItem = (itemId, updates) => {
-    // Update the item in the backend wishlist
     fetch(`http://127.0.0.1:5000/wishlists/${itemId}`, {
       method: "PUT",
       headers: {
@@ -50,7 +47,6 @@ function Wishlist() {
   };
 
   const removeFromWishlist = (itemId) => {
-    // Remove the item from the backend wishlist
     fetch(`http://127.0.0.1:5000/wishlists/${itemId}`, {
       method: "DELETE",
     })
@@ -71,7 +67,7 @@ function Wishlist() {
         ) : (
           wishlist.map((item) => (
             <div key={item.id} className="wishlist-item">
-              <img src={item.image} alt={item.title} />
+              <img src={item.image_path} alt={item.title} />
               <div className="wishlist-item-details">
                 <h3>{item.title}</h3>
                 <p>Price: ${item.price}</p>
@@ -91,7 +87,7 @@ function Wishlist() {
         )}
       </div>
       <div className="wishlist-actions">
-        <button onClick={() => navigate("/catalog")}>Continue Shopping</button>
+        <button onClick={() => navigate("/products")}>Continue Shopping</button>
       </div>
     </div>
   );
