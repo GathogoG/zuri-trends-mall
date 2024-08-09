@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from app.models import Payment
-from app.extensions import db
+from server.app.models import Payment
+from server.app.extensions import db
 from requests.auth import HTTPBasicAuth
 import requests
 import base64
@@ -129,4 +129,3 @@ def delete_payment(id):
     db.session.delete(payment)
     db.session.commit()
     return '', 204
-
