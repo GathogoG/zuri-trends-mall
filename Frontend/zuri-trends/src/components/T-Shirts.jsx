@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import NavigationBar from './NavigationBar';
+import { useNavigate } from 'react-router-dom';
 import { Button, Card, Container } from 'react-bootstrap';
 import ProductReview from './ProductReview';
+
 const TShirts = () => {
   // State to hold the list of T-shirts
   const [tshirts, setTshirts] = useState([
@@ -9,11 +11,14 @@ const TShirts = () => {
     { id: 2, title: 'T-Shirt 2', name: 'T-Shirt Name 2', price: '$20.00', imgSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZUtBS7iQ-pqu3lsMpZo_z6SW44NgUWFzsaA&s' },
     // Add more T-shirts as needed
   ]);
+  const navigate = useNavigate();
 
   // Function to handle deleting a T-shirt
   const handleDelete = (id) => {
     setTshirts(tshirts.filter(tshirt => tshirt.id !== id));
   };
+
+
 
   return (
     <div>
@@ -27,7 +32,9 @@ const TShirts = () => {
                 <Card.Title>{tshirt.title}</Card.Title>
                 <Card.Text>{tshirt.name}</Card.Text>
                 <Card.Text>{tshirt.price}</Card.Text>
-                <Button variant="secondary">Go somewhere</Button>
+                <button onClick={() => navigate('/order')} variant="primary">More Info</button>
+                <button onClick={() => navigate('/wishlist')} variant="primary">Add to Wishlist</button>
+                <button onClick={() => navigate('/cart')} variant="primary">Add to Cart</button>
                 <Button 
                   variant="danger" 
                   onClick={() => handleDelete(tshirt.id)} 

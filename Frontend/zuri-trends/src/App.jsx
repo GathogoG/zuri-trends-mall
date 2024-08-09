@@ -28,6 +28,7 @@ import SignUp from './components/Signup/Signup';
 import LandingPage from './pages/LandingPage';
 import NavigationBar from './components/NavigationBar'; 
 import Orders from './components/Orders';
+import Product from './components/Products';
 
 const productDetails = {
   title: 'Sample Product',
@@ -61,7 +62,8 @@ function App() {
           <Route path="/cart" element={<><NavigationBar /><Cart /></>} />
           <Route path="/checkout" element={<><NavigationBar /><Checkout /></>} /> 
           <Route path="/about" element={<><NavigationBar /><AboutUs /></>} />
-          <Route path="/aorder" element={<><NavigationBar /><Orders /></>} />
+          <Route path="/order" element={<><NavigationBar /><Orders /></>} />
+          <Route path="/products" element={<><NavigationBar /><Product /></>} />
           <Route path="/orderhistory" element={<><NavigationBar /><OrderHistory /></>} />
           <Route path="/product/:productId" element={<><NavigationBar /><ProductPage /></>} />
         </Routes>

@@ -13,6 +13,9 @@ function NavigationBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <NavDropdown title="CATALOG" id="collapsible-nav-dropdown">
+            <NavDropdown.Item href="/products">
+                ALL PRODUCTS
+              </NavDropdown.Item>
               <NavDropdown.Item href="/t-shirts">T-SHIRTS</NavDropdown.Item>
               <NavDropdown.Item href="/croptops">
                 CROP-TOPS
@@ -28,6 +31,9 @@ function NavigationBar() {
                 SWEAT-SHIRTS
               </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link eventKey={2} href="/order">
+              ORDERS
+            </Nav.Link>
             <Nav.Link href="/contact">CONTACT</Nav.Link>
           </Nav>
           <Nav>
