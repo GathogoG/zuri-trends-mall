@@ -1,3 +1,117 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+/* Login.css */
+
+=======
+>>>>>>> 481b480 (styled login and signup)
+body {
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+}
+=======
+>>>>>>> 3a46b7e (done with login)
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.success-message {
+  color: #4caf50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.error-message {
+  color: #f44336;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.extra-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.extra-links a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+<<<<<<< HEAD
+
+.success-message {
+  color: #28a745;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.error-message {
+  color: #dc3545;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+=======
 body {
     background: #f4f4f4;
     font-family: 'Arial', sans-serif;
@@ -16,6 +130,7 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 500px;
+    
   }
   
   h2 {
@@ -79,3 +194,179 @@ body {
   
   
   
+>>>>>>> 2e5ecdd (login)
+=======
+=======
+>>>>>>> refs/remotes/origin/main
+/* Login.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  background: #fff;
+  padding: 2em;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1em;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 1em;
+=======
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.success-message {
+  color: #4caf50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.error-message {
+  color: #f44336;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 15px;
+>>>>>>> refs/remotes/origin/main
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+<<<<<<< HEAD
+  padding: 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 0.75em;
+  background: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.extra-links {
+  text-align: center;
+  margin-top: 1em;
+=======
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.extra-links {
+  margin-top: 20px;
+  text-align: center;
+>>>>>>> refs/remotes/origin/main
+}
+
+.extra-links a {
+  color: #007bff;
+  text-decoration: none;
+<<<<<<< HEAD
+=======
+  font-size: 14px;
+>>>>>>> refs/remotes/origin/main
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+<<<<<<< HEAD
+
+.error-message {
+  color: #e74c3c;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.success-message {
+  color: #2ecc71;
+  text-align: center;
+  margin-bottom: 1em;
+}
+<<<<<<< HEAD
+>>>>>>> 9486e85 (redoing seeding)
+=======
+>>>>>>> 3a46b7e (done with login)
+=======
+=======
+>>>>>>> refs/remotes/origin/main
+>>>>>>> refs/remotes/origin/main

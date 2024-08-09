@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Signup.css";  // Ensure this CSS file exists
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ function Signup() {
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/user", {
+      const response = await fetch("http://127.0.0.1:5000/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +39,8 @@ function Signup() {
       const data = await response.json();
       setSuccess(true);
       console.log("User created:", data);
-      
+
+      // Navigate to the homepage upon successful sign-up
       navigate("/home");
 
     } catch (err) {
