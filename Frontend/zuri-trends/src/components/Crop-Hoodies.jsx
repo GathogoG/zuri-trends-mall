@@ -86,9 +86,9 @@ function CropHoodies() {
         )}
       </div>
     </div>
-  );
+  
 }
 
 export default CropHoodies;
 
-export default CropHoodies;
+e
