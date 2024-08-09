@@ -1,29 +1,87 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/main
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+=======
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import "./Login.css";
+
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+<<<<<<< HEAD
+  const [name, setName] = useState("");
+>>>>>>> 3a46b7e (done with login)
   const [error, setError] = useState(null);
+=======
+  const [error, setError] = useState("");
+>>>>>>> 4937bec (done with login)
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setError(null);
-    setSuccess(false);
+    setError("");
 
+<<<<<<< HEAD
+=======
     const userData = {
       email,
       password,
     };
+=======
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import "./Login.css";
+
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError("");
+
+>>>>>>> refs/remotes/origin/main
+    // Simple validation to check if email and password fields are filled
+    if (!email || !password) {
+      setError("Please fill in all fields");
+      return;
+    }
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/main
+>>>>>>> refs/remotes/origin/main
 
     try {
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4937bec (done with login)
       const response = await fetch("http://127.0.0.1:5000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+<<<<<<< HEAD
         body: JSON.stringify(userData),
       });
 
@@ -40,31 +98,319 @@ const Login = () => {
 
     } catch (err) {
       setError("Network error. Please try again later.");
+=======
+=======
+>>>>>>> 25c4b52 (login)
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+=======
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+<<<<<<< HEAD
+>>>>>>> 5401a78 (fixed login and signup)
+=======
+import toast from "react-hot-toast";
+>>>>>>> d6540ae (added toaat message)
+import "./Login.css";
+=======
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+>>>>>>> 8a2a33b (authentication)
+
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  const navigate = useNavigate();
+>>>>>>> 5401a78 (fixed login and signup)
+=======
+  const navigate = useNavigate();
+>>>>>>> 8a2a33b (authentication)
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setError(null);
+    setSuccess(false);
+
+    const userData = {
+      email,
+      password,
+    };
+
+    try {
+<<<<<<< HEAD
+=======
+>>>>>>> 3a46b7e (done with login)
+      const response = await fetch(
+<<<<<<< HEAD
+<<<<<<< HEAD
+        `http://127.0.0.1:5000/users`,
+=======
+        `http://127.0.0.1:5000/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(name)}`,
+>>>>>>> 5401a78 (fixed login and signup)
+=======
+        `http://127.0.0.1:5000/users?email=${encodeURIComponent(
+          email
+        )}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(
+          name
+        )}`,
+>>>>>>> d6540ae (added toaat message)
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+        throw new Error("Something went wrong!");
+=======
+        throw new Error("Invalid name, email, or password!");
+>>>>>>> 5401a78 (fixed login and signup)
+=======
+=======
+        body: JSON.stringify({ email, password }), // Sending email and password in the request body
+      });
+
+      const data = await response.json(); // Parsing the response data
+      console.log("Response data:", data); // Log the entire response data for debugging
+
+      if (!response.ok) {
+        // Check for specific status codes and set error messages accordingly
+>>>>>>> 4937bec (done with login)
+        if (response.status === 401) {
+          throw new Error("Invalid email or password!");
+        } else if (response.status === 400) {
+          throw new Error(data.error || "Bad Request: Check your input.");
+        } else {
+          throw new Error("Something went wrong!");
+        }
+>>>>>>> d9291fc (done with login)
+      }
+
+<<<<<<< HEAD
+      const data = await response.json();
+
+<<<<<<< HEAD
+=======
+      const response = await fetch("http://127.0.0.1:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(errorData.error || "Login failed!");
+        return;
+      }
+
+      const data = await response.json();
+>>>>>>> 8a2a33b (authentication)
+=======
+      // If the request is successful, set success to true and display a success message
+>>>>>>> 4937bec (done with login)
+      setSuccess(true);
+      toast.success(`${data.name || "User"} successfully logged in!`);
+      console.log("User logged in:", data);
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    } catch (err) {
+      setError(err.message);
+<<<<<<< HEAD
+>>>>>>> 2e5ecdd (login)
+=======
+>>>>>>> 25c4b52 (login)
+=======
+      navigate("/home"); // Redirect to home upon successful login
+
+    } catch (err) {
+      setError("Network error. Please try again later.");
+>>>>>>> 8a2a33b (authentication)
+=======
+      setSuccess(true);
+      toast.success(`${name} successfully logged in!`);
+      console.log("User logged in:", data);
+      navigate("/"); // Redirect to the home page on successful login
+    } catch (err) {
+      setError(err.message);
+>>>>>>> 3a46b7e (done with login)
       console.error("Error:", err);
+=======
+        body: JSON.stringify({ email, password }), // Sending email and password in the request body
+      });
+
+      const data = await response.json(); // Parsing the response data
+      console.log("Response data:", data); // Log the entire response data for debugging
+
+      if (!response.ok) {
+        // Check for specific status codes and set error messages accordingly
+        if (response.status === 401) {
+          throw new Error("Invalid email or password!");
+        } else if (response.status === 400) {
+          throw new Error(data.error || "Bad Request: Check your input.");
+        } else {
+          throw new Error("Something went wrong!");
+        }
+      }
+
+      // If the request is successful, set success to true and display a success message
+      setSuccess(true);
+      toast.success(`${data.name || "User"} successfully logged in!`);
+      console.log("User logged in:", data);
+      navigate("/home"); // Redirect to the home page on successful login
+    } catch (err) {
+      // Handle errors by setting the error message and logging the error
+      setError(err.message);
+      console.error("Error:", err);
+      toast.error(err.message);
+>>>>>>> refs/remotes/origin/main
     }
   };
 
   return (
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8a2a33b (authentication)
+=======
+>>>>>>> refs/remotes/origin/main
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-6">
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
         <h2 className="text-2xl font-semibold mb-6 text-gray-800">Log In</h2>
         {success && <p className="text-green-500 mb-4">Logged in successfully!</p>}
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleLogin} className="space-y-4">
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 25c4b52 (login)
+=======
+      navigate("/"); // Redirect to the home page on successful login
+=======
+      navigate("/home"); // Redirect to the home page on successful login
+>>>>>>> 4937bec (done with login)
+    } catch (err) {
+      // Handle errors by setting the error message and logging the error
+      setError(err.message);
+      console.error("Error:", err);
+      toast.error(err.message);
+    }
+  };
+
+  return (
+>>>>>>> 5401a78 (fixed login and signup)
+=======
+>>>>>>> 3a46b7e (done with login)
+=======
+=======
+>>>>>>> refs/remotes/origin/main
+    <div className="login-container">
+      <form onSubmit={handleSubmit}>
+        <h2>LOGIN</h2>
+        {success && <p className="success-message">Login successful!</p>}
+        {error && <p className="error-message">{error}</p>}
+        <div className="input-group">
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/main
+>>>>>>> refs/remotes/origin/main
           <input
+<<<<<<< HEAD
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-group">
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 2e5ecdd (login)
+=======
+>>>>>>> 25c4b52 (login)
+=======
+>>>>>>> 5401a78 (fixed login and signup)
+=======
+>>>>>>> 8a2a33b (authentication)
+=======
+>>>>>>> 3a46b7e (done with login)
+          <input
+=======
+>>>>>>> 4937bec (done with login)
             type="email"
             placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/main
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+=======
+          />
+        </div>
+        <div className="input-group">
+<<<<<<< HEAD
+>>>>>>> 2e5ecdd (login)
+=======
+          />
+        </div>
+        <div className="input-group">
+>>>>>>> 25c4b52 (login)
+=======
+          />
+        </div>
+        <div className="input-group">
+>>>>>>> 5401a78 (fixed login and signup)
+=======
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+>>>>>>> 8a2a33b (authentication)
+=======
+          />
+        </div>
+        <div className="input-group">
+>>>>>>> 3a46b7e (done with login)
+=======
+>>>>>>> refs/remotes/origin/main
+>>>>>>> refs/remotes/origin/main
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/main
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
@@ -87,5 +433,77 @@ const Login = () => {
     </div>
   );
 };
+=======
+          />
+        </div>
+        <button type="submit">LOGIN</button>
+        <div className="extra-links">
+          <a href="#">Forgot your password?</a>
+          <Link to="/signup">Create an account</Link>
+        </div>
+      </form>
+    </div>
+  );
+}
+>>>>>>> refs/remotes/origin/main
 
 export default Login;
+=======
+=======
+>>>>>>> 25c4b52 (login)
+=======
+>>>>>>> 5401a78 (fixed login and signup)
+          />
+=======
+          />
+>>>>>>> 3a46b7e (done with login)
+        </div>
+        <button type="submit">LOGIN</button>
+        <div className="extra-links">
+          <a href="#">Forgot your password?</a>
+          <Link to="/signup">Create an account</Link>
+        </div>
+      </form>
+<<<<<<< HEAD
+=======
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Log In
+          </button>
+        </form>
+        <p className="mt-4 text-center">
+          Don't have an account?{' '}
+          <a
+            href="/signup"
+            className="text-blue-600 hover:underline"
+          >
+            Sign Up
+          </a>
+        </p>
+      </div>
+>>>>>>> 8a2a33b (authentication)
+=======
+>>>>>>> 3a46b7e (done with login)
+    </div>
+  );
+}
+
+export default Login;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 2e5ecdd (login)
+=======
+>>>>>>> 7994107 (change)
+=======
+>>>>>>> 25c4b52 (login)
+=======
+>>>>>>> 6fb504f (redoing login and signup)
+=======
+>>>>>>> 5401a78 (fixed login and signup)
+=======
+>>>>>>> 8a2a33b (authentication)

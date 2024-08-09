@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
+// Sample payment cards
 const sampleCards = [
   { id: '1', name: 'Visa', number: '**** **** **** 1234', expDate: '12/25' },
   { id: '2', name: 'MasterCard', number: '**** **** **** 5678', expDate: '11/24' },
   { id: '3', name: 'American Express', number: '**** **** **** 9012', expDate: '10/23' },
 ];
 
+// M-Pesa option with an icon
 const mpesaOption = {
   id: '4',
   name: 'M-Pesa',
-  icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/M-Pesa_Logo.png/640px-M-Pesa_Logo.png',
+  icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/M-Pesa_Logo.png/640px-M-Pesa_Logo.png', // Example M-Pesa icon
 };
 
 export default function PaymentPage() {
   const location = useLocation();
   const { deliveryDetails = {}, productDetails = {} } = location.state || {};
 
+  // Remove currency symbols and convert to numbers
   const parsePrice = (priceStr) => parseFloat(priceStr.replace(/[^\d.-]/g, '')) || 0;
   const price = parsePrice(productDetails.price);
   const fee = parseFloat(deliveryDetails.fee) || 0;
@@ -36,10 +39,10 @@ export default function PaymentPage() {
       alert('Please select a payment method.');
       return;
     }
-  
+
     setLoading(true);
     setError(null);
-  
+
     try {
       const paymentData = {
         amount: parseFloat(totalAmount), // Ensure amount is a number
@@ -47,10 +50,11 @@ export default function PaymentPage() {
         transaction_id: `txn_${Date.now()}`, // Unique transaction ID
         user_id: 'user123' // Replace with actual user ID
       };
-  
+
       const response = await axios.post('http://localhost:5000/payments', paymentData);
       console.log('Payment Response:', response.data);
       // Handle success, e.g., show a success message or redirect
+      alert('Payment successful!');
     } catch (error) {
       console.error('Payment Error:', error);
       if (error.response) {
@@ -61,6 +65,7 @@ export default function PaymentPage() {
       setLoading(false);
     }
   };
+
   return (
     <div className="px-6 py-24 bg-white isolate sm:py-32 lg:px-8">
       <div className="max-w-2xl mx-auto text-center">
@@ -68,6 +73,7 @@ export default function PaymentPage() {
         <p className="mt-2 text-lg leading-8 text-gray-600">Complete your payment details below.</p>
       </div>
       <div className="max-w-xl mx-auto mt-16 sm:mt-20">
+        {/* Delivery Details */}
         <div className="bg-gray-50 p-4 rounded-lg shadow-lg mb-8">
           <h3 className="text-xl font-bold">Delivery Details</h3>
           <p>Name: {deliveryDetails.name}</p>
@@ -78,6 +84,7 @@ export default function PaymentPage() {
           <p>Delivery Fee: KSh {fee.toFixed(2).toLocaleString()}</p>
         </div>
 
+        {/* Product Details */}
         <div className="bg-gray-50 p-4 rounded-lg shadow-lg mb-8">
           <h3 className="text-xl font-bold">{productDetails.title}</h3>
           <p className="text-gray-700 mb-2">{productDetails.description}</p>
@@ -91,6 +98,7 @@ export default function PaymentPage() {
           </div>
         </div>
 
+        {/* Payment Method Selection */}
         <div className="mt-10">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Select a Payment Method</h3>
           <ul className="space-y-4">
@@ -105,6 +113,7 @@ export default function PaymentPage() {
                 <p className="text-sm text-gray-600">Expiry Date: {card.expDate}</p>
               </li>
             ))}
+            {/* M-Pesa Option */}
             <li
               key={mpesaOption.id}
               className={`p-4 border rounded-md cursor-pointer ${selectedCard?.id === mpesaOption.id ? 'bg-gray-100 border-indigo-600' : 'border-gray-300'}`}
