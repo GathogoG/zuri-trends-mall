@@ -37,7 +37,7 @@ export default function PaymentPage() {
 
     const paymentData = {
       amount: totalAmount,
-      phone_number: '0115743312',
+      phone_number: '0702524433',
     };
 
     try {
@@ -75,12 +75,6 @@ export default function PaymentPage() {
           <p className="text-gray-700 mb-2">{productDetails.description}</p>
           <p className="text-lg font-semibold">Price: KSh {price.toFixed(2).toLocaleString()}</p>
           <p className="text-lg font-semibold">Total Amount: KSh {totalAmount.toLocaleString()}</p>
-          <div className="mt-4">
-            <h4 className="text-lg font-semibold">Product Images</h4>
-            {productDetails.images.map((image, index) => (
-              <img key={index} src={image} className="w-32 h-32 object-cover mt-2" alt={`Product ${index}`} />
-            ))}
-          </div>
         </div>
 
         <div className="mt-10">
@@ -102,19 +96,15 @@ export default function PaymentPage() {
               className={`p-4 border rounded-md cursor-pointer ${selectedCard?.id === mpesaOption.id ? 'bg-gray-100 border-indigo-600' : 'border-gray-300'}`}
               onClick={() => handleCardSelect(mpesaOption)}
             >
-              <div className="flex items-center">
-                <img src={mpesaOption.icon} alt="M-Pesa" className="w-8 h-8 mr-2" />
-                <p className="text-lg font-medium">{mpesaOption.name}</p>
-              </div>
+              <p className="text-lg font-medium">{mpesaOption.name}</p>
+              <img src={mpesaOption.icon} alt="M-Pesa Icon" className="w-12 h-12 mt-2" />
             </li>
           </ul>
         </div>
-
         <div className="mt-10">
           <button
-            type="button"
-            className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             onClick={handleContinueToPayment}
+            className="w-full bg-indigo-600 text-white py-3 px-4 rounded-md shadow-lg hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Continue to Payment
           </button>
