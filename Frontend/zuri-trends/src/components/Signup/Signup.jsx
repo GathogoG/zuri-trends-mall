@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Signup.css";  
 import { useNavigate } from "react-router-dom";
 import "./Signup.css";  // Ensure this CSS file exists
 
@@ -29,7 +31,18 @@ function Signup() {
         },
         body: JSON.stringify(userData),
       });
+      const data = await response.json();
 
+      if (response.ok) {
+        setSuccess(true);
+        console.log("User created:", data);
+        navigate("/"); 
+      } else {
+        setError(data.error || "Something went wrong!");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      setError("Failed to sign up");
       if (!response.ok) {
         const errorData = await response.json();
         setError(errorData.message || "Something went wrong!");
@@ -50,6 +63,43 @@ function Signup() {
   };
 
   return (
+    <div className="signup-container">
+      <form onSubmit={handleSubmit}>
+        <h2>SIGN UP</h2>
+        {success && <p className="success-message">User created successfully!</p>}
+        {error && <p className="error-message">{error}</p>}
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <input
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">SIGN UP</button>
+        <div className="extra-links">
+          <Link to="/login">Already have an account? Log in</Link>
+        </div>
+      </form>
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
       <div className="relative bg-white p-6 rounded-lg shadow-lg max-w-sm w-full z-10">

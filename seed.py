@@ -236,3 +236,4 @@ def clear_existing_users():
 
 if __name__ == "__main__":
     seed_all()
+
