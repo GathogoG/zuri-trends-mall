@@ -37,6 +37,9 @@ function NavigationBar() {
             <Nav.Link href="/contact">CONTACT</Nav.Link>
           </Nav>
           <Nav>
+          <Navbar.Brand href="/" className='nav'>ZURI TRENDS</Navbar.Brand>
+          </Nav>
+          <Nav>
             <Nav.Link href="/about">ABOUT US</Nav.Link>
             <Nav.Link eventKey={2} href="/cart">
               CART
