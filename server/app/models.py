@@ -1,5 +1,5 @@
 from .extensions import db
-from datetime import datetime
+from datetime import datetime, timezone
 
 class Catalog(db.Model):
     __tablename__ = 'catalog'
@@ -138,7 +138,7 @@ class Payment(db.Model):
     transaction_id = db.Column(db.String(100), nullable=False)
     amount = db.Column(db.Float, nullable=False)
     status = db.Column(db.String(50), nullable=False, default='Pending')
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now(timezone.utc))
 
     def as_dict(self):
         return {
