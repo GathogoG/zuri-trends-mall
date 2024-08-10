@@ -22,7 +22,7 @@ const productDetails = {
     ],
     title: 'SWIMMING SUITS',
     description: 'Stylish and comfortable swimming suits.',
-    price: 'KSh1,600.00'
+    price: 1600
   },
   3: {
     id: 3,
@@ -42,53 +42,57 @@ const productDetails = {
     ],
     title: 'MAMI JEANS',
     description: 'Trendy and comfortable jeans.',
-
-    price: 'KSh1,600.00'
+    price: 1600
   },
   5: {
+    id: 5,
     images: [
       'https://i.pinimg.com/564x/d2/3c/ea/d23ceaa8e1ab5e1ae744cdb47d86979b.jpg',
       'https://i.pinimg.com/564x/9d/7c/ad/9d7cad5ede208c3585a65b40188b2576.jpg'
     ],
     title: 'Grey Sexy Collar Tank Top',
     description: 'Slight stretch tank top with embellishments.',
-    price: 'KSh2,500.00'
+    price: 2500
   },
   6: {
+    id: 6,
     images: [
       'https://i.pinimg.com/736x/c6/4d/4b/c64d4b48394ebdbec3e4cbc688f090bc.jpg',
       'https://i.pinimg.com/564x/ab/16/dd/ab16ddb974fd58cef55f965e48934384.jpg'
     ],
     title: 'EZwear Drop Shoulder Jacket & Pants',
     description: 'Two-piece teddy jacket and pants set.',
-    price: 'KSh2,200.00'
+    price: 2200
   },
   7: {
+    id: 7,
     images: [
       'https://i.pinimg.com/736x/64/1f/57/641f5798356599ea6e09e0b6294542eb.jpg',
       'https://i.pinimg.com/736x/e7/35/3e/e7353e86aa23ed3d52b0a103bd9bc7ac.jpg'
     ],
     title: 'Flared Pants',
     description: 'Fashionable and comfortable flared pants.',
-    price: 'KSh1,800.00'
+    price: 1800
   },
   8: {
+    id: 8,
     images: [
       'https://i.pinimg.com/564x/87/ad/1f/87ad1f7cb7c9ae3ba687a37e18d89327.jpg',
       'https://i.pinimg.com/564x/97/ea/aa/97eaaafdd757f8c25c452b941e1c24a1.jpg'
     ],
     title: 'Y2K Sweaters Women Long Sleeve',
     description: 'Grunge fairy gothic vintage pullover sweater.',
-    price: 'KSh2,700.00'
+    price: 2700
   },
   9: {
+    id: 9,
     images: [
       'https://i.pinimg.com/564x/5f/27/c6/5f27c66f1f458307728e6ff6047cf69d.jpg',
       'https://i.pinimg.com/736x/b8/7c/40/b87c40f17dbc9488ceb3de0f7984a765.jpg'
     ],
     title: 'Wide Leg Jeans in Washed Black',
     description: 'Stylish wide leg jeans.',
-    price: 'KSh1,900.00'
+    price: 1900
   }
 };
 
@@ -105,12 +109,6 @@ const ProductPage = () => {
 
   const handleAddToCart = () => {
     addToCart(product);
-  const handleBuyNow = () => {
-    navigate('/delivery', { state: { productDetails: product } });
-  };
-
-  const handleAddToCart = () => {
-    console.log(`Product ${productId} added to cart`);
     setNotification(true);
 
     setTimeout(() => {
@@ -128,46 +126,37 @@ const ProductPage = () => {
     <div>
       <NavigationBar />
       <div className="bg-gray-100 min-h-screen p-12">
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-4">
+        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
           {notification && (
             <div className="bg-green-200 text-green-800 p-3 rounded mb-4">
               Product added to cart!
             </div>
           )}
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
           <div className="flex flex-col md:flex-row">
             <div className="md:w-1/2 flex flex-col">
               {product.images.map((image, index) => (
-                <img key={index} src={image} className="w-full h-auto mb-4 rounded-lg shadow-md" alt={`Product ${index}`} />
+                <img
+                  key={index}
+                  src={image}
+                  className="w-full h-auto mb-4 rounded-lg shadow-md"
+                  alt={`Product ${index}`}
+                />
               ))}
             </div>
             <div className="md:w-1/2 md:pl-6 p-4">
               <h2 className="text-3xl font-bold mb-2 text-gray-800">{product.title}</h2>
               <p className="text-gray-600 mb-4">{product.description}</p>
               <p className="text-lg font-semibold mb-4">KSh{product.price}</p>
-              <button
-                onClick={handleBuyNow}
-                className="bg-red-500 text-white px-6 py-3 rounded mr-2 hover:bg-red-700 text-lg font-semibold"
-              >
-                Buy Now
-              </button>
-              <button
-                onClick={handleAddToCart}
-                className="bg-red-500 text-white px-6 py-3 rounded hover:bg-red-700 text-lg font-semibold"
-              >
-                Add to Cart
-              </button>
-              <p className="text-xl font-semibold mb-4 text-red-600">{product.price}</p>
               <div className="flex gap-4">
                 <button
                   onClick={handleBuyNow}
-                  className="bg-red-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-700 transition duration-300 text-lg font-semibold"
+                  className="bg-red-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-700 transition duration-300 text-lg font-semibold"
                 >
                   Buy Now
                 </button>
                 <button
                   onClick={handleAddToCart}
-                  className="bg-red-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-700 transition duration-300 text-lg font-semibold"
+                  className="bg-red-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-700 transition duration-300 text-lg font-semibold"
                 >
                   Add to Cart
                 </button>
@@ -181,4 +170,3 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
-

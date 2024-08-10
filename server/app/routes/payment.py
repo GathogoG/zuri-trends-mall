@@ -12,7 +12,7 @@ import string
 
 payment_bp = Blueprint('payment_bp', __name__)
 
-payment_bp = Blueprint('payment_bp', __name__)
+# MPesa credentials and URLs
 CONSUMER_KEY = 'yty83hjgw0EEGrxoV9j3AAQxVJL2hmjcvYMPxsjXH2ghL8AF'
 CONSUMER_SECRET = 'asJhwuTM0XXBWyTJwCWgPWITuucxPoDkNiQWfeTQGgjGraLyl5KO6Ay93sxrSwIm'
 BUSINESS_SHORT_CODE = '174379'
@@ -25,6 +25,7 @@ def generate_transaction_id(length=12):
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
 
 def get_access_token():
+    """Get the access token from MPesa."""
     try:
         url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
         response = requests.get(url, auth=HTTPBasicAuth(CONSUMER_KEY, CONSUMER_SECRET))
@@ -32,23 +33,13 @@ def get_access_token():
         json_response = response.json()
         return json_response['access_token']
     except requests.RequestException as e:
-
         return {'error': str(e)}
 
 def lipa_na_mpesa_online(amount, phone_number, transaction_id):
+    """Perform MPesa payment request."""
     access_token = get_access_token()
     if isinstance(access_token, dict) and 'error' in access_token:
         return access_token
-
-=======
-        return jsonify({'error': str(e)}), 500
-
-def lipa_na_mpesa_online(amount, phone_number, transaction_id):
-    access_token_response = get_access_token()
-    if isinstance(access_token_response, dict) and 'error' in access_token_response:
-        return access_token_response
-    
-    access_token = access_token_response
 
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     password = base64.b64encode((BUSINESS_SHORT_CODE + LIPA_NA_MPESA_ONLINE_PASSKEY + timestamp).encode()).decode('utf-8')
@@ -79,20 +70,21 @@ def lipa_na_mpesa_online(amount, phone_number, transaction_id):
 
 @payment_bp.route('/payments', methods=['GET'])
 def get_payments():
+    """Get all payments."""
     payments = Payment.query.all()
     return jsonify([payment.as_dict() for payment in payments])
 
 @payment_bp.route('/payments/<int:id>', methods=['GET'])
 def get_payment(id):
+    """Get a payment by ID."""
     payment = Payment.query.get_or_404(id)
     return jsonify(payment.as_dict())
 
 @payment_bp.route('/payments', methods=['POST'])
 def create_payment():
+    """Create a new payment."""
     data = request.get_json()
     if not data or not all(key in data for key in ['amount', 'phone_number']):
-        return jsonify({'error': 'Invalid input'}), 400
-    if not data or 'amount' not in data or 'phone_number' not in data:
         return jsonify({'error': 'Invalid input'}), 400
 
     user_id = str(uuid.uuid4())
@@ -111,9 +103,7 @@ def create_payment():
         payment_status = 'Failed'
 
     payment = Payment(
-
-        user_id=data.get('user_id', None),
-        user_id=user_id,
+        user_id=data.get('user_id', user_id),  # Use user_id from data if available, else use generated id
         amount=amount,
         transaction_id=transaction_id,
         status=payment_status
@@ -128,6 +118,7 @@ def create_payment():
 
 @payment_bp.route('/payments/<int:id>', methods=['PUT'])
 def update_payment(id):
+    """Update a payment."""
     data = request.get_json()
     payment = Payment.query.get_or_404(id)
     
@@ -145,6 +136,7 @@ def update_payment(id):
 
 @payment_bp.route('/payments/<int:id>', methods=['DELETE'])
 def delete_payment(id):
+    """Delete a payment."""
     payment = Payment.query.get_or_404(id)
     db.session.delete(payment)
     db.session.commit()
