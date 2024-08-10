@@ -1,5 +1,5 @@
 import click
-from server.app import create_app
+from server.app.app import create_app
 
 app = create_app()
 
@@ -20,4 +20,3 @@ def show_routes():
     for rule in app.url_map.iter_rules():
         methods = ','.join(rule.methods)
         print(f"{rule.endpoint:30s} {methods:20s} {rule}")
-

@@ -51,10 +51,6 @@ body{
   width: 100%;
 }
 
-.nav{
-  outline-color: #8e7fe6;
-}
-
 .cards{
   margin-top: 150px;
 }
@@ -65,7 +61,7 @@ body{
 
 .submit{
   background-color: rgba(26, 7, 134, 0.74);
-  width: 100px;
+  width: 200px;
   position: absolute;
   z-index: 20;
   transition: all 0.5s ease;

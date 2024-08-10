@@ -1,14 +1,193 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9486e85 (redoing seeding)
 
+<<<<<<< HEAD
+=======
+>>>>>>> 481b480 (styled login and signup)
+=======
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/main
 body {
-  font-family: 'Arial', sans-serif;
-  background: #f0f0f0;
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+}
+=======
+>>>>>>> 3a46b7e (done with login)
+
+<<<<<<< HEAD
+.signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
 }
 
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.success-message {
+  color: #4caf50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.error-message {
+  color: #f44336;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.extra-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.extra-links a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+<<<<<<< HEAD
+
+.success-message {
+  color: #28a745;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.error-message {
+  color: #dc3545;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+=======
+.signup-container {
+    width: 90%;
+    max-width: 500px;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ffffff, #f9f9f9);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h2 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  input {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+    outline: none;
+  }
+  
+  button {
+    background-color: #f44336;
+    color: white;
+    padding: 16px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  button:hover {
+    background-color: #e53935;
+    transform: scale(1.02);
+  }
+  
+  p {
+    color: #666;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  p a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  p a:hover {
+    text-decoration: underline;
+  }
+  
+>>>>>>> 2e5ecdd (login)
+=======
 .signup-container {
   background: #fff;
   padding: 2em;
@@ -26,12 +205,54 @@ h2 {
 
 .input-group {
   margin-bottom: 1em;
+=======
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.success-message {
+  color: #4caf50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.error-message {
+  color: #f44336;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 15px;
+>>>>>>> refs/remotes/origin/main
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"] {
   width: 100%;
+<<<<<<< HEAD
   padding: 0.75em;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -63,16 +284,49 @@ button:hover {
 .extra-links {
   text-align: center;
   margin-top: 1em;
+=======
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.extra-links {
+  margin-top: 20px;
+  text-align: center;
+>>>>>>> refs/remotes/origin/main
 }
 
 .extra-links a {
   color: #007bff;
   text-decoration: none;
+<<<<<<< HEAD
+=======
+  font-size: 14px;
+>>>>>>> refs/remotes/origin/main
 }
 
 .extra-links a:hover {
   text-decoration: underline;
 }
+<<<<<<< HEAD
 
 .error-message {
   color: #e74c3c;
@@ -85,3 +339,11 @@ button:hover {
   text-align: center;
   margin-bottom: 1em;
 }
+<<<<<<< HEAD
+>>>>>>> 9486e85 (redoing seeding)
+=======
+>>>>>>> 3a46b7e (done with login)
+=======
+=======
+>>>>>>> refs/remotes/origin/main
+>>>>>>> refs/remotes/origin/main

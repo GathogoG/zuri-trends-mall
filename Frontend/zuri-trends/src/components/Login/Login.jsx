@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import "./Login.css";
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setError(null);
+    setError("");
     setSuccess(false);
 
-    const userData = {
-      email,
-      password,
-    };
+    const userData = { email, password };
 
     try {
       const response = await fetch("http://127.0.0.1:5000/login", {
@@ -35,12 +34,13 @@ const Login = () => {
 
       const data = await response.json();
       setSuccess(true);
+      toast.success("Successfully logged in!");
       console.log("User logged in:", data);
       navigate("/home"); // Redirect to home upon successful login
-
     } catch (err) {
       setError("Network error. Please try again later.");
       console.error("Error:", err);
+      toast.error("Network error. Please try again later.");
     }
   };
 
@@ -50,23 +50,27 @@ const Login = () => {
         <h2 className="text-2xl font-semibold mb-6 text-gray-800">Log In</h2>
         {success && <p className="text-green-500 mb-4">Logged in successfully!</p>}
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <form onSubmit={handleLogin} className="space-y-4">
-          <input
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="input-group">
+            <input
+              type="email"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className="input-group">
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
           <button
             type="submit"
             className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -76,16 +80,13 @@ const Login = () => {
         </form>
         <p className="mt-4 text-center">
           Don't have an account?{' '}
-          <a
-            href="/signup"
-            className="text-blue-600 hover:underline"
-          >
+          <Link to="/signup" className="text-blue-600 hover:underline">
             Sign Up
-          </a>
+          </Link>
         </p>
       </div>
     </div>
   );
-};
+}
 
 export default Login;

@@ -2,7 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-// Import pages and components
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Contact from './pages/Contact';
@@ -25,10 +24,10 @@ import DeliveryPage from './pages/Delivery';
 import PaymentPage from './pages/Payment';
 import Login from './components/Login/Login';
 import SignUp from './components/Signup/Signup';
+import { Toaster } from 'react-hot-toast';
 import LandingPage from './pages/LandingPage';
 import NavigationBar from './components/NavigationBar'; 
-import Orders from './components/Orders';
-import Product from './components/Products';
+//import { CartProvider } from './context/CartContext'; 
 
 const productDetails = {
   title: 'Sample Product',
@@ -41,32 +40,34 @@ function App() {
 
   return (
     <div className="app">
+      <Toaster />
       <Router>
-        <Routes>
-          <Route path="/" element={<LandingPage />} /> {/* LandingPage as the default route */}
-          <Route path="/home" element={<><NavigationBar /><Home /></>} />
-          <Route path="/delivery" element={<><NavigationBar /><DeliveryPage setDeliveryDetails={setDeliveryDetails} /></>} />
-          <Route path="/payment" element={<><NavigationBar /><PaymentPage deliveryDetails={deliveryDetails} productDetails={productDetails} /></>} />
-          <Route path="/login" element={<><NavigationBar /><Login /></>} />
-          <Route path="/signup" element={<><NavigationBar /><SignUp /></>} />
-          <Route path="/catalog" element={<><NavigationBar /><Catalog /></>} />
-          <Route path="/contact" element={<><NavigationBar /><Contact /></>} />
-          <Route path="/t-shirts" element={<><NavigationBar /><TShirts /></>} />
-          <Route path="/croptops" element={<><NavigationBar /><Croptops /></>} />
-          <Route path="/hoodies" element={<><NavigationBar /><Hoodies /></>} />
-          <Route path="/jackets" element={<><NavigationBar /><Jackets /></>} />
-          <Route path="/sweatshirts" element={<><NavigationBar /><SweatShirts /></>} />
-          <Route path="/crophoodies" element={<><NavigationBar /><CropHoodies /></>} />
-          <Route path="/logout" element={<><NavigationBar /><LogOut /></>} />
-          <Route path="/wishlist" element={<><NavigationBar /><Wishlist /></>} />
-          <Route path="/cart" element={<><NavigationBar /><Cart /></>} />
-          <Route path="/checkout" element={<><NavigationBar /><Checkout /></>} /> 
-          <Route path="/about" element={<><NavigationBar /><AboutUs /></>} />
-          <Route path="/order" element={<><NavigationBar /><Orders /></>} />
-          <Route path="/products" element={<><NavigationBar /><Product /></>} />
-          <Route path="/orderhistory" element={<><NavigationBar /><OrderHistory /></>} />
-          <Route path="/product/:productId" element={<><NavigationBar /><ProductPage /></>} />
-        </Routes>
+        <CartProvider>
+          <NavigationBar />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/delivery" element={<DeliveryPage setDeliveryDetails={setDeliveryDetails} />} />
+            <Route path="/payment" element={<PaymentPage deliveryDetails={deliveryDetails} productDetails={productDetails} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/t-shirts" element={<TShirts />} />
+            <Route path="/croptops" element={<Croptops />} />
+            <Route path="/hoodies" element={<Hoodies />} />
+            <Route path="/jackets" element={<Jackets />} />
+            <Route path="/sweatshirts" element={<SweatShirts />} />
+            <Route path="/crophoodies" element={<CropHoodies />} />
+            <Route path="/logout" element={<LogOut />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/orderhistory" element={<OrderHistory />} />
+            <Route path="/product/:productId" element={<ProductPage />} />
+          </Routes>
+        </CartProvider>
       </Router>
     </div>
   );

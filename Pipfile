@@ -4,6 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+<<<<<<<<< Temporary merge branch 1
+flask = "*"
+flask-migrate = "*"
+flask-restful = "*"
+sqlalchemy-serializer = "*"
+=========
+>>>>>>>>> Temporary merge branch 2
 flask-cors = "*"
 requests = "*"
 
