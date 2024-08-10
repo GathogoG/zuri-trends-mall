@@ -31,7 +31,6 @@ const Home = () => {
       text: 'KSh1,600.00',
       productId: 4
     },
-    // Additional Products
     {
       images: [
         'https://i.pinimg.com/564x/d2/3c/ea/d23ceaa8e1ab5e1ae744cdb47d86979b.jpg',
@@ -118,24 +117,22 @@ const Home = () => {
   return (
     <div>
       <NavigationBar />
-      <div className="min-h-screen bg-gray-100">
-        <div className="relative w-full h-screen mb-8">
+      <div className="min-h-screen bg-gray-100 pt-9">
+        <div className="relative w-full h-80 mb-8">
           <img
             src="https://i.pinimg.com/564x/bb/55/d3/bb55d39a3f0f0f2dc11419c3480a7b4b.jpg"
             alt="Decorative Banner"
             className="object-cover w-full h-full"
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="p-4 text-6xl font-extrabold text-white bg-gray-800 bg-opacity-50 rounded-lg shadow-lg">
-            <div className="p-4 text-6xl font-bold text-white bg-gray-800 bg-opacity-50 rounded-lg">
+            <div className="p-4 text-4xl font-extrabold text-white bg-gray-800 bg-opacity-50 rounded-lg shadow-lg">
               Welcome To Zuri Trends
-
             </div>
           </div>
         </div>
 
         <div className="p-4 mb-8">
-          <h1 className="text-4xl font-extrabold text-gray-800 text-center mb-8 drop-shadow-lg">
+          <h1 className="text-4xl font-extrabold text-gray-800 text-center mb-8">
             TRENDING NOW
           </h1>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -159,7 +156,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="w-full h-screen">
+        <div className="w-full h-80 mt-8">
           <img
             src="https://i.pinimg.com/564x/f6/cb/0e/f6cb0e7266a9abd37376dc4dd4aadced.jpg"
             alt="Additional Banner"
