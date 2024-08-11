@@ -8,7 +8,6 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
-    # Enable CORS
     CORS(app)
 
     app.config['DEBUG'] = True
