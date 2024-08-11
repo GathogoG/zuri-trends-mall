@@ -1,9 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { Spinner, Card, Button } from 'react-bootstrap';
-import NavigationBar from './NavigationBar';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, Card, Button } from 'react-bootstrap';
@@ -63,32 +58,6 @@ function CropHoodies() {
       </div>
     </div>
   );
-    <div>
-      <NavigationBar />
-      <div>
-        {loading ? (
-          <Spinner animation="border" variant="light" />
-        ) : (
-          <div>
-            {products.map((product) => (
-              <Card key={product.id}>
-                <Card.Img variant="top" src={product.image} alt={product.name} />
-                <Card.Body>
-                  <Card.Title>{product.name}</Card.Title>
-                  <Card.Text>{product.description}</Card.Text>
-                  <Button variant="primary" onClick={() => handleOrder(product)}>
-                    Quick Preview
-                  </Button>
-                </Card.Body>
-              </Card>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  
 }
 
 export default CropHoodies;
-
-e
