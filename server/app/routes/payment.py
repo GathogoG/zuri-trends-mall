@@ -7,15 +7,22 @@ import base64
 import json
 from datetime import datetime
 import uuid
+import random
+import string
 
 payment_bp = Blueprint('payment_bp', __name__)
 
+payment_bp = Blueprint('payment_bp', __name__)
 CONSUMER_KEY = 'yty83hjgw0EEGrxoV9j3AAQxVJL2hmjcvYMPxsjXH2ghL8AF'
 CONSUMER_SECRET = 'asJhwuTM0XXBWyTJwCWgPWITuucxPoDkNiQWfeTQGgjGraLyl5KO6Ay93sxrSwIm'
 BUSINESS_SHORT_CODE = '174379'
 LIPA_NA_MPESA_ONLINE_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
 CALLBACK_URL = 'https://yourdomain.com/path'
 COMPANY_NAME = 'Zuri-Trends'
+
+def generate_transaction_id(length=12):
+    """Generate a random transaction ID."""
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
 
 def get_access_token():
     try:
@@ -25,6 +32,15 @@ def get_access_token():
         json_response = response.json()
         return json_response['access_token']
     except requests.RequestException as e:
+
+        return {'error': str(e)}
+
+def lipa_na_mpesa_online(amount, phone_number, transaction_id):
+    access_token = get_access_token()
+    if isinstance(access_token, dict) and 'error' in access_token:
+        return access_token
+
+=======
         return jsonify({'error': str(e)}), 500
 
 def lipa_na_mpesa_online(amount, phone_number, transaction_id):
@@ -33,6 +49,7 @@ def lipa_na_mpesa_online(amount, phone_number, transaction_id):
         return access_token_response
     
     access_token = access_token_response
+
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     password = base64.b64encode((BUSINESS_SHORT_CODE + LIPA_NA_MPESA_ONLINE_PASSKEY + timestamp).encode()).decode('utf-8')
     payload = {
@@ -52,7 +69,6 @@ def lipa_na_mpesa_online(amount, phone_number, transaction_id):
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json"
     }
-
     try:
         url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
         response = requests.post(url, json=payload, headers=headers)
@@ -74,6 +90,8 @@ def get_payment(id):
 @payment_bp.route('/payments', methods=['POST'])
 def create_payment():
     data = request.get_json()
+    if not data or not all(key in data for key in ['amount', 'phone_number']):
+        return jsonify({'error': 'Invalid input'}), 400
     if not data or 'amount' not in data or 'phone_number' not in data:
         return jsonify({'error': 'Invalid input'}), 400
 
@@ -93,6 +111,8 @@ def create_payment():
         payment_status = 'Failed'
 
     payment = Payment(
+
+        user_id=data.get('user_id', None),
         user_id=user_id,
         amount=amount,
         transaction_id=transaction_id,

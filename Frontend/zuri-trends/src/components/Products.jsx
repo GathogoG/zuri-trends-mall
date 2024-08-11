@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import ProductReview from './ProductReview';
 
 const Product = ({ productId, productName }) => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('https://zuri-trends-mall.onrender.com/products', { timeout: 10000 })
+    fetch('http://127.0.0.1:5000/products', { timeout: 10000 })
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -39,7 +40,10 @@ const Product = ({ productId, productName }) => {
             <h3>{product.name}</h3>
             <p>{product.description}</p>
             <p>{product.size}</p>
+            <p>{product.color}</p>
+            <p>{product.quantity}</p>
             <p>Price: {product.price.toFixed(2)}</p>
+            <ProductReview />
             <Button variant="primary" onClick={() => handleOrder(product)}>
                   Order
                 </Button>

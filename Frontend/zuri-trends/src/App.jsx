@@ -27,7 +27,9 @@ import SignUp from './components/Signup/Signup';
 import { Toaster } from 'react-hot-toast';
 import LandingPage from './pages/LandingPage';
 import NavigationBar from './components/NavigationBar'; 
-//import { CartProvider } from './context/CartContext'; 
+import { CartProvider } from './context/CartContext'; 
+import Product from './components/Products';
+import Orders from './components/Orders';
 
 const productDetails = {
   title: 'Sample Product',
@@ -63,6 +65,8 @@ function App() {
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/products" element={<Product />} />
+            <Route path="/order" element={<Orders />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/orderhistory" element={<OrderHistory />} />
             <Route path="/product/:productId" element={<ProductPage />} />
@@ -74,3 +78,6 @@ function App() {
 }
 
 export default App;
+
+
+

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import '../index.css'
 import NavigationBar from './NavigationBar';
 import { useNavigate } from 'react-router-dom';
-import { Button, Card, Container } from 'react-bootstrap';
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import ProductReview from './ProductReview';
+import './card.css'
 
 const TShirts = () => {
   // State to hold the list of T-shirts
@@ -26,15 +27,17 @@ const TShirts = () => {
   return (
     <div>
       <NavigationBar />
-      <Container className='t-shirts'>
+      <Container className='card-container'>
         <div className='cards'>
-          {tshirts.map(tshirt => (
-            <Card key={tshirt.id} style={{ width: '18rem', margin: '10px' }}>
+          <Row>
+            <Col>
+            {tshirts.map(tshirt => (
+            <Card key={tshirt.id} style={{ width: '18rem', margin: '10px' }} className='card-main-card'>
               <Card.Img variant="top" src={tshirt.imgSrc} />
               <Card.Body>
-                <Card.Title>{tshirt.title}</Card.Title>
-                <Card.Text>{tshirt.name}</Card.Text>
-                <Card.Text>{tshirt.price}</Card.Text>
+                <Card.Title className='card-title'>{tshirt.title}</Card.Title>
+                <Card.Text className='card-text'>{tshirt.name}</Card.Text>
+                <Card.Text className='card-text'>{tshirt.price}</Card.Text>
                 <button onClick={() => navigate('/order')}>More Info</button>
                 <button onClick={() => navigate('/wishlist')}>Add to Wishlist</button>
                 <button onClick={() => navigate('/cart')} >Add to Cart</button>
@@ -49,6 +52,8 @@ const TShirts = () => {
               </Card.Body>
             </Card>
           ))}
+            </Col>
+          </Row>
         </div>
       </Container>
     </div>
