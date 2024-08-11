@@ -1,5 +1,4 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import NavigationBar from '../components/NavigationBar';
 import './ProductPage.css'; 
 
@@ -49,7 +48,6 @@ const productDetails = {
 const ProductPage = () => {
   const { productId } = useParams();
   const product = productDetails[productId];
-  const navigate = useNavigate();
 
   if (!product) {
     return <div>Product not found</div>;
@@ -73,7 +71,6 @@ const ProductPage = () => {
         alert('Payment failed: ' + result.error);
       } else {
         alert('Payment initiated successfully!');
-        
       }
     } catch (error) {
       console.error('Error initiating payment:', error);
@@ -86,7 +83,7 @@ const ProductPage = () => {
   };
 
   return (
-    <div>
+    <>
       <NavigationBar />
       <div className="bg-gray-100 min-h-screen p-12">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-4">
@@ -116,7 +113,7 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
