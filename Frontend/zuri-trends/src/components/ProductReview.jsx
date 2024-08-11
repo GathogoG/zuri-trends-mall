@@ -1,5 +1,4 @@
-// src/components/ProductReview.js
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ReviewForm from './ReviewForm';
 import ReviewList from './ReviewList';
 
