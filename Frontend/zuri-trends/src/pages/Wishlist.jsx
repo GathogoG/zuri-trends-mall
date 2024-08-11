@@ -22,7 +22,7 @@ function Wishlist() {
   const handleAddToCart = async (item) => {
     try {
       await axios.post("http://127.0.0.1:5000/cart", item);
-      // Optionally, you can remove the item from the wishlist after adding to cart
+
       handleDeleteFromWishlist(item.id);
     } catch (error) {
       console.error("Error adding to cart:", error);
@@ -32,7 +32,7 @@ function Wishlist() {
   const handleUpdateWishlist = async (id, updatedItem) => {
     try {
       await axios.put(`http://127.0.0.1:5000/wishlists/${id}`, updatedItem);
-      fetchWishlist();  // Refresh the wishlist after updating an item
+      fetchWishlist();  
     } catch (error) {
       console.error("Error updating wishlist:", error);
     }
@@ -41,7 +41,7 @@ function Wishlist() {
   const handleDeleteFromWishlist = async (id) => {
     try {
       await axios.delete(`http://127.0.0.1:5000/wishlists/${id}`);
-      fetchWishlist();  // Refresh the wishlist after deleting an item
+      fetchWishlist(); 
     } catch (error) {
       console.error("Error deleting from wishlist:", error);
     }
