@@ -1,37 +1,37 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  
-import './Signup.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Signup.css";
 
 const Signup = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/users', {
-        method: 'POST',
+      const response = await fetch("http://127.0.0.1:5000/users", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ name, email, password }),
       });
 
       if (!response.ok) {
         const data = await response.json();
-        setError(data.error || 'Signup failed');
+        setError(data.error || "Signup failed");
       } else {
         const userData = await response.json();
-        console.log('Signed up user:', userData);
-        navigate('/login');  
+        console.log("Signed up user:", userData);
+        navigate("/login");
       }
     } catch (err) {
-      setError('An error occurred. Please try again.');
+      setError("An error occurred. Please try again.");
     }
   };
 
@@ -60,7 +60,9 @@ const Signup = () => {
         {error && <p className="error">{error}</p>}
         <button type="submit">Sign Up</button>
       </form>
-      <p>Already have an account? <a href="/login">Login</a></p>
+      <p>
+        Already have an account? <a href="/login">Login</a>
+      </p>
     </div>
   );
 };
