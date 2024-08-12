@@ -1,26 +1,30 @@
-import React from 'react';
+import  { useEffect, useState } from 'react';
 import './TopSelling.css';
 
 const TopSelling = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:5000/products')
+      .then(response => response.json())
+      .then(data => {
+        const topSellingProducts = data.slice(0, 4); 
+        setProducts(topSellingProducts);
+      })
+      .catch(error => console.error('Error fetching top-selling products:', error));
+  }, []);
+
   return (
     <section className="top-selling">
       <h2>Top Selling</h2>
       <div className="products">
-        <div className="product">
-          <img src="/public/assets/product5.jpg" alt="Product 5" />
-          <h3>Green Jacket</h3>
-          <p>$89.99</p>
-        </div>
-        <div className="product">
-          <img src="/public/assets/product6.jpg" alt="Product 6" />
-          <h3>Orange T-Shirt</h3>
-          <p>$24.99</p>
-        </div>
-        <div className="product">
-          <img src="/public/assets/product7.jpg" alt="Product 7" />
-          <h3>Black Jeans</h3>
-          <p>$69.99</p>
-        </div>
+        {products.map(product => (
+          <div key={product.id} className="product">
+            <img src={product.image_path} alt={product.name} />
+            <h3>{product.name}</h3>
+            <p>{`$${product.price.toFixed(2)}`}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

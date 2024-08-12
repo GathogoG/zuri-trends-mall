@@ -101,11 +101,17 @@ def seed_users():
 def seed_reviews():
     print("Seeding reviews...")
     reviews = [
-        {'rating': 5, 'comment': 'Excellent product!', 'user_id': 1, 'product_id': 1},
-        {'rating': 4, 'comment': 'Very good, but could be improved.', 'user_id': 2, 'product_id': 2},
-        {'rating': 3, 'comment': 'Average quality.', 'user_id': 3, 'product_id': 3},
-        {'rating': 2, 'comment': 'Not what I expected.', 'user_id': 4, 'product_id': 4}
-    ]
+    {'rating': 5, 'comment': 'Excellent product!', 'user_id': 1, 'product_id': 1},
+    {'rating': 4, 'comment': 'Very good, but could be improved.', 'user_id': 2, 'product_id': 2},
+    {'rating': 3, 'comment': 'Average quality.', 'user_id': 3, 'product_id': 3},
+    {'rating': 2, 'comment': 'Not what I expected.', 'user_id': 4, 'product_id': 4},
+    {'rating': 5, 'comment': 'Great value for money!', 'user_id': 5, 'product_id': 5},
+    {'rating': 4, 'comment': 'Fast shipping and good packaging.', 'user_id': 6, 'product_id': 6},
+    {'rating': 3, 'comment': 'The product is okay.', 'user_id': 7, 'product_id': 7},
+    {'rating': 2, 'comment': 'The quality could be better.', 'user_id': 8, 'product_id': 8},
+    {'rating': 1, 'comment': 'Very poor quality.', 'user_id': 9, 'product_id': 9},
+    {'rating': 5, 'comment': 'Highly recommend this product!', 'user_id': 10, 'product_id': 10}
+]
     
     with app.app_context():
         for review in reviews:
