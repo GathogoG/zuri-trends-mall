@@ -5,7 +5,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 user_bp = Blueprint('user_bp', __name__)
 
-# Route for logging in users
 @user_bp.route('/login', methods=['POST'])
 def login_user():
     data = request.get_json()
@@ -24,8 +23,6 @@ def login_user():
     else:
         return jsonify({'error': 'Invalid credentials'}), 401
 
-user_bp = Blueprint('user_bp', __name__)
-
 @user_bp.route('/users', methods=['GET'])
 def get_users():
     users = User.query.all()
@@ -35,20 +32,17 @@ def get_users():
 def get_user(id):
     user = User.query.get_or_404(id)
     return jsonify(user.as_dict())
+
 @user_bp.route('/users', methods=['POST'])
 def create_user():
     data = request.get_json()
     if not data or not all(key in data for key in ['name', 'password', 'email']):
         return jsonify({'error': 'Invalid input'}), 400
 
+    hashed_password = generate_password_hash(data['password'])
     user = User(
         name=data['name'],
-        password=hashed_password,  # Store the hashed password
-        email=data['email']
-    )
-    try:
-        db.session.add(new_user)
-        password=data['password'],
+        password=hashed_password, 
         email=data['email']
     )
     try:
@@ -57,17 +51,8 @@ def create_user():
     except Exception as e:
         db.session.rollback()
         return jsonify({'error': str(e)}), 500
-    return jsonify(new_user.as_dict()), 201
-
-# Route for fetching a user by ID
-@user_bp.route('/users/<int:id>', methods=['GET'])
-def get_user(id):
-    user = User.query.get_or_404(id)
-    return jsonify(user.as_dict())
     return jsonify(user.as_dict()), 201
 
-
-# Route for updating a user
 @user_bp.route('/users/<int:id>', methods=['PUT'])
 def update_user(id):
     data = request.get_json()
@@ -78,7 +63,6 @@ def update_user(id):
     user.name = data.get('name', user.name)
     if 'password' in data:
         user.password = generate_password_hash(data['password'])
-    user.password = data.get('password', user.password)
     user.email = data.get('email', user.email)
 
     try:
@@ -88,7 +72,6 @@ def update_user(id):
         return jsonify({'error': str(e)}), 500
     return jsonify(user.as_dict())
 
-# Route for deleting a user
 @user_bp.route('/users/<int:id>', methods=['DELETE'])
 def delete_user(id):
     user = User.query.get_or_404(id)
