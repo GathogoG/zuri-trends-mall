@@ -1,0 +1,31 @@
+.browse-by-category {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.browse-by-category h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.category {
+  width: 200px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.category img {
+  width: 100%;
+  height: auto;
+}
+
+.category h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}

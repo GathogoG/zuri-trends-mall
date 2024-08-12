@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-from server.app.extensions import db, migrate  
+from server.app.extensions import db, migrate
 from server.app.config import Config
 import click
 

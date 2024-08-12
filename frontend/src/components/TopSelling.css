@@ -1,0 +1,37 @@
+.top-selling {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #f7f7f7;
+}
+
+.top-selling h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.products {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.product {
+  width: 200px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+}
+
+.product h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.product p {
+  font-size: 1em;
+  color: #333;
+}
