@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import './Product.css';
 
 const Product = ({ product, reviews }) => {
@@ -25,6 +25,23 @@ const Product = ({ product, reviews }) => {
       </ul>
     </div>
   );
+};
+
+Product.propTypes = {
+  product: PropTypes.shape({
+    image_path: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
+  }).isRequired,
+  reviews: PropTypes.arrayOf(
+    PropTypes.shape({
+      user_id: PropTypes.string.isRequired,
+      rating: PropTypes.number.isRequired,
+      comment: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Product;

@@ -9,7 +9,6 @@ const CustomerReviews = () => {
       try {
         const response = await fetch('http://127.0.0.1:5000/reviews');
         const data = await response.json();
-        // Select only the first 4 reviews
         const selectedReviews = data.splice(0, 4);
         setReviews(selectedReviews);
       } catch (error) {
