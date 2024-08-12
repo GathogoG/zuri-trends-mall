@@ -40,7 +40,7 @@ def lipa_na_mpesa_online(amount, phone_number, transaction_id):
     if isinstance(access_token, dict) and 'error' in access_token:
         return access_token
 
-=======
+
         return jsonify({'error': str(e)}), 500
 
 def lipa_na_mpesa_online(amount, phone_number, transaction_id):
