@@ -113,7 +113,6 @@ def create_payment():
     payment = Payment(
 
         user_id=data.get('user_id', None),
-        user_id=user_id,
         amount=amount,
         transaction_id=transaction_id,
         status=payment_status
