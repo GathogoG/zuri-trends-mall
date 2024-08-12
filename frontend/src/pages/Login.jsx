@@ -5,7 +5,7 @@ import "./Login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState(""); // Added name state
+  const [name, setName] = useState(""); 
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password, name }), // Include name in the request body
+        body: JSON.stringify({ email, password, name }), 
       });
 
       if (!response.ok) {
