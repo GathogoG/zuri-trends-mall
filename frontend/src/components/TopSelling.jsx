@@ -1,8 +1,10 @@
 import  { useEffect, useState } from 'react';
 import './TopSelling.css';
 
+
 const TopSelling = () => {
   const [products, setProducts] = useState([]);
+  
 
   useEffect(() => {
     fetch('http://127.0.0.1:5000/products')
@@ -25,6 +27,7 @@ const TopSelling = () => {
             <p>{`$${product.price.toFixed(2)}`}</p>
           </div>
         ))}
+        
       </div>
     </section>
   );

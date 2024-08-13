@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import './NewArrivals.css';
+import { useNavigate } from 'react-router-dom';
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -30,6 +32,19 @@ const NewArrivals = () => {
             <img src={product.image_path} alt={product.name} />
             <h3>{product.name}</h3>
             <p>${product.price.toFixed(2)}</p>
+            <button 
+              onClick={() => navigate('/cart')} 
+              style={{
+                padding: '10px 20px', 
+                backgroundColor: '#007bff', 
+                color: 'white', 
+                border: 'none', 
+                borderRadius: '5px', 
+                cursor: 'pointer'
+                }}
+               >
+                Add to Cart
+               </button>
           </div>
         ))}
       </div>
