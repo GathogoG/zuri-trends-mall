@@ -36,14 +36,11 @@ const NewArrivals = () => {
       <div className="products">
         {products.map(product => (
           <div className="product" key={product.id}>
-<<<<<<<<< Temporary merge branch 1
             <img src={product.image_path} alt={product.name} />
-=========
             <img 
               src={product.image_path ? `http://127.0.0.1:5000/${product.image_path}` : '/public/assets/default-product.jpg'} 
               alt={product.name} 
             />
->>>>>>>>> Temporary merge branch 2
             <h3>{product.name}</h3>
             <p>${product.price.toFixed(2)}</p>
             <button 

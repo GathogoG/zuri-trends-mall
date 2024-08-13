@@ -7,13 +7,21 @@ import ProductsPage from './pages/ProductsPage';
 import Navbar from './components/Navbar';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import PaymentPage from './pages/Payment';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Wishlist from './pages/Wishlist';
 import ContactUs from './pages/ContactUs';
 import './App.css';
 
+const productDetails = {
+  title: 'Sample Product',
+  description: 'This is a sample product description.',
+  price: 1500,
+};
+
 const App = () => {
+  const [deliveryDetails, setDeliveryDetails] = React.useState({ location: '', fee: 0 });
   const isLoggedIn = false; 
 
   return (
@@ -25,7 +33,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout" element={<Checkout setDeliveryDetails={setDeliveryDetails}/>} />
+            <Route path="/payment" element={<PaymentPage deliveryDetails={deliveryDetails} productDetails={productDetails} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             {isLoggedIn && <Route path="/wishlist" element={<Wishlist />} />}
