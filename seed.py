@@ -30,62 +30,48 @@ def seed_products():
     print("Seeding products...")
     products = [
         # Men's Apparel
-        {'name': 'Men\'s T-Shirt', 'price': 2000.00, 'image_path': 'https://i.pinimg.com/236x/71/a0/1e/71a01ebe169f0e79275c08717b952daf.jpg', 'quantity': 100, 'catalog_id': 1, 'size': 'L', 'color': 'Blue', 'description': 'Comfortable cotton t-shirt'},
-        {'name': 'Men\'s Jeans', 'price': 1500.00, 'image_path': 'https://images.pexels.com/photos/4210863/pexels-photo-4210863.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 50, 'catalog_id': 1, 'size': '32', 'color': 'Dark Blue', 'description': 'Stylish denim jeans'},
-        {'name': 'Men\'s Jacket', 'price': 3000.00, 'image_path': 'https://images.pexels.com/photos/6460791/pexels-photo-6460791.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 20, 'catalog_id': 1, 'size': 'XL', 'color': 'Black', 'description': 'Warm winter jacket'},
+        {'id': 1, 'name': 'Men\'s T-Shirt', 'price': 2000.00, 'image_path': 'https://i.pinimg.com/236x/71/a0/1e/71a01ebe169f0e79275c08717b952daf.jpg', 'quantity': 100, 'catalog_id': 1, 'size': 'L', 'color': 'Blue', 'description': 'Comfortable cotton t-shirt'},
+        {'id': 2, 'name': 'Men\'s Jeans', 'price': 1500.00, 'image_path': 'https://images.pexels.com/photos/4210863/pexels-photo-4210863.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 50, 'catalog_id': 1, 'size': '32', 'color': 'Dark Blue', 'description': 'Stylish denim jeans'},
+        {'id': 3, 'name': 'Men\'s Jacket', 'price': 3000.00, 'image_path': 'https://images.pexels.com/photos/6460791/pexels-photo-6460791.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 20, 'catalog_id': 1, 'size': 'XL', 'color': 'Black', 'description': 'Warm winter jacket'},
         
         # Women's Apparel
-        {'name': 'Women\'s Dress', 'price': 4500.00, 'image_path': 'https://images.pexels.com/photos/22866393/pexels-photo-22866393/free-photo-of-women-in-dresses.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 30, 'catalog_id': 2, 'size': 'M', 'color': 'Red', 'description': 'Elegant evening dress'},
-        {'name': 'Women\'s Skirt', 'price': 2000.00, 'image_path': 'https://images.pexels.com/photos/2820793/pexels-photo-2820793.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 40, 'catalog_id': 2, 'size': 'S', 'color': 'Black', 'description': 'Trendy skirt'},
-        {'name': 'Women\'s Blouse', 'price': 2500.00, 'image_path': 'https://images.pexels.com/photos/6347890/pexels-photo-6347890.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 50, 'catalog_id': 2, 'size': 'M', 'color': 'White', 'description': 'Elegant blouse for casual and formal wear'},
+        {'id': 4, 'name': 'Women\'s Dress', 'price': 4500.00, 'image_path': 'https://images.pexels.com/photos/22866393/pexels-photo-22866393/free-photo-of-women-in-dresses.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 30, 'catalog_id': 2, 'size': 'M', 'color': 'Red', 'description': 'Elegant evening dress'},
+        {'id': 5, 'name': 'Women\'s Skirt', 'price': 2000.00, 'image_path': 'https://images.pexels.com/photos/2820793/pexels-photo-2820793.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 40, 'catalog_id': 2, 'size': 'S', 'color': 'Black', 'description': 'Trendy skirt'},
+        {'id': 6, 'name': 'Women\'s Blouse', 'price': 2500.00, 'image_path': 'https://images.pexels.com/photos/6347890/pexels-photo-6347890.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 50, 'catalog_id': 2, 'size': 'M', 'color': 'White', 'description': 'Elegant blouse for casual and formal wear'},
 
         # Kids' Apparel
-        {'name': 'Kids\' Hoodie', 'price': 2000.00, 'image_path': 'https://images.pexels.com/photos/6623811/pexels-photo-6623811.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 70, 'catalog_id': 3, 'size': '10-12', 'color': 'Green', 'description': 'Warm and cozy hoodie'},
-        {'name': 'Kids\' Shorts', 'price': 1500.00, 'image_path': 'https://images.pexels.com/photos/12887269/pexels-photo-12887269.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 60, 'catalog_id': 3, 'size': '8-10', 'color': 'Yellow', 'description': 'Comfortable shorts for kids'},
-        {'name': 'Kids\' T-Shirt', 'price': 1200.00, 'image_path': 'https://images.pexels.com/photos/6347892/pexels-photo-6347892.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 80, 'catalog_id': 3, 'size': '6-8', 'color': 'Red', 'description': 'Colorful kids\' t-shirt'},
+        {'id': 7, 'name': 'Kids\' Hoodie', 'price': 2000.00, 'image_path': 'https://images.pexels.com/photos/6623811/pexels-photo-6623811.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 70, 'catalog_id': 3, 'size': '10-12', 'color': 'Green', 'description': 'Warm and cozy hoodie'},
+        {'id': 8, 'name': 'Kids\' Shorts', 'price': 1500.00, 'image_path': 'https://images.pexels.com/photos/12887269/pexels-photo-12887269.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 60, 'catalog_id': 3, 'size': '8-10', 'color': 'Yellow', 'description': 'Comfortable shorts for kids'},
+        {'id': 9, 'name': 'Kids\' T-Shirt', 'price': 1200.00, 'image_path': 'https://images.pexels.com/photos/6347892/pexels-photo-6347892.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 80, 'catalog_id': 3, 'size': '6-8', 'color': 'Red', 'description': 'Colorful kids\' t-shirt'},
         
         # Accessories
-        {'name': 'Leather Belt', 'price': 800.00, 'image_path': 'https://images.pexels.com/photos/4164506/pexels-photo-4164506.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 80, 'catalog_id': 4, 'size': 'Adjustable', 'color': 'Brown', 'description': 'Genuine leather belt'},
-        {'name': 'Sunglasses', 'price': 500.00, 'image_path': 'https://images.pexels.com/photos/704241/pexels-photo-704241.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 100, 'catalog_id': 4, 'size': 'N/A', 'color': 'Black', 'description': 'Stylish sunglasses'},
-        {'name': 'Watch', 'price': 2500.00, 'image_path': 'https://images.pexels.com/photos/380782/pexels-photo-380782.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 40, 'catalog_id': 4, 'size': 'One Size', 'color': 'Silver', 'description': 'Classic wristwatch'},
+        {'id': 10, 'name': 'Leather Belt', 'price': 800.00, 'image_path': 'https://images.pexels.com/photos/4164506/pexels-photo-4164506.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 80, 'catalog_id': 4, 'size': 'Adjustable', 'color': 'Brown', 'description': 'Genuine leather belt'},
+        {'id': 11, 'name': 'Sunglasses', 'price': 500.00, 'image_path': 'https://images.pexels.com/photos/704241/pexels-photo-704241.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 100, 'catalog_id': 4, 'size': 'N/A', 'color': 'Black', 'description': 'Stylish sunglasses'},
+        {'id': 12, 'name': 'Watch', 'price': 2500.00, 'image_path': 'https://images.pexels.com/photos/380782/pexels-photo-380782.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 40, 'catalog_id': 4, 'size': 'One Size', 'color': 'Silver', 'description': 'Classic wristwatch'},
 
         # Footwear
-        {'name': 'Running Shoes', 'price': 2500.00, 'image_path': 'https://images.pexels.com/photos/1027130/pexels-photo-1027130.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 40, 'catalog_id': 5, 'size': '10', 'color': 'White', 'description': 'Comfortable running shoes'},
-        {'name': 'Formal Loafers', 'price': 3000.00, 'image_path': 'https://images.pexels.com/photos/5669627/pexels-photo-5669627.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 20, 'catalog_id': 5, 'size': '9', 'color': 'Black', 'description': 'Elegant loafers for formal occasions'},
-        {'name': 'Casual Sneakers', 'price': 2200.00, 'image_path': 'https://images.pexels.com/photos/27503503/pexels-photo-27503503/free-photo-of-coleccion-de-zapatillas.png?auto=compress&cs=tinysrgb&w=400', 'quantity': 50, 'catalog_id': 5, 'size': '11', 'color': 'Blue', 'description': 'Trendy casual sneakers'},
+        {'id': 13, 'name': 'Running Shoes', 'price': 2500.00, 'image_path': 'https://images.pexels.com/photos/1027130/pexels-photo-1027130.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 40, 'catalog_id': 5, 'size': '10', 'color': 'White', 'description': 'Comfortable running shoes'},
+        {'id': 14, 'name': 'Formal Loafers', 'price': 3000.00, 'image_path': 'https://images.pexels.com/photos/5669627/pexels-photo-5669627.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 20, 'catalog_id': 5, 'size': '9', 'color': 'Black', 'description': 'Elegant loafers for formal occasions'},
+        {'id': 15, 'name': 'Casual Sneakers', 'price': 2200.00, 'image_path': 'https://images.pexels.com/photos/27503503/pexels-photo-27503503/free-photo-of-coleccion-de-zapatillas.png?auto=compress&cs=tinysrgb&w=400', 'quantity': 50, 'catalog_id': 5, 'size': '11', 'color': 'Blue', 'description': 'Trendy casual sneakers'},
 
         # Formal Wear
-        {'name': 'Business Suit', 'price': 5000.00, 'image_path': 'https://images.pexels.com/photos/325876/pexels-photo-325876.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 15, 'catalog_id': 6, 'size': 'L', 'color': 'Gray', 'description': 'Professional business suit'},
-        {'name': 'Evening Gown', 'price': 2500.00, 'image_path': 'https://images.pexels.com/photos/8347583/pexels-photo-8347583.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 10, 'catalog_id': 6, 'size': 'M', 'color': 'Gold', 'description': 'Elegant evening gown'},
-        {'name': 'Dress Shirt', 'price': 1800.00, 'image_path': 'https://images.pexels.com/photos/4947543/pexels-photo-4947543.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 25, 'catalog_id': 6, 'size': 'M', 'color': 'White', 'description': 'Classic dress shirt'},
+        {'id': 16, 'name': 'Business Suit', 'price': 5000.00, 'image_path': 'https://images.pexels.com/photos/325876/pexels-photo-325876.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 15, 'catalog_id': 6, 'size': 'L', 'color': 'Gray', 'description': 'Professional business suit'},
+        {'id': 17, 'name': 'Evening Gown', 'price': 2500.00, 'image_path': 'https://images.pexels.com/photos/8347583/pexels-photo-8347583.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 10, 'catalog_id': 6, 'size': 'M', 'color': 'Gold', 'description': 'Elegant evening gown'},
+        {'id': 18, 'name': 'Dress Shirt', 'price': 1800.00, 'image_path': 'https://images.pexels.com/photos/4947543/pexels-photo-4947543.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 25, 'catalog_id': 6, 'size': 'M', 'color': 'White', 'description': 'Classic dress shirt'},
 
         # Casual Wear
-        {'name': 'Casual Shirt', 'price': 1500.00, 'image_path': 'https://images.pexels.com/photos/6051248/pexels-photo-6051248.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 90, 'catalog_id': 7, 'size': 'M', 'color': 'Light Blue', 'description': 'Relaxed casual shirt'},
-        {'name': 'Cargo Pants', 'price': 1800.00, 'image_path': 'https://images.pexels.com/photos/6069080/pexels-photo-6069080.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 50, 'catalog_id': 7, 'size': '34', 'color': 'Khaki', 'description': 'Comfortable cargo pants'},
-        {'name': 'Casual Shorts', 'price': 1200.00, 'image_path': 'https://images.pexels.com/photos/5325560/pexels-photo-5325560.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 60, 'catalog_id': 7, 'size': 'L', 'color': 'Green', 'description': 'Light and comfortable casual shorts'},
-
-        # Outdoor Gear
-        {'name': 'Rain Jacket', 'price': 2500.00, 'image_path': 'https://images.pexels.com/photos/8499439/pexels-photo-8499439.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 25, 'catalog_id': 8, 'size': 'L', 'color': 'Orange', 'description': 'Durable rain jacket'},
-        {'name': 'Fleece Vest', 'price': 1500.00, 'image_path': 'https://images.pexels.com/photos/6318276/pexels-photo-6318276.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 30, 'catalog_id': 8, 'size': 'M', 'color': 'Navy', 'description': 'Warm fleece vest'},
-        {'name': 'Hiking Boots', 'price': 3200.00, 'image_path': 'https://images.pexels.com/photos/3075078/pexels-photo-3075078.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 20, 'catalog_id': 8, 'size': '10', 'color': 'Brown', 'description': 'Sturdy hiking boots'},
-
-        # Sportswear
-        {'name': 'Gym Shorts', 'price': 1700.00, 'image_path': 'https://images.pexels.com/photos/20240050/pexels-photo-20240050/free-photo-of-a-tattooed-muscular-man-in-sportswear-standing-at-the-gym.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 60, 'catalog_id': 9, 'size': 'L', 'color': 'Gray', 'description': 'Breathable gym shorts'},
-        {'name': 'Yoga Pants', 'price': 2000.00, 'image_path': 'https://images.pexels.com/photos/6944381/pexels-photo-6944381.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 40, 'catalog_id': 9, 'size': 'S', 'color': 'Black', 'description': 'Stretchable yoga pants'},
-        {'name': 'Track Jacket', 'price': 2400.00, 'image_path': 'https://images.pexels.com/photos/8455974/pexels-photo-8455974.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 35, 'catalog_id': 9, 'size': 'M', 'color': 'Blue', 'description': 'Comfortable track jacket'},
-
-        # Swimwear
-        {'name': 'Swimsuit', 'price': 2600.00, 'image_path': 'https://tisapthreads.com/cdn/shop/files/DSC01363-Edit_498846ed-4650-4f4b-b865-ae9e61a93a50_960x_crop_center.jpg?v=1716360272', 'quantity': 20, 'catalog_id': 10, 'size': 'M', 'color': 'Blue', 'description': 'Stylish swimsuit'},
-        {'name': 'Beach Shorts', 'price': 1900.00, 'image_path': 'https://images.pexels.com/photos/1574898/pexels-photo-1574898.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 30, 'catalog_id': 10, 'size': 'L', 'color': 'Turquoise', 'description': 'Comfortable beach shorts'},
-        {'name': 'Swim Trunks', 'price': 1500.00, 'image_path': 'https://images.pexels.com/photos/8688558/pexels-photo-8688558.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 40, 'catalog_id': 10, 'size': 'M', 'color': 'Red', 'description': 'Trendy swim trunks'}
+        {'id': 19, 'name': 'Casual Shirt', 'price': 1500.00, 'image_path': 'https://images.pexels.com/photos/6051248/pexels-photo-6051248.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 90, 'catalog_id': 7, 'size': 'M', 'color': 'Light Blue', 'description': 'Relaxed casual shirt'},
+        {'id': 20, 'name': 'Cargo Pants', 'price': 1800.00, 'image_path': 'https://images.pexels.com/photos/6069080/pexels-photo-6069080.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 50, 'catalog_id': 7, 'size': 'L', 'color': 'Olive', 'description': 'Comfortable cargo pants'},
+        {'id': 21, 'name': 'Graphic T-Shirt', 'price': 1200.00, 'image_path': 'https://images.pexels.com/photos/2302630/pexels-photo-2302630.jpeg?auto=compress&cs=tinysrgb&w=400', 'quantity': 80, 'catalog_id': 7, 'size': 'S', 'color': 'Black', 'description': 'Cool graphic t-shirt'},
     ]
-    
-    with app.app_context():
-        for product in products:
-            db.session.add(Product(**product))
-        db.session.commit()
-    print("Products seeded.")
 
+    for product_data in products:
+        product = Product(**product_data)
+        db.session.add(product)
+
+    db.session.commit()
+    print("Products seeded.")
+    
 def seed_users():
     print("Seeding users...")
     users = [
