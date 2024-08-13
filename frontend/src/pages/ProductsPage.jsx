@@ -7,11 +7,11 @@ const ProductsPage = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch('/api/products')
+    fetch('http://127.0.0.1:5000/products')
       .then((response) => response.json())
       .then((data) => setProducts(data));
 
-    fetch('/api/reviews')
+    fetch('http://127.0.0.1:5000/reviews')
       .then((response) => response.json())
       .then((data) => setReviews(data));
   }, []);

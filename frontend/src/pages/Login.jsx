@@ -35,6 +35,7 @@ const Login = () => {
       if (!response.ok) {
         const data = await response.json();
         setError(data.error || "Login failed");
+        toast.error('User not found!')
       } else {
         const userData = await response.json();
         console.log("Logged in user:", userData);
