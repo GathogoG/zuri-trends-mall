@@ -37,7 +37,7 @@ Product.propTypes = {
   }).isRequired,
   reviews: PropTypes.arrayOf(
     PropTypes.shape({
-      user_id: PropTypes.string.isRequired,
+      user_id: PropTypes.number.isRequired,
       rating: PropTypes.number.isRequired,
       comment: PropTypes.string.isRequired,
     })
