@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Wishlist from './pages/Wishlist';
 import ContactUs from './pages/ContactUs';
 import './App.css';
+import {Toaster} from 'react-hot-toast'
 
 const App = () => {
   const isLoggedIn = false; 
@@ -17,6 +18,7 @@ const App = () => {
     <Router>
       <div className="App">
         <Navbar />
+        <Toaster/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductsPage />} />
