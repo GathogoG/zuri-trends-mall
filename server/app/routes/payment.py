@@ -1,4 +1,3 @@
-
 from flask import Blueprint, request, jsonify
 from server.app.models import Payment
 from server.app.extensions import db
@@ -114,7 +113,7 @@ def create_payment():
     payment = Payment(
 
         user_id=data.get('user_id', None),
-        
+        user_id=user_id,
         amount=amount,
         transaction_id=transaction_id,
         status=payment_status
