@@ -29,6 +29,7 @@ const ProductsPage = () => {
           reviews={getReviewsForProduct(product.id)}
         />
       ))}
+      
     </div>
   );
 };

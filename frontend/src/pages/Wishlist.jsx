@@ -32,14 +32,6 @@ const Wishlist = () => {
     }
   };
 
-  const handleUpdateWishlist = async (id, updatedItem) => {
-    try {
-      await axios.put(`http://127.0.0.1:5000/wishlists/${id}`, updatedItem);
-      fetchWishlist();  
-    } catch (error) {
-      console.error("Error updating wishlist:", error);
-    }
-  };
 
   const handleDeleteFromWishlist = async (id) => {
     try {
@@ -92,12 +84,6 @@ const Wishlist = () => {
                       </p>
                     </div>
                     <div className="flex items-center space-x-4">
-                      <button
-                        onClick={() => handleUpdateWishlist(item.id, item)}
-                        className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
-                      >
-                        Update
-                      </button>
                       <button
                         onClick={() => handleDeleteFromWishlist(item.id)}
                         className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
