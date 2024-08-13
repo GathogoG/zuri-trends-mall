@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Wishlist from './pages/Wishlist';
 import ContactUs from './pages/ContactUs';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   const isLoggedIn = false; 

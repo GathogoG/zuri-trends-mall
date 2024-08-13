@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import './Product.css';
+import { useNavigate } from 'react-router-dom';
 
 const Product = ({ product, reviews }) => {
+  const navigate = useNavigate();
   return (
     <div className="product">
       <img src={product.image_path} alt={product.name} />
@@ -23,6 +25,19 @@ const Product = ({ product, reviews }) => {
           <li>No reviews yet.</li>
         )}
       </ul>
+      <button 
+        onClick={() => navigate('/cart')} 
+        style={{
+          padding: '10px 20px', 
+          backgroundColor: '#007bff', 
+          color: 'white', 
+          border: 'none', 
+          borderRadius: '5px', 
+          cursor: 'pointer'
+        }}
+      >
+        Add to Cart
+      </button>
     </div>
   );
 };
