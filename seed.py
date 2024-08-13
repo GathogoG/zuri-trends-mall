@@ -34,16 +34,16 @@ def clear_tables():
 def seed_catalogs():
     print("Seeding catalogs...")
     catalogs = [
-        {'name': 'Men\'s Apparel'},
-        {'name': 'Women\'s Apparel'},
-        {'name': 'Kids\' Apparel'},
-        {'name': 'Accessories'},
-        {'name': 'Footwear'},
-        {'name': 'Formal Wear'},
-        {'name': 'Casual Wear'},
-        {'name': 'Outdoor Gear'},
-        {'name': 'Sportswear'},
-        {'name': 'Swimwear'}
+        {'name': 'Men\'s Apparel', 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2301935_MENS_RIB_20640_Hugo_Boss:1x1?$104_desktop$&fmt=png-alpha'},
+        {'name': 'Women\'s Apparel', 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2303462_101:1x1?$106_lg_desktop$&fmt=png-alpha'},
+        {'name': 'Kids\' Apparel', 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/7/optimized/28615877_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp'},
+        {'name': 'Accessories', 'image_path': 'https://shopzetu.com/cdn/shop/products/9foSr4GFhv-493607_900x.jpg?v=1707901693'},
+        {'name': 'Footwear', 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/3/optimized/27497253_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp'},
+        {'name': 'Formal Wear', 'image_path': 'https://images.hugoboss.com/is/image/boss/hbeu50528162_072_300?$re_fullPageZoom$&qlt=85&fit=crop,1&align=1,1&bgcolor=ebebeb&lastModified=1723214764000&wid=1200&hei=1818&fmt=webp'},
+        {'name': 'Casual Wear', 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2403574_31:1x1?$$&fmt=png-alpha'},
+        {'name': 'Outdoor Gear', 'image_path': 'https://ke.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/28/2128661/1.jpg?1580'},
+        {'name': 'Sportswear', 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/2/optimized/27913182_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp'},
+        {'name': 'Swimwear', 'image_path': 'https://ke.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/80/2282711/1.jpg?9209'}
     ]
     
     with app.app_context():
@@ -53,36 +53,39 @@ def seed_catalogs():
     print("Catalogs seeded.")
 
 def seed_products():
-    print("Seeding products...")
+    print("Seeding products...") 
     products = [
-        {'name': 'Men\'s T-Shirt', 'price': 25.00, 'image_path': 'https://www.macys.com/shop/product/mens-t-shirt?ID=12345', 'quantity': 100, 'catalog_id': 1, 'size': 'L', 'color': 'Blue', 'description': 'Comfortable cotton t-shirt'},
-        {'name': 'Men\'s Jeans', 'price': 40.00, 'image_path': 'https://www.macys.com/shop/product/mens-jeans?ID=12346', 'quantity': 50, 'catalog_id': 1, 'size': '32', 'color': 'Dark Blue', 'description': 'Stylish denim jeans'},
-        {'name': 'Women\'s Dress', 'price': 60.00, 'image_path': 'https://www.macys.com/shop/product/womens-dress?ID=12347', 'quantity': 30, 'catalog_id': 2, 'size': 'M', 'color': 'Red', 'description': 'Elegant evening dress'},
-        {'name': 'Women\'s Skirt', 'price': 35.00, 'image_path': 'https://www.macys.com/shop/product/womens-skirt?ID=12348', 'quantity': 40, 'catalog_id': 2, 'size': 'S', 'color': 'Black', 'description': 'Trendy skirt'},
-        {'name': 'Kids\' Hoodie', 'price': 30.00, 'image_path': 'https://www.macys.com/shop/product/kids-hoodie?ID=12349', 'quantity': 70, 'catalog_id': 3, 'size': '10-12', 'color': 'Green', 'description': 'Warm and cozy hoodie'},
-        {'name': 'Kids\' Shorts', 'price': 20.00, 'image_path': 'https://www.macys.com/shop/product/kids-shorts?ID=12350', 'quantity': 60, 'catalog_id': 3, 'size': '8-10', 'color': 'Yellow', 'description': 'Comfortable shorts for kids'},
-        {'name': 'Leather Belt', 'price': 20.00, 'image_path': 'https://www.macys.com/shop/product/leather-belt?ID=12351', 'quantity': 80, 'catalog_id': 4, 'size': 'Adjustable', 'color': 'Brown', 'description': 'Genuine leather belt'},
-        {'name': 'Sunglasses', 'price': 15.00, 'image_path': 'https://www.macys.com/shop/product/sunglasses?ID=12352', 'quantity': 100, 'catalog_id': 4, 'size': 'N/A', 'color': 'Black', 'description': 'Stylish sunglasses'},
-        {'name': 'Running Shoes', 'price': 55.00, 'image_path': 'https://www.macys.com/shop/product/running-shoes?ID=12353', 'quantity': 40, 'catalog_id': 5, 'size': '10', 'color': 'White', 'description': 'Comfortable running shoes'},
-        {'name': 'Formal Loafers', 'price': 70.00, 'image_path': 'https://www.macys.com/shop/product/formal-loafers?ID=12354', 'quantity': 20, 'catalog_id': 5, 'size': '9', 'color': 'Black', 'description': 'Elegant loafers for formal occasions'},
-        {'name': 'Business Suit', 'price': 200.00, 'image_path': 'https://www.macys.com/shop/product/business-suit?ID=12355', 'quantity': 15, 'catalog_id': 6, 'size': 'L', 'color': 'Gray', 'description': 'Professional business suit'},
-        {'name': 'Evening Gown', 'price': 150.00, 'image_path': 'https://www.macys.com/shop/product/evening-gown?ID=12356', 'quantity': 10, 'catalog_id': 6, 'size': 'M', 'color': 'Gold', 'description': 'Elegant evening gown'},
-        {'name': 'Casual Shirt', 'price': 28.00, 'image_path': 'https://www.macys.com/shop/product/casual-shirt?ID=12357', 'quantity': 90, 'catalog_id': 7, 'size': 'M', 'color': 'Light Blue', 'description': 'Relaxed casual shirt'},
-        {'name': 'Cargo Pants', 'price': 45.00, 'image_path': 'https://www.macys.com/shop/product/cargo-pants?ID=12358', 'quantity': 50, 'catalog_id': 7, 'size': '34', 'color': 'Khaki', 'description': 'Comfortable cargo pants'},
-        {'name': 'Rain Jacket', 'price': 60.00, 'image_path': 'https://www.macys.com/shop/product/rain-jacket?ID=12359', 'quantity': 25, 'catalog_id': 8, 'size': 'L', 'color': 'Orange', 'description': 'Durable rain jacket'},
-        {'name': 'Fleece Vest', 'price': 40.00, 'image_path': 'https://www.macys.com/shop/product/fleece-vest?ID=12360', 'quantity': 30, 'catalog_id': 8, 'size': 'M', 'color': 'Navy', 'description': 'Warm fleece vest'},
-        {'name': 'Gym Shorts', 'price': 22.00, 'image_path': 'https://www.macys.com/shop/product/gym-shorts?ID=12361', 'quantity': 60, 'catalog_id': 9, 'size': 'L', 'color': 'Gray', 'description': 'Breathable gym shorts'},
-        {'name': 'Yoga Pants', 'price': 35.00, 'image_path': 'https://www.macys.com/shop/product/yoga-pants?ID=12362', 'quantity': 40, 'catalog_id': 9, 'size': 'S', 'color': 'Black', 'description': 'Stretchable yoga pants'},
-        {'name': 'Swimsuit', 'price': 50.00, 'image_path': 'https://www.macys.com/shop/product/swimsuit?ID=12363', 'quantity': 20, 'catalog_id': 10, 'size': 'M', 'color': 'Blue', 'description': 'Stylish swimsuit'},
-        {'name': 'Beach Shorts', 'price': 25.00, 'image_path': 'https://www.macys.com/shop/product/beach-shorts?ID=12364', 'quantity': 30, 'catalog_id': 10, 'size': 'L', 'color': 'Turquoise', 'description': 'Comfortable beach shorts'}
+        {'name': 'Men\'s T-Shirt', 'price': 2500, 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2301935_MENS_RIB_20640_Hugo_Boss:1x1?$104_desktop$&fmt=png-alpha', 'quantity': 100, 'catalog_id': 1, 'size': 'L', 'color': 'Blue', 'description': 'Comfortable cotton t-shirt'},
+        {'name': 'Men\'s Jeans', 'price': 2000, 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/MensJeansStraight9617175_1499299:1x1?$104_desktop$&fmt=png-alpha', 'quantity': 50, 'catalog_id': 1, 'size': '32', 'color': 'Dark Blue', 'description': 'Stylish denim jeans'},
+        {'name': 'Women\'s Dress', 'price': 6000, 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2303462_101:1x1?$106_lg_desktop$&fmt=png-alpha', 'quantity': 30, 'catalog_id': 2, 'size': 'M', 'color': 'Red', 'description': 'Elegant evening dress'},
+        {'name': 'Women\'s Skirt', 'price': 3500, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/1/optimized/27494581_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp', 'quantity': 40, 'catalog_id': 2, 'size': 'S', 'color': 'Black', 'description': 'Trendy skirt'},
+        {'name': 'Kids\' Hoodie', 'price': 3000, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/7/optimized/28615877_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 70, 'catalog_id': 3, 'size': '10-12', 'color': 'Green', 'description': 'Warm and cozy hoodie'},
+        {'name': 'Kids\' Shorts', 'price': 2000, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/2/optimized/27505522_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 60, 'catalog_id': 3, 'size': '8-10', 'color': 'Yellow', 'description': 'Comfortable shorts for kids'},
+        {'name': 'Leather Belt', 'price': 2000, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/2/optimized/9392092_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 80, 'catalog_id': 4, 'size': 'Adjustable', 'color': 'Brown', 'description': 'Genuine leather belt'},
+        {'name': 'Sunglasses', 'price': 1500, 'image_path': 'https://shopzetu.com/cdn/shop/products/9foSr4GFhv-493607_900x.jpg?v=1707901693', 'quantity': 100, 'catalog_id': 4, 'size': 'N/A', 'color': 'Black', 'description': 'Stylish sunglasses'},
+        {'name': 'Running Shoes', 'price': 3500, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/3/optimized/27497253_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp', 'quantity': 40, 'catalog_id': 5, 'size': '10', 'color': 'White', 'description': 'Comfortable running shoes'},
+        {'name': 'Formal Loafers', 'price': 5000, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/5/optimized/1155215_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 20, 'catalog_id': 5, 'size': '9', 'color': 'Black', 'description': 'Elegant loafers for formal occasions'},
+        {'name': 'Business Suit', 'price': 5000, 'image_path': 'https://images.hugoboss.com/is/image/boss/hbeu50528162_072_300?$re_fullPageZoom$&qlt=85&fit=crop,1&align=1,1&bgcolor=ebebeb&lastModified=1723214764000&wid=1200&hei=1818&fmt=webp', 'quantity': 15, 'catalog_id': 6, 'size': 'L', 'color': 'Gray', 'description': 'Professional business suit'},
+        {'name': 'Evening Gown', 'price': 4500, 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2301372_101-1:1x1?$icon_6_desktop$&fmt=webp', 'quantity': 10, 'catalog_id': 6, 'size': 'M', 'color': 'Gold', 'description': 'Elegant evening gown'},
+        {'name': 'Casual Shirt', 'price': 2800, 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2403574_31:1x1?$$&fmt=png-alpha', 'quantity': 90, 'catalog_id': 7, 'size': 'M', 'color': 'Light Blue', 'description': 'Relaxed casual shirt'},
+        {'name': 'Cargo Pants', 'price': 4500, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/4/optimized/27805874_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 50, 'catalog_id': 7, 'size': '34', 'color': 'Khaki', 'description': 'Comfortable cargo pants'},
+        {'name': 'Rain Jacket', 'price': 2800, 'image_path': 'https://ke.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/28/2128661/1.jpg?1580', 'quantity': 25, 'catalog_id': 8, 'size': 'L', 'color': 'Orange', 'description': 'Durable rain jacket'},
+        {'name': 'Fleece Vest', 'price': 4200, 'image_path': 'https://ke.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/75/469539/1.jpg?7511', 'quantity': 30, 'catalog_id': 8, 'size': 'M', 'color': 'Navy', 'description': 'Warm fleece vest'},
+        {'name': 'Gym Shorts', 'price': 2200, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/2/optimized/27913182_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 60, 'catalog_id': 9, 'size': 'L', 'color': 'Gray', 'description': 'Breathable gym shorts'},
+        {'name': 'Yoga Pants', 'price': 3500, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/3/optimized/25200283_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 40, 'catalog_id': 9, 'size': 'S', 'color': 'Black', 'description': 'Flexible yoga pants'},
+        {'name': 'Formal Tie', 'price': 1800, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/4/optimized/11464914_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 75, 'catalog_id': 10, 'size': 'N/A', 'color': 'Red', 'description': 'Classic formal tie'},
+        {'name': 'swimsuit', 'price': 2500, 'image_path': 'https://ke.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/80/2282711/1.jpg?9209', 'quantity': 30, 'catalog_id': 11, 'size': 'M', 'color': 'black', 'description': 'beautiful swimwear'},
+        {'name': 'Leather Gloves', 'price': 2000, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/1/optimized/1433741_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 50, 'catalog_id': 10, 'size': 'M', 'color': 'Black', 'description': 'Warm leather gloves'}
     ]
-    
+
     with app.app_context():
         for product in products:
             db.session.add(Product(**product))
         db.session.commit()
-    print("Products seeded.")
 
+if __name__ == "__main__":
+    seed_products()
+    print("Products seeded successfully.")
 def seed_users():
     print("Seeding users...")
     users = [

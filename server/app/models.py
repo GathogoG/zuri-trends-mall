@@ -4,6 +4,7 @@ from datetime import datetime
 class Catalog(db.Model):
     __tablename__ = 'catalog'
     id = db.Column(db.Integer, primary_key=True)
+    image_path = db.Column(db.String, nullable=True)
     name = db.Column(db.String(100), nullable=False)
     products = db.relationship('Product', backref='catalog', lazy=True)
 
@@ -11,12 +12,13 @@ class Catalog(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'image_path': self.image_path,
             'products': [product.as_dict() for product in self.products]
         }
 
 class Product(db.Model):
     __tablename__ = 'product'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
     image_path = db.Column(db.String, nullable=True)
