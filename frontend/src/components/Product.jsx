@@ -1,7 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useCart } from '../context/CartContext'; 
 import './Product.css';
 
 const Product = ({ product, reviews }) => {
+  const { addToCart } = useCart(); 
+  const navigate = useNavigate(); 
+
+  const handleAddToCart = () => {
+    addToCart(product); 
+    navigate('/cart'); 
+  };
+
   return (
     <div className="product">
       <img src={product.image_path} alt={product.name} />
@@ -23,6 +33,10 @@ const Product = ({ product, reviews }) => {
           <li>No reviews yet.</li>
         )}
       </ul>
+
+      <button onClick={handleAddToCart} className="add-to-cart-button">
+        Add to Cart
+      </button>
     </div>
   );
 };
