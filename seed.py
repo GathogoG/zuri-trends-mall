@@ -54,6 +54,7 @@ def seed_catalogs():
 
 def seed_products():
     print("Seeding products...") 
+    print("Seeding products...") 
     products = [
         {'name': 'Men\'s T-Shirt', 'price': 2500, 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2301935_MENS_RIB_20640_Hugo_Boss:1x1?$104_desktop$&fmt=png-alpha', 'quantity': 100, 'catalog_id': 1, 'size': 'L', 'color': 'Blue', 'description': 'Comfortable cotton t-shirt'},
         {'name': 'Men\'s Jeans', 'price': 2000, 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/MensJeansStraight9617175_1499299:1x1?$104_desktop$&fmt=png-alpha', 'quantity': 50, 'catalog_id': 1, 'size': '32', 'color': 'Dark Blue', 'description': 'Stylish denim jeans'},
@@ -78,11 +79,15 @@ def seed_products():
         {'name': 'Leather Gloves', 'price': 2000, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/1/optimized/1433741_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 50, 'catalog_id': 10, 'size': 'M', 'color': 'Black', 'description': 'Warm leather gloves'}
     ]
 
+
     with app.app_context():
         for product in products:
             db.session.add(Product(**product))
         db.session.commit()
 
+if __name__ == "__main__":
+    seed_products()
+    print("Products seeded successfully.")
 if __name__ == "__main__":
     seed_products()
     print("Products seeded successfully.")

@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useCart } from '../context/CartContext'; 
+import { useNavigate } from 'react-router-dom';
 import './NewArrivals.css';
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
+  const { addToCart } = useCart();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -21,15 +25,29 @@ const NewArrivals = () => {
     fetchProducts();
   }, []);
 
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    navigate('/cart'); 
+  };
+
   return (
     <section className="new-arrivals">
-      <h2>New Arrivals</h2>
+      <h2 className="title">New Arrivals</h2>
       <div className="products">
         {products.map(product => (
           <div className="product" key={product.id}>
-            <img src={product.image_path } />
+            <img 
+              src={product.image_path} 
+              alt={product.name} 
+            />
             <h3>{product.name}</h3>
-            <p>${product.price.toFixed(2)}</p>
+            <p>{product.price.toFixed(2)}</p>
+            <button 
+              onClick={() => handleAddToCart(product)} 
+              className="add-to-cart-button"
+            >
+              Add to Cart
+            </button>
           </div>
         ))}
       </div>
