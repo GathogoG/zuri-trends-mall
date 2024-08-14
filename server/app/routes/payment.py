@@ -35,38 +35,57 @@ def get_access_token():
 
 def lipa_na_mpesa_online(amount, phone_number, transaction_id):
     """Initiate MPesa payment."""
+    
+    # Ensure the phone number is in the correct format (e.g., 254712345678)
+    # Convert phone number starting with '0' to '2547XXXXXXXX'
+    if phone_number.startswith('0'):
+        phone_number = '254' + phone_number[1:]
+    # Remove '+' if the phone number starts with '+254'
+    elif phone_number.startswith('+'):
+        phone_number = phone_number[1:]
+
     access_token_response = get_access_token()
     if isinstance(access_token_response, dict) and 'error' in access_token_response:
         return access_token_response
-    
+
     access_token = access_token_response
 
     timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
-    password = base64.b64encode((BUSINESS_SHORT_CODE + LIPA_NA_MPESA_ONLINE_PASSKEY + timestamp).encode()).decode('utf-8')
+    password = base64.b64encode(
+        (BUSINESS_SHORT_CODE + LIPA_NA_MPESA_ONLINE_PASSKEY + timestamp).encode()
+    ).decode('utf-8')
+
+    # Prepare the payload with the correctly formatted phone number
     payload = {
         "BusinessShortCode": BUSINESS_SHORT_CODE,
         "Password": password,
         "Timestamp": timestamp,
         "TransactionType": "CustomerPayBillOnline",
         "Amount": amount,
-        "PartyA": phone_number,
+        "PartyA": phone_number,  # Use the formatted phone number here
         "PartyB": BUSINESS_SHORT_CODE,
-        "PhoneNumber": phone_number,
+        "PhoneNumber": phone_number,  # And here as well
         "CallBackURL": CALLBACK_URL,
         "AccountReference": transaction_id,
         "TransactionDesc": f"Payment to {COMPANY_NAME} for Transaction ID {transaction_id} and Amount KSh {amount}"
     }
+
     headers = {
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json"
     }
+
     try:
         url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
         response = requests.post(url, json=payload, headers=headers)
         response.raise_for_status()
         return response.json()
     except requests.RequestException as e:
+        # If an error occurs, include the response from the server if available
+        if e.response is not None:
+            return {'error': f"{str(e)} - {e.response.json()}"}
         return {'error': str(e)}
+
 
 @payment_bp.route('/payments', methods=['GET'])
 def get_payments():
@@ -103,7 +122,6 @@ def create_payment():
 
     payment = Payment(
         user_id=data.get('user_id', None),
-        # user_id=user_id,
         amount=amount,
         transaction_id=transaction_id,
         status=payment_status
@@ -138,4 +156,3 @@ def delete_payment(id):
     payment = Payment.query.get_or_404(id)
     db.session.delete(payment)
     db.session.commit()
-    return '', 204
