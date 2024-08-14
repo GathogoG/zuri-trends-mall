@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useCart } from '../context/CartContext'; 
 import './Product.css';
+import { useNavigate } from 'react-router-dom';
 
 const Product = ({ product, reviews }) => {
   const { addToCart } = useCart(); 
@@ -51,6 +52,7 @@ Product.propTypes = {
   }).isRequired,
   reviews: PropTypes.arrayOf(
     PropTypes.shape({
+      user_id: PropTypes.number.isRequired,
       user_id: PropTypes.number.isRequired,
       rating: PropTypes.number.isRequired,
       comment: PropTypes.string.isRequired,

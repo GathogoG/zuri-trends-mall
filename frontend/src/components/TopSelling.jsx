@@ -3,6 +3,7 @@ import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import './TopSelling.css';
 
+
 const TopSelling = () => {
   const [products, setProducts] = useState([]);
   const { addToCart } = useCart();
@@ -52,6 +53,7 @@ const TopSelling = () => {
             </button>
           </div>
         ))}
+        
       </div>
     </section>
   );

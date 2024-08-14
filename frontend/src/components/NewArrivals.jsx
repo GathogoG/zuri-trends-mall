@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext'; 
 import { useNavigate } from 'react-router-dom';
 import './NewArrivals.css';
+import { useNavigate } from 'react-router-dom';
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
