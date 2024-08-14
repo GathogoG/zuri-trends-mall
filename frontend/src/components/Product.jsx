@@ -4,12 +4,12 @@ import { useCart } from '../context/CartContext';
 import './Product.css';
 
 const Product = ({ product, reviews }) => {
-  const { addToCart } = useCart(); 
-  const navigate = useNavigate(); 
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   const handleAddToCart = () => {
-    addToCart(product); 
-    navigate('/cart'); 
+    addToCart(product);
+    navigate("/cart");
   };
 
   return (
@@ -17,7 +17,7 @@ const Product = ({ product, reviews }) => {
       <img src={product.image_path} alt={product.name} />
       <h2>{product.name}</h2>
       <p>{product.description}</p>
-      <p>{`Price: KES {product.price.toLocaleString()}`}</p>
+      <p>{`Price: KES ${product.price.toLocaleString()}`}</p>
       <p>{`Available Quantity: ${product.quantity}`}</p>
 
       <h3>Reviews:</h3>
