@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import "./Signup.css";
 
 const Signup = () => {
@@ -29,6 +30,7 @@ const Signup = () => {
         const userData = await response.json();
         console.log("Signed up user:", userData);
         navigate("/login");
+        toast.success(`${userData.name} successfully signed up!`);
       }
     } catch (err) {
       setError("An error occurred. Please try again.");

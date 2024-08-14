@@ -12,7 +12,8 @@ import Signup from './pages/Signup';
 import Wishlist from './pages/Wishlist';
 import ContactUs from './pages/ContactUs';
 import './App.css';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Toaster} from 'react-hot-toast'
 
 const productDetails = {
   title: 'Sample Product',
@@ -29,6 +30,7 @@ const App = () => {
       <Router>
         <div className="App">
           <Navbar />
+          <Toaster />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ProductsPage />} />
