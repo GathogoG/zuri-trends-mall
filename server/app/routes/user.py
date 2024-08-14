@@ -42,7 +42,7 @@ def create_user():
     hashed_password = generate_password_hash(data['password'])
     user = User(
         name=data['name'],
-        password=hashed_password, 
+        password=hashed_password,
         email=data['email']
     )
     try:
@@ -60,10 +60,12 @@ def update_user(id):
         return jsonify({'error': 'Invalid input'}), 400
 
     user = User.query.get_or_404(id)
-    user.name = data.get('name', user.name)
+    if 'name' in data:
+        user.name = data['name']
     if 'password' in data:
         user.password = generate_password_hash(data['password'])
-    user.email = data.get('email', user.email)
+    if 'email' in data:
+        user.email = data['email']
 
     try:
         db.session.commit()
