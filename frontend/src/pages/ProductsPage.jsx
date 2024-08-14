@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Product from '../components/Product';
 import './ProductsPage.css';
-import { Button } from 'bootstrap';
+
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);

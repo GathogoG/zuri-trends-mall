@@ -1,4 +1,3 @@
-// App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
@@ -13,7 +12,7 @@ import Signup from './pages/Signup';
 import Wishlist from './pages/Wishlist';
 import ContactUs from './pages/ContactUs';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 const productDetails = {
   title: 'Sample Product',

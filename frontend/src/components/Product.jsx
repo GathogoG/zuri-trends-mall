@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useCart } from '../context/CartContext'; 
 import './Product.css';
-import { useNavigate } from 'react-router-dom';
 
 const Product = ({ product, reviews }) => {
   const { addToCart } = useCart(); 
