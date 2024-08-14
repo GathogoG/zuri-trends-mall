@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Product from '../components/Product';
 import './ProductsPage.css';
+import { Button } from 'react-bootstrap';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -29,6 +30,12 @@ const ProductsPage = () => {
           reviews={getReviewsForProduct(product.id)}
         />
       ))}
+      <Button 
+        onClick={() => navigate('/cart')}
+        variant="primary"
+      >
+        Add to Cart
+      </Button>
     </div>
   );
 };
