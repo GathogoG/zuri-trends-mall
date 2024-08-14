@@ -36,10 +36,7 @@ const NewArrivals = () => {
       <div className="products">
         {products.map(product => (
           <div className="product" key={product.id}>
-            <img 
-              src={product.image_path} 
-              alt={product.name} 
-            />
+            <img src={product.image_path} alt={product.name} />
             <h3>{product.name}</h3>
             <p>{product.price.toFixed(2)}</p>
             <button 
