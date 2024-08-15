@@ -23,7 +23,7 @@ function ContactUs() {
                     If you have any questions or comments, please don't hesitate to contact us.
                 </p>
                 <img 
-                    src="https://i.pinimg.com/236x/c2/0b/fb/c20bfb9a1b56503d3acabc50fb4dbb08.jpg" 
+                    src="https://i.pinimg.com/236x/73/87/ce/7387cebeab57bbd92fa9259fb5938170.jpg" 
                     alt="Zuri Trends Mall" 
                     className="about-image"
                 />
