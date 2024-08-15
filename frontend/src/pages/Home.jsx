@@ -3,6 +3,7 @@ import NewArrivals from '../components/NewArrivals';
 import TopSelling from '../components/TopSelling';
 import BrowseByCategory from '../components/BrowseByCategory';
 import CustomerReviews from '../components/CustomerReviews';
+import Footer from '../components/Footer';
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <TopSelling />
       <BrowseByCategory />
       <CustomerReviews />
+      <Footer />
     </div>
   );
 };

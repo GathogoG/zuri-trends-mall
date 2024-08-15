@@ -36,11 +36,10 @@ def get_access_token():
 def lipa_na_mpesa_online(amount, phone_number, transaction_id):
     """Initiate MPesa payment."""
     
-    # Ensure the phone number is in the correct format (e.g., 254712345678)
-    # Convert phone number starting with '0' to '2547XXXXXXXX'
+    
     if phone_number.startswith('0'):
         phone_number = '254' + phone_number[1:]
-    # Remove '+' if the phone number starts with '+254'
+   
     elif phone_number.startswith('+'):
         phone_number = phone_number[1:]
 
@@ -55,16 +54,16 @@ def lipa_na_mpesa_online(amount, phone_number, transaction_id):
         (BUSINESS_SHORT_CODE + LIPA_NA_MPESA_ONLINE_PASSKEY + timestamp).encode()
     ).decode('utf-8')
 
-    # Prepare the payload with the correctly formatted phone number
+    
     payload = {
         "BusinessShortCode": BUSINESS_SHORT_CODE,
         "Password": password,
         "Timestamp": timestamp,
         "TransactionType": "CustomerPayBillOnline",
         "Amount": amount,
-        "PartyA": phone_number,  # Use the formatted phone number here
+        "PartyA": phone_number,  
         "PartyB": BUSINESS_SHORT_CODE,
-        "PhoneNumber": phone_number,  # And here as well
+        "PhoneNumber": phone_number,  
         "CallBackURL": CALLBACK_URL,
         "AccountReference": transaction_id,
         "TransactionDesc": f"Payment to {COMPANY_NAME} for Transaction ID {transaction_id} and Amount KSh {amount}"
@@ -81,7 +80,7 @@ def lipa_na_mpesa_online(amount, phone_number, transaction_id):
         response.raise_for_status()
         return response.json()
     except requests.RequestException as e:
-        # If an error occurs, include the response from the server if available
+        
         if e.response is not None:
             return {'error': f"{str(e)} - {e.response.json()}"}
         return {'error': str(e)}

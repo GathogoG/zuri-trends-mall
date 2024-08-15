@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Product from '../components/Product';
 import './ProductsPage.css';
-//import { Button } from 'react-bootstrap';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -21,6 +20,22 @@ const ProductsPage = () => {
     return reviews.filter((review) => review.product_id === productId);
   };
 
+  const handleAddReview = (productId, review) => {
+    setReviews((prevReviews) => [
+      ...prevReviews,
+      { ...review, product_id: productId },
+    ]);
+
+    
+    fetch(`http://127.0.0.1:5000/products/${productId}/reviews`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(review),
+    });
+  };
+
   return (
     <div className="products-page">
       {products.map((product) => (
@@ -28,14 +43,9 @@ const ProductsPage = () => {
           key={product.id}
           product={product}
           reviews={getReviewsForProduct(product.id)}
+          onAddReview={(review) => handleAddReview(product.id, review)}
         />
       ))}
-      <button 
-        onClick={() => navigate('/cart')}
-        variant="primary"
-      >
-        Add to Cart
-      </button>
     </div>
   );
 };

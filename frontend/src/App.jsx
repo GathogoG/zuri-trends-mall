@@ -14,6 +14,8 @@ import ContactUs from './pages/ContactUs';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Toaster} from 'react-hot-toast'
+import { WishlistProvider } from './context/wishlistContext';
+
 
 const productDetails = {
   title: 'Sample Product',
@@ -27,6 +29,7 @@ const App = () => {
 
   return (
     <CartProvider> 
+      <WishlistProvider>
       <Router>
         <div className="App">
           <Navbar />
@@ -39,11 +42,12 @@ const App = () => {
             <Route path="/payment" element={<PaymentPage deliveryDetails={deliveryDetails} productDetails={productDetails} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            {isLoggedIn && <Route path="/wishlist" element={<Wishlist />} />}
+            <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/contact-us" element={<ContactUs />} />
           </Routes>
         </div>
       </Router>
+      </WishlistProvider>
     </CartProvider>
   );
 };
