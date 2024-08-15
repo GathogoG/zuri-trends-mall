@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { AuthContext } from "../context/AuthContext";
 import "./Login.css";
 
 const Login = () => {
@@ -8,15 +9,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  const { loggedInUser, login, logout } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (user) {
-      setLoggedInUser(user);
-    }
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,11 +31,9 @@ const Login = () => {
         toast.error('User not found!');
       } else {
         const userData = await response.json();
-        setLoggedInUser(userData);
-        localStorage.setItem("loggedInUser", JSON.stringify(userData));
-        navigate("/");
-
+        login(userData); // Call login function from AuthContext
         toast.success(`${userData.name} successfully logged in!`);
+        navigate("/");
       }
     } catch (err) {
       setError("An error occurred. Please try again.");
@@ -49,11 +41,7 @@ const Login = () => {
   };
 
   const handleLogout = () => {
-    setLoggedInUser(null);
-    localStorage.removeItem("loggedInUser");
-    setEmail("");
-    setPassword("");
-    setName("");
+    logout(); // Call logout function from AuthContext
     toast.success("Successfully logged out!");
     navigate("/login");
   };

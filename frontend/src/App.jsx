@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Toaster} from 'react-hot-toast'
 import { WishlistProvider } from './context/wishlistContext';
 
+
 const productDetails = {
   title: 'Sample Product',
   description: 'This is a sample product description.',
