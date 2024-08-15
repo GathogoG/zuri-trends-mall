@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
 import './BrowseByCategory.css';
+import { useCart } from '../context/CartContext'; 
+import { useNavigate } from 'react-router-dom';
 
 const BrowseByCategory = () => {
   const [catalogs, setCatalogs] = useState([]);
   const [products, setProducts] = useState([]);
   const [selectedCatalogId, setSelectedCatalogId] = useState(null);
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   // Fetch catalogs and products
   useEffect(() => {
@@ -32,12 +36,18 @@ const BrowseByCategory = () => {
     fetchProducts();
   }, []);
 
-  // Handle catalog (category) selection
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    navigate('/cart'); 
+  };
+
+
+  
   const handleCatalogClick = (catalogId) => {
     setSelectedCatalogId(catalogId);
   };
 
-  // Filter products based on the selected catalog
+ 
   const filteredProducts = selectedCatalogId
     ? products.filter(product => product.catalog_id === selectedCatalogId)
     : products;
@@ -74,6 +84,12 @@ const BrowseByCategory = () => {
               />
               <h3>{product.name}</h3>
               <p>Price: {product.price}</p>
+              <button 
+              onClick={() => handleAddToCart(product)} 
+              className="add-to-cart-button"
+            >
+              Add to Cart
+            </button>
             </div>
           ))}
         </div>
