@@ -11,7 +11,6 @@ const Login = () => {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const navigate = useNavigate();
 
-  
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (user) {
@@ -35,12 +34,11 @@ const Login = () => {
       if (!response.ok) {
         const data = await response.json();
         setError(data.error || "Login failed");
-        toast.error('User not found!')
+        toast.error('User not found!');
       } else {
         const userData = await response.json();
-        console.log("Logged in user:", userData);
-        setLoggedInUser(userData); 
-        localStorage.setItem("loggedInUser", JSON.stringify(userData)); 
+        setLoggedInUser(userData);
+        localStorage.setItem("loggedInUser", JSON.stringify(userData));
         navigate("/");
 
         toast.success(`${userData.name} successfully logged in!`);
@@ -51,12 +49,13 @@ const Login = () => {
   };
 
   const handleLogout = () => {
-    setLoggedInUser(null); 
-    localStorage.removeItem("loggedInUser"); 
-    setEmail(""); 
+    setLoggedInUser(null);
+    localStorage.removeItem("loggedInUser");
+    setEmail("");
     setPassword("");
     setName("");
     toast.success("Successfully logged out!");
+    navigate("/login");
   };
 
   return (

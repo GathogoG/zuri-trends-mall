@@ -3,7 +3,6 @@ import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import './NewArrivals.css';
 
-
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
   const { addToCart } = useCart();

@@ -35,7 +35,7 @@ def seed_catalogs():
     print("Seeding catalogs...")
     catalogs = [
         {'name': 'Men\'s Apparel', 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2301935_MENS_RIB_20640_Hugo_Boss:1x1?$104_desktop$&fmt=png-alpha'},
-        {'name': 'Women\'s Apparel', 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2303462_101:1x1?$106_lg_desktop$&fmt=png-alpha'},
+        {'name': 'Women\'s Apparel', 'image_path': 'https://i.pinimg.com/236x/69/66/cd/6966cdeb1f52d12b543a753c931ac95b.jpg'},
         {'name': 'Kids\' Apparel', 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/7/optimized/28615877_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp'},
         {'name': 'Accessories', 'image_path': 'https://shopzetu.com/cdn/shop/products/9foSr4GFhv-493607_900x.jpg?v=1707901693'},
         {'name': 'Footwear', 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/3/optimized/27497253_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp'},
