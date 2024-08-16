@@ -10,6 +10,6 @@ services:
           property: connectionString
       - key: PYTHONPATH
         value: /opt/render/project/src
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn 'server.app:create_app()'
+    buildCommand: pip install -r server/requirements.txt
+    startCommand: gunicorn --chdir server app:create_app --bind 0.0.0.0:10000 --workers 3
     runtime: python
