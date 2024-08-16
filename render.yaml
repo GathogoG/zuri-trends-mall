@@ -8,11 +8,8 @@ services:
         fromDatabase:
           name: zuri-trends-mall-db
           property: connectionString
+      - key: PYTHONPATH
+        value: /opt/render/project/src
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn 'server.app:create_app()'
     runtime: python
-
-databases:
-  - name: zuri-trends-mall-db
-    region: oregon  
-    plan: free
