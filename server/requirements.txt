@@ -5,3 +5,4 @@ python-dotenv
 flask_script
 requests
 flask-cors
+gunicorn==20.1.0
