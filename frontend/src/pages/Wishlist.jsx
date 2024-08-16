@@ -35,8 +35,8 @@ const Wishlist = () => {
 
   const handleAddToCart = async (item) => {
     try {
-      addToCart(item); // Add item to cart using CartContext
-      await handleDeleteFromWishlist(item.id); // Remove item from wishlist after adding to cart
+      addToCart(item); 
+      await handleDeleteFromWishlist(item.id);
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
@@ -44,14 +44,14 @@ const Wishlist = () => {
 
   const handleAddToWishlist = async (product) => {
     try {
-      const response = await axios.post("http://127.0.0.1:5000/wishlists", {
-        user_id: loggedInUser.id, // Assuming you store user_id in localStorage
-        product_id: product.id,   // Add the product ID to the wishlist
+      const response = await axios.post("postgresql://zuri_trends_user:y7ijlgoQDB7Oi9AS5QoyjEFxiEfwbskd@dpg-cqq8i7ij1k6c73dd9820-a.frankfurt-postgres.render.com/zuri_trends", {
+        user_id: loggedInUser.id,
+        product_id: product.id,  
       });
 
       if (response.status === 201) {
         console.log(`${product.name} added to wishlist.`);
-        fetchWishlist(); // Refresh wishlist after adding
+        fetchWishlist(); 
       } else {
         console.error("Failed to add product to wishlist.");
       }
@@ -62,7 +62,7 @@ const Wishlist = () => {
 
   const handleDeleteFromWishlist = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:5000/wishlists/${id}`);
+      await axios.delete(`postgresql://zuri_trends_user:y7ijlgoQDB7Oi9AS5QoyjEFxiEfwbskd@dpg-cqq8i7ij1k6c73dd9820-a.frankfurt-postgres.render.com/zuri_trends`);
       fetchWishlist();
     } catch (error) {
       console.error("Error deleting from wishlist:", error);

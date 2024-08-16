@@ -15,7 +15,7 @@ const Signup = () => {
     setError(null);
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/users", {
+      const response = await fetch("postgresql://zuri_trends_user:y7ijlgoQDB7Oi9AS5QoyjEFxiEfwbskd@dpg-cqq8i7ij1k6c73dd9820-a.frankfurt-postgres.render.com/zuri_trends", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
