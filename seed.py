@@ -56,10 +56,10 @@ def seed_products():
     print("Seeding products...") 
     print("Seeding products...") 
     products = [
-        {'name': 'Men\'s T-Shirt', 'price': 2500, 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2301935_MENS_RIB_20640_Hugo_Boss:1x1?$104_desktop$&fmt=png-alpha', 'quantity': 100, 'catalog_id': 1, 'size': 'L', 'color': 'Blue', 'description': 'Comfortable cotton t-shirt'},
-        {'name': 'Men\'s Jeans', 'price': 2000, 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/MensJeansStraight9617175_1499299:1x1?$104_desktop$&fmt=png-alpha', 'quantity': 50, 'catalog_id': 1, 'size': '32', 'color': 'Dark Blue', 'description': 'Stylish denim jeans'},
-        {'name': 'Women\'s Dress', 'price': 6000, 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2303462_101:1x1?$106_lg_desktop$&fmt=png-alpha', 'quantity': 30, 'catalog_id': 2, 'size': 'M', 'color': 'Red', 'description': 'Elegant evening dress'},
-        {'name': 'Women\'s Skirt', 'price': 3500, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/1/optimized/27494581_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp', 'quantity': 40, 'catalog_id': 2, 'size': 'S', 'color': 'Black', 'description': 'Trendy skirt'},
+        {'name': 'Men\'s T-Shirt', 'price': 2500, 'image_path': 'https://images.pexels.com/photos/26360294/pexels-photo-26360294/free-photo-of-portrait-of-man-in-t-shirt.jpeg?auto=compress&cs=tinysrgb&w=600', 'quantity': 100, 'catalog_id': 1, 'size': 'L', 'color': 'Blue', 'description': 'Comfortable cotton t-shirt'},
+        {'name': 'Men\'s Jeans', 'price': 2000, 'image_path': 'https://images.pexels.com/photos/26347645/pexels-photo-26347645/free-photo-of-man-sitting-in-jeans-and-shirt.jpeg?auto=compress&cs=tinysrgb&w=600', 'quantity': 50, 'catalog_id': 1, 'size': '32', 'color': 'Dark Blue', 'description': 'Stylish denim jeans'},
+        {'name': 'Women\'s Dress', 'price': 6000, 'image_path': 'https://images.pexels.com/photos/8916600/pexels-photo-8916600.jpeg?auto=compress&cs=tinysrgb&w=600', 'quantity': 30, 'catalog_id': 2, 'size': 'M', 'color': 'Red', 'description': 'Elegant evening dress'},
+        {'name': 'Women\'s Skirt', 'price': 3500, 'image_path': 'https://images.pexels.com/photos/27383322/pexels-photo-27383322/free-photo-of-model-in-yellow-top-and-denim-skirt.jpeg?auto=compress&cs=tinysrgb&w=600', 'quantity': 40, 'catalog_id': 2, 'size': 'S', 'color': 'Black', 'description': 'Trendy skirt'},
         {'name': 'Kids\' Hoodie', 'price': 3000, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/7/optimized/28615877_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 70, 'catalog_id': 3, 'size': '10-12', 'color': 'Green', 'description': 'Warm and cozy hoodie'},
         {'name': 'Kids\' Shorts', 'price': 2000, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/2/optimized/27505522_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 60, 'catalog_id': 3, 'size': '8-10', 'color': 'Yellow', 'description': 'Comfortable shorts for kids'},
         {'name': 'Leather Belt', 'price': 2000, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/2/optimized/9392092_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 80, 'catalog_id': 4, 'size': 'Adjustable', 'color': 'Brown', 'description': 'Genuine leather belt'},
@@ -67,16 +67,16 @@ def seed_products():
         {'name': 'Running Shoes', 'price': 3500, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/3/optimized/27497253_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp', 'quantity': 40, 'catalog_id': 5, 'size': '10', 'color': 'White', 'description': 'Comfortable running shoes'},
         {'name': 'Formal Loafers', 'price': 5000, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/5/optimized/1155215_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 20, 'catalog_id': 5, 'size': '9', 'color': 'Black', 'description': 'Elegant loafers for formal occasions'},
         {'name': 'Business Suit', 'price': 5000, 'image_path': 'https://images.hugoboss.com/is/image/boss/hbeu50528162_072_300?$re_fullPageZoom$&qlt=85&fit=crop,1&align=1,1&bgcolor=ebebeb&lastModified=1723214764000&wid=1200&hei=1818&fmt=webp', 'quantity': 15, 'catalog_id': 6, 'size': 'L', 'color': 'Gray', 'description': 'Professional business suit'},
-        {'name': 'Evening Gown', 'price': 4500, 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2301372_101-1:1x1?$icon_6_desktop$&fmt=webp', 'quantity': 10, 'catalog_id': 6, 'size': 'M', 'color': 'Gold', 'description': 'Elegant evening gown'},
-        {'name': 'Casual Shirt', 'price': 2800, 'image_path': 'https://slimages.macysassets.com/is/image/MacysInc/C2403574_31:1x1?$$&fmt=png-alpha', 'quantity': 90, 'catalog_id': 7, 'size': 'M', 'color': 'Light Blue', 'description': 'Relaxed casual shirt'},
-        {'name': 'Cargo Pants', 'price': 4500, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/4/optimized/27805874_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 50, 'catalog_id': 7, 'size': '34', 'color': 'Khaki', 'description': 'Comfortable cargo pants'},
-        {'name': 'Rain Jacket', 'price': 2800, 'image_path': 'https://ke.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/28/2128661/1.jpg?1580', 'quantity': 25, 'catalog_id': 8, 'size': 'L', 'color': 'Orange', 'description': 'Durable rain jacket'},
-        {'name': 'Fleece Vest', 'price': 4200, 'image_path': 'https://ke.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/75/469539/1.jpg?7511', 'quantity': 30, 'catalog_id': 8, 'size': 'M', 'color': 'Navy', 'description': 'Warm fleece vest'},
+        {'name': 'Evening Gown', 'price': 4500, 'image_path': 'https://images.pexels.com/photos/16101853/pexels-photo-16101853/free-photo-of-female-model-wearing-a-green-dress-posing-against-a-wall.jpeg?auto=compress&cs=tinysrgb&w=600', 'quantity': 10, 'catalog_id': 6, 'size': 'M', 'color': 'Gold', 'description': 'Elegant evening gown'},
+        {'name': 'Casual Shirt', 'price': 2800, 'image_path': 'https://images.pexels.com/photos/13887064/pexels-photo-13887064.jpeg?auto=compress&cs=tinysrgb&w=600', 'quantity': 90, 'catalog_id': 7, 'size': 'M', 'color': 'Light Blue', 'description': 'Relaxed casual shirt'},
+        {'name': 'Cargo Pants', 'price': 4500, 'image_path': 'https://images.pexels.com/photos/26425708/pexels-photo-26425708/free-photo-of-beautiful-smiling-woman-posing.jpeg?auto=compress&cs=tinysrgb&w=600', 'quantity': 50, 'catalog_id': 7, 'size': '34', 'color': 'Khaki', 'description': 'Comfortable cargo pants'},
+        {'name': 'Rain Jacket', 'price': 2800, 'image_path': 'https://images.pexels.com/photos/12581576/pexels-photo-12581576.jpeg?auto=compress&cs=tinysrgb&w=600', 'quantity': 25, 'catalog_id': 8, 'size': 'L', 'color': 'Orange', 'description': 'Durable rain jacket'},
+        {'name': 'Fleece Vest', 'price': 4200, 'image_path': 'https://images.pexels.com/photos/6318276/pexels-photo-6318276.jpeg?auto=compress&cs=tinysrgb&w=600', 'quantity': 30, 'catalog_id': 8, 'size': 'M', 'color': 'Navy', 'description': 'Warm fleece vest'},
         {'name': 'Gym Shorts', 'price': 2200, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/2/optimized/27913182_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 60, 'catalog_id': 9, 'size': 'L', 'color': 'Gray', 'description': 'Breathable gym shorts'},
         {'name': 'Yoga Pants', 'price': 3500, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/3/optimized/25200283_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 40, 'catalog_id': 9, 'size': 'S', 'color': 'Black', 'description': 'Flexible yoga pants'},
         {'name': 'Formal Tie', 'price': 1800, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/4/optimized/11464914_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 75, 'catalog_id': 10, 'size': 'N/A', 'color': 'Red', 'description': 'Classic formal tie'},
-        {'name': 'swimsuit', 'price': 2500, 'image_path': 'https://ke.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/80/2282711/1.jpg?9209', 'quantity': 30, 'catalog_id': 11, 'size': 'M', 'color': 'black', 'description': 'beautiful swimwear'},
-        {'name': 'Leather Gloves', 'price': 2000, 'image_path': 'https://slimages.macysassets.com/is/image/MCY/products/1/optimized/1433741_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp', 'quantity': 50, 'catalog_id': 10, 'size': 'M', 'color': 'Black', 'description': 'Warm leather gloves'}
+        {'name': 'swimsuit', 'price': 2500, 'image_path': 'https://images.pexels.com/photos/3722173/pexels-photo-3722173.jpeg?auto=compress&cs=tinysrgb&w=600', 'quantity': 30, 'catalog_id': 11, 'size': 'M', 'color': 'black', 'description': 'beautiful swimwear'},
+        {'name': 'Leather Gloves', 'price': 2000, 'image_path': 'https://images.pexels.com/photos/45057/pexels-photo-45057.jpeg?auto=compress&cs=tinysrgb&w=600', 'quantity': 50, 'catalog_id': 10, 'size': 'M', 'color': 'Black', 'description': 'Warm leather gloves'}
     ]
 
 
@@ -109,16 +109,16 @@ def seed_users():
 def seed_reviews():
     print("Seeding reviews...")
     reviews = [
-    {'rating': 5, 'comment': 'Excellent product!', 'user_id': 1, 'product_id': 1},
-    {'rating': 4, 'comment': 'Very good, but could be improved.', 'user_id': 2, 'product_id': 2},
-    {'rating': 3, 'comment': 'Average quality.', 'user_id': 3, 'product_id': 3},
-    {'rating': 2, 'comment': 'Not what I expected.', 'user_id': 4, 'product_id': 4},
-    {'rating': 5, 'comment': 'Great value for money!', 'user_id': 5, 'product_id': 5},
-    {'rating': 4, 'comment': 'Fast shipping and good packaging.', 'user_id': 6, 'product_id': 6},
-    {'rating': 3, 'comment': 'The product is okay.', 'user_id': 7, 'product_id': 7},
-    {'rating': 2, 'comment': 'The quality could be better.', 'user_id': 8, 'product_id': 8},
-    {'rating': 1, 'comment': 'Very poor quality.', 'user_id': 9, 'product_id': 9},
-    {'rating': 5, 'comment': 'Highly recommend this product!', 'user_id': 10, 'product_id': 10}
+    {'rating': 5, 'comment': 'Excellent product!', 'user_id': 1,'name':'Michael Jackson', 'product_id': 1},
+    {'rating': 4, 'comment': 'Very good, but could be improved.', 'user_id': 2,'name':'Hamide Mstafa', 'product_id': 2},
+    {'rating': 3, 'comment': 'Average quality.', 'user_id': 3,'name':'Lauryn Hill', 'product_id': 3},
+    {'rating': 2, 'comment': 'Not what I expected.', 'user_id': 4,'name':'Mac de Marco', 'product_id': 4},
+    {'rating': 5, 'comment': 'Great value for money!', 'user_id': 5,'name':'Steve Lacy', 'product_id': 5},
+    {'rating': 4, 'comment': 'Fast shipping and good packaging.', 'user_id': 6,'name':'Bob Marley', 'product_id': 6},
+    {'rating': 3, 'comment': 'The product is okay.', 'user_id': 7,'name':'Sage', 'product_id': 7},
+    {'rating': 2, 'comment': 'The quality could be better.', 'user_id': 8,'name':'Peter Junior', 'product_id': 8},
+    {'rating': 1, 'comment': 'Very poor quality.', 'user_id': 9,'name':'John Doe', 'product_id': 9},
+    {'rating': 5, 'comment': 'Highly recommend this product!', 'user_id': 10,'name':'Ty Lil', 'product_id': 10}
 ]
     
     with app.app_context():

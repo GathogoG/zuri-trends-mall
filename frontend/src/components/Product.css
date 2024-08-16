@@ -30,6 +30,15 @@
   background-color: #007bff;
   color: white;
   border: none;
+}
+.no-reviews {
+  color: #888;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #000000;
+  color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
@@ -38,4 +47,7 @@
 
 .add-to-cart-button:hover {
   background-color: #0056b3;
+}
+.btn:hover {
+  background-color: #ffffff;
 }
