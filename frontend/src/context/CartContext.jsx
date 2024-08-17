@@ -15,10 +15,15 @@ export const CartProvider = ({ children }) => {
             : item
         );
       } else {
-        return [...prevCart, { ...product, quantity: 1 }];
+        const productToAdd = {
+          ...product,
+          image: product.image_path, 
+          title: product.name,       
+          quantity: 1,              
+        };
+        return [...prevCart, productToAdd];
       }
     });
-    console.log('Cart Items:', cart);
   };
 
   const removeFromCart = (id) => {
@@ -36,6 +41,10 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  const deleteFromCart = (id) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  };
+
   const clearCart = () => {
     setCart([]);
   };
@@ -50,7 +59,15 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart, getTotal, getCartCount }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        deleteFromCart,
+        clearCart,
+        getTotal,
+        getCartCount,
+      }}
     >
       {children}
     </CartContext.Provider>

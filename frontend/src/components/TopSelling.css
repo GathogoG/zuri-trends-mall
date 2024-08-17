@@ -1,40 +1,126 @@
+/* TopSelling.css */
+
 .top-selling {
-  padding: 50px 20px;
-  text-align: center;
+  padding: 2rem;
+  background-color: #f9f9f9;
 }
 
-.top-selling h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem; /* Adjusted margin for better spacing */
 }
 
 .products {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
+  gap: 1.5rem; /* Adjusted gap for better spacing */
 }
 
 .product {
-  width: 200px;
-  text-align: center;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Increased and constant shadow */
-  border-radius: 8px; /* Optional: rounded corners */
-  overflow: hidden; /* Optional: hides overflow content */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for a lighter look */
+  overflow: hidden;
+  flex: 1 1 calc(25% - 1.5rem); /* Adjusted width and gap for responsiveness */
+  position: relative;
+  min-width: 200px; /* Ensures minimum width for small screens */
 }
 
-.product img {
+.product-image-wrapper {
+  position: relative;
+}
+
+.product-image {
   width: 100%;
   height: auto;
-  display: block; 
+  transition: opacity 0.3s ease; /* Added ease for smooth transition */
 }
 
-.product h3 {
-  font-size: 1.2em;
-  margin: 10px 0;
+.product-image.primary {
+  opacity: 1;
 }
 
-.product p {
-  font-size: 1em;
-  margin: 5px 0;
+.product-image.hover {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.product:hover .product-image.primary {
+  opacity: 0;
+}
+
+.product:hover .product-image.hover {
+  opacity: 1;
+}
+
+.product-name {
+  font-size: 1.1rem; /* Slightly smaller font size for consistency */
+  font-weight: bold;
+  margin: 0.75rem 1rem; /* Adjusted margin for better spacing */
+}
+
+.product-price {
+  font-size: 1rem;
+  margin: 0 1rem 1rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem;
+}
+
+.add-to-cart-button,
+.add-to-wishlist-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.875rem; /* Slightly smaller font size for buttons */
+  transition: background-color 0.3s ease; /* Added ease for smooth transition */
+}
+
+.add-to-cart-button:hover,
+.add-to-wishlist-button:hover {
+  background-color: #0056b3;
+}
+
+.add-to-wishlist-button {
+  background-color: #28a745; /* Different color for wishlist */
+}
+
+.add-to-wishlist-button:hover {
+  background-color: #218838;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .products {
+    gap: 1rem; /* Reduced gap for smaller screens */
+  }
+
+  .product {
+    flex: 1 1 calc(50% - 1rem); /* Adjusted width for medium screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .product {
+    flex: 1 1 100%; /* Full width for small screens */
+  }
+
+  .title {
+    font-size: 1.5rem; /* Adjusted font size for small screens */
+  }
+
+  .product-name {
+    font-size: 1rem; /* Adjusted font size for small screens */
+  }
 }

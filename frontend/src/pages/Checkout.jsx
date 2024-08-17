@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import './Checkout.css';
+import './Checkout.css'; // Ensure you import your custom CSS file
 
 const locationOptions = {
   Kenya: {
@@ -299,128 +299,139 @@ const Checkout = () => {
 
   return (
     <div className="container my-5">
-      <h2 className="text-4xl font-bold mb-8 text-center">Checkout</h2>
-      <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
-        <h3 className="text-2xl font-semibold mb-4">Your Cart Items</h3>
-        {cart.length === 0 ? (
-          <p className="text-xl text-center text-gray-600">Your cart is empty</p>
-        ) : (
-          <div className="space-y-6">
-            {cart.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow-md border border-gray-200"
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-32 h-32 object-cover rounded-lg"
-                />
-                <div className="flex-1 ml-4">
-                  <h3 className="text-xl font-semibold text-gray-700">{item.title}</h3>
-                  <p className="text-lg text-gray-600 mb-1">Price: {item.price}</p>
-                  <p className="text-lg text-gray-600 mb-3">Quantity: {item.quantity}</p>
+      <h2 className="text-center mb-4">Checkout</h2>
+      <div className="card mb-4">
+        <div className="card-body">
+          <h3 className="card-title">Your Cart Items</h3>
+          {cart.length === 0 ? (
+            <p className="text-center">Your cart is empty</p>
+          ) : (
+            <div className="list-group">
+              {cart.map((item) => (
+                <div
+                  key={item.id}
+                  className="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="img-thumbnail cart-image"
+                  />
+                  <div className="ml-3">
+                    <h5 className="mb-1">{item.title}</h5>
+                    <p className="mb-1">Price: {item.price}</p>
+                    <p className="mb-1">Quantity: {item.quantity}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-            <div className="text-right mt-4">
-              <h3 className="text-3xl font-semibold">Total: {totalAmount.toFixed(2)}</h3>
-              <h3 className="text-2xl font-semibold">Delivery Fee: {deliveryFee.toFixed(2)}</h3>
-              <h3 className="text-2xl font-semibold">Grand Total: {(totalAmount + deliveryFee).toFixed(2)}</h3>
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="bg-white p-6 rounded-lg shadow-lg">
-        <form className="space-y-6">
-          <div>
-            <label className="block text-lg font-medium text-gray-700">Name</label>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium text-gray-700">Address</label>
-            <input
-              type="text"
-              name="address"
-              value={form.address}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium text-gray-700">Postal Code</label>
-            <input
-              type="text"
-              name="postalCode"
-              value={form.postalCode}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium text-gray-700">Phone</label>
-            <input
-              type="tel"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium text-gray-700">Nationality</label>
-            <select
-              name="nationality"
-              value={form.nationality}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm"
-              required
-            >
-              <option value="">Select Nationality</option>
-              {Object.keys(locationOptions).map((country) => (
-                <option key={country} value={country}>
-                  {country}
-                </option>
               ))}
-            </select>
-          </div>
-          {form.nationality && (
-            <div>
-              <label className="block text-lg font-medium text-gray-700">City</label>
-              <select
-                name="city"
-                value={selectedCity}
+              <div className="text-right mt-3">
+                <h4>Total: {totalAmount.toFixed(2)}</h4>
+                <h4>Delivery Fee: {deliveryFee.toFixed(2)}</h4>
+                <h4>Grand Total: {(totalAmount + deliveryFee).toFixed(2)}</h4>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="card">
+        <div className="card-body">
+          <h3 className="card-title">Delivery Details</h3>
+          <form>
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={form.name}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm"
+                className="form-control"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="address">Address</label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                value={form.address}
+                onChange={handleChange}
+                className="form-control"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="postalCode">Postal Code</label>
+              <input
+                type="text"
+                id="postalCode"
+                name="postalCode"
+                value={form.postalCode}
+                onChange={handleChange}
+                className="form-control"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="phone">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                className="form-control"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="nationality">Nationality</label>
+              <select
+                id="nationality"
+                name="nationality"
+                value={form.nationality}
+                onChange={handleChange}
+                className="form-control"
                 required
               >
-                <option value="">Select City</option>
-                {Object.keys(locationOptions[form.nationality]?.cities || {}).map((city) => (
-                  <option key={city} value={city}>
-                    {city}
+                <option value="">Select Nationality</option>
+                {Object.keys(locationOptions).map((country) => (
+                  <option key={country} value={country}>
+                    {country}
                   </option>
                 ))}
               </select>
             </div>
-          )}
-          <button
-            type="button"
-            onClick={handleContinue}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-          >
-            Continue with Payment
-          </button>
-        </form>
+            {form.nationality && (
+              <div className="form-group">
+                <label htmlFor="city">City</label>
+                <select
+                  id="city"
+                  name="city"
+                  value={selectedCity}
+                  onChange={handleChange}
+                  className="form-control"
+                  required
+                >
+                  <option value="">Select City</option>
+                  {Object.keys(locationOptions[form.nationality]?.cities || {}).map((city) => (
+                    <option key={city} value={city}>
+                      {city}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+            <button
+              type="button"
+              onClick={handleContinue}
+              className="btn btn-primary"
+            >
+              Continue with Payment
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

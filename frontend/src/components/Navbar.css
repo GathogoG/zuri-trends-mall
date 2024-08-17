@@ -1,52 +1,98 @@
-
-.navbar-wrapper {
-  display: flex;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif; /* Set a global font family */
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
-  align-items: left;
-  padding: 15px 30px;
-  max-width: 1200px; 
+  align-items: center;
+  background-color: #333;
+  padding: 0.5rem 1rem; /* Adjusted padding for a balanced look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slightly deeper shadow for definition */
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-}
-
-
-.logo {
-  font-size: 24px;
-  font-weight: bold;
+  z-index: 1000;
+  transition: top 0.3s;
 }
 
 .logo a {
+  color: #fff;
+  font-size: 1.4rem; /* Increased font size for better visibility */
+  font-weight: bold;
   text-decoration: none;
-  color: #000;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex: 1; 
+  gap: 1rem; /* Increased gap for better spacing */
 }
 
 .nav-links li {
-  font-size: 16px;
+  position: relative;
 }
 
 .nav-links a {
+  color: #fff;
   text-decoration: none;
-  color: #000;
-  transition: color 0.3s ease;
+  font-size: 0.9rem; /* Slightly larger font size */
+  font-weight: 500;
+  transition: color 0.3s, border-bottom 0.3s;
 }
 
-.nav-links a:hover {
-  color: #007bff;
+.nav-links a:hover,
+.nav-links a:focus {
+  color: #f39c12;
+  border-bottom: 2px solid #f39c12; /* Slightly thicker underline */
+}
+
+.nav-links li:last-child {
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem; /* Increased gap for better spacing on mobile */
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem; /* Adjusted padding for mobile */
+  }
+
+  .logo {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.navbar-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.4rem; /* Increased font size for better visibility */
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: block;
+  }
+}
+
+body {
+  padding-top: 3.5rem; /* Ensure content is not hidden under the fixed navbar */
 }

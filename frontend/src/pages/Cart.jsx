@@ -1,12 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import './Cart.css'; // Ensure you import your CSS file
 
 function Cart() {
-  const { cart, addToCart, removeFromCart, getTotal } = useCart();
+  const { cart, addToCart, removeFromCart, deleteFromCart, getTotal } = useCart();
   const navigate = useNavigate();
 
   const handleProceedToCheckout = () => {
+    if (cart.length === 0) {
+      alert("Your cart is empty. Add items to your cart before proceeding to checkout.");
+      return;
+    }
     navigate('/checkout', { state: { cart } });
   };
 
@@ -25,19 +30,21 @@ function Cart() {
             {cart.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow-md border border-gray-200"
+                className="cart-card"
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-32 h-32 object-cover rounded-lg"
-                />
-                <div className="flex-1 ml-4">
+                <div className="cart-image-container">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="cart-image"
+                  />
+                </div>
+                <div className="cart-content">
                   <h3 className="text-2xl font-semibold text-gray-700">{item.title}</h3>
                   <p className="text-lg text-gray-600 mb-1">Price: KSh {item.price}</p>
                   <p className="text-lg text-gray-600 mb-3">Quantity: {item.quantity}</p>
                 </div>
-                <div className="flex-shrink-0 ml-4 space-x-2">
+                <div className="cart-actions">
                   <button
                     onClick={() => removeFromCart(item.id)}
                     className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
@@ -49,6 +56,12 @@ function Cart() {
                     className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
                   >
                     +
+                  </button>
+                  <button
+                    onClick={() => deleteFromCart(item.id)}
+                    className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition"
+                  >
+                    Delete
                   </button>
                 </div>
               </div>
@@ -67,7 +80,8 @@ function Cart() {
           </button>
           <button
             onClick={handleProceedToCheckout}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            className={`px-6 py-3 rounded-lg text-white transition ${cart.length === 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
+            disabled={cart.length === 0}
           >
             Proceed to Checkout
           </button>
