@@ -1,5 +1,7 @@
+/* HeroSection.css */
+
 .hero-section {
-  background: url('/public/assets/hero-image.jpg') no-repeat center center;
+  background: url(https://i.pinimg.com/564x/a3/7b/2a/a37b2a39d0a8006d3506d0d0c80fa903.jpg) no-repeat center center;
   background-size: cover;
   text-align: center;
   padding: 100px 0;
@@ -12,6 +14,7 @@
 
 .hero-content h1 {
   font-size: 2.5em;
+  margin: 0; /* Remove default margin */
 }
 
 .hero-buttons .shop-now {
@@ -21,11 +24,18 @@
   border: none;
   cursor: pointer;
   font-size: 1.2em;
+  border-radius: 5px; /* Optional: Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.hero-buttons .shop-now:hover {
+  background-color: #333; /* Darker shade on hover */
 }
 
 .brand-logos {
   display: flex;
   justify-content: center;
+  margin-top: 20px; /* Add margin to separate from other content */
 }
 
 .brand-logos span {

@@ -1,12 +1,40 @@
-.wishlist-page {
-  padding: 20px;
+/* Container for the wishlist card */
+.wishlist-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #f9f9f9;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
 }
 
-.wishlist-page h2 {
-  margin-bottom: 20px;
+/* Image styles to fit the card */
+.wishlist-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* Ensures the image covers the area of its container */
+  border-radius: 8px;
 }
 
-.wishlist-page p {
-  margin-bottom: 10px;
+/* Content section within the card */
+.wishlist-content {
+  flex: 1;
+  margin-left: 16px;
+}
+
+/* Actions (buttons) section within the card */
+.wishlist-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Style for the buttons (actions) */
+.wishlist-actions button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }

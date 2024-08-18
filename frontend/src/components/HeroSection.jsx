@@ -14,7 +14,7 @@ const HeroSection = () => {
   return (
     <section className="hero-section">
       <div className="hero-content">
-        <h1>Find Clothes That Matches Your Style</h1>
+        <h1>Find Clothes That Match Your Style</h1>
         <div className="hero-buttons">
           <button 
               onClick={() => handleProducts()} 

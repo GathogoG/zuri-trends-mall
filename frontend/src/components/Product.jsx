@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useCart } from '../context/CartContext'; 
 import CustomerReviews from './CustomerReviews';
 import './Product.css';
-import './HeroSection.css';
 import { useWishlist } from '../context/wishlistContext';
 
 const Product = ({ product, reviews, onAddReview }) => {
@@ -34,8 +33,8 @@ const Product = ({ product, reviews, onAddReview }) => {
     }
 
     const newReview = {
-      user_id: Date.now(),
-      product_id: product.id,  
+      user_id: Date.now(), // Generates a unique user ID based on timestamp
+      product_id: product.id,
       rating,
       comment,
     };
@@ -122,12 +121,12 @@ const Product = ({ product, reviews, onAddReview }) => {
 
 Product.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     image_path: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired, 
   }).isRequired,
   reviews: PropTypes.arrayOf(
     PropTypes.shape({
@@ -136,7 +135,7 @@ Product.propTypes = {
       comment: PropTypes.string.isRequired,
     })
   ).isRequired,
-  onAddReview: PropTypes.func.isRequired,
+  onAddReview: PropTypes.func.isRequired, // Ensure it's required
 };
 
 export default Product;
