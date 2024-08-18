@@ -1,12 +1,18 @@
 from flask import Blueprint, request, jsonify
 from server.app.models import Product
 from server.app.extensions import db
+from sqlalchemy import or_
 
 product_bp = Blueprint('product_bp', __name__)
 
 @product_bp.route('/products', methods=['GET'])
 def get_products():
-    products = Product.query.all()
+    search_query = request.args.get('search', '')
+    if search_query:
+        products = Product.query.filter(Product.name.ilike(f'%{search_query}%')).all()
+    else:
+        products = Product.query.all()
+    
     return jsonify([product.as_dict() for product in products])
 
 @product_bp.route('/products/<int:id>', methods=['GET'])
