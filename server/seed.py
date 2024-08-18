@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 import uuid
 
 # Add server directory to the system path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'server')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from server.app import create_app
 from server.app.models import Catalog, Product, User, Review, Wishlist, Cart, CartItem, Payment
