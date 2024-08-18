@@ -63,7 +63,7 @@ const Login = () => {
       {loggedInUser ? (
         <div>
           <h2>Already logged in as {loggedInUser.name}</h2>
-          <button onClick={handleLogout}>Logout</button>
+          <button className="logout" onClick={handleLogout}>Logout</button>
         </div>
       ) : (
         <form onSubmit={handleSubmit}>

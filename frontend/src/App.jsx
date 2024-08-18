@@ -25,28 +25,28 @@ const productDetails = {
 
 const App = () => {
   const [deliveryDetails, setDeliveryDetails] = React.useState({ location: '', fee: 0 });
-  const isLoggedIn = false; 
+  const isLoggedIn = false; // This should be dynamically set based on authentication status
 
   return (
-    <CartProvider> 
-      <WishlistProvider>
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Toaster />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout setDeliveryDetails={setDeliveryDetails}/>} />
-            <Route path="/payment" element={<PaymentPage deliveryDetails={deliveryDetails} productDetails={productDetails} />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-            <Route path="/contact-us" element={<ContactUs />} />
-          </Routes>
-        </div>
-      </Router>
+    <CartProvider>
+      <WishlistProvider> {/* Wrap the router in the WishlistProvider */}
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path='/wishlist' element={<Wishlist/>}/>
+              <Route path="/checkout" element={<Checkout setDeliveryDetails={setDeliveryDetails} />} />
+              <Route path="/payment" element={<PaymentPage deliveryDetails={deliveryDetails} productDetails={productDetails} />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              {isLoggedIn && <Route path="/wishlist" element={<Wishlist />} />} {/* Conditional route based on login status */}
+              <Route path="/contact-us" element={<ContactUs />} />
+            </Routes>
+          </div>
+        </Router>
       </WishlistProvider>
     </CartProvider>
   );
