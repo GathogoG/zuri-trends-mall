@@ -159,18 +159,7 @@ const Checkout = () => {
                 required
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="phone">Phone</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                className="form-control"
-                required
-              />
-            </div>
+            
             <div className="form-group">
               <label htmlFor="nationality">Nationality</label>
               <select
