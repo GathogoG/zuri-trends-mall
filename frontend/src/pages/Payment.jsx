@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
 /**
  * PaymentComponent is a React component for handling M-Pesa STK Push payments.
  * It allows users to enter payment details and submit the form to initiate a payment.
