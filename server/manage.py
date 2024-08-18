@@ -7,7 +7,7 @@ app = create_app()
 @click.argument('type', default='all')
 def seed(type):
     """Seed the database."""
-    from seed import seed_all
+    from server.seed import seed_all
     
     if type == 'all':
         seed_all()

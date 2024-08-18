@@ -261,9 +261,9 @@
 
 .submit-review-button {
   align-self: center;
-  background-color: #28a745;
+  background-color: black;
 }
 
 .submit-review-button:hover {
-  background-color: #218838;
+  background-color: #acbfc4;
 }
