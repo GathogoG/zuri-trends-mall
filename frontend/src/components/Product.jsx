@@ -127,7 +127,6 @@ Product.propTypes = {
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired, 
   }).isRequired,
   reviews: PropTypes.arrayOf(
     PropTypes.shape({

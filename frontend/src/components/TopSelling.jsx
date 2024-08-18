@@ -5,7 +5,7 @@ import './TopSelling.css';
 
 
 const TopSelling = () => {
-  // Manually define your products and images
+
   const products = [
     {
       id: 1,
@@ -22,13 +22,13 @@ const TopSelling = () => {
       image_hover_path: 'https://i.pinimg.com/564x/2c/ab/97/2cab97ba6f0e6f2e4a968c3817e14ae2.jpg'
     },
     {
-      id: 2,
+      id: 3,
       name: 'Matching crotchet outfit',
       price: 90.98,
       image_path: 'https://i.pinimg.com/564x/8e/ab/e2/8eabe296fb14d4a2a74374c9fe3c6dcd.jpg',
       image_hover_path: 'https://i.pinimg.com/736x/f5/54/65/f55465643ba4fcc43ae9e2c6db023c59.jpg'
     },
-    // Add more products as needed
+    
   ];
 
   const { addToCart } = useCart();

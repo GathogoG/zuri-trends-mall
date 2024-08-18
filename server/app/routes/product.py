@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from server.app.models import Product
 from server.app.extensions import db
+from sqlalchemy import or_
 
 product_bp = Blueprint('product_bp', __name__)
 

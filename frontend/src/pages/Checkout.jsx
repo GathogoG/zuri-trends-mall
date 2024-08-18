@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import './Checkout.css'; // Ensure you import your custom CSS file
+import './Checkout.css'; 
 
 const locationOptions = {
   Kenya: {

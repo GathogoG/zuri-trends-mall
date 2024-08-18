@@ -17,6 +17,7 @@ import {Toaster} from 'react-hot-toast'
 import { WishlistProvider } from './context/wishlistContext';
 
 
+
 const productDetails = {
   title: 'Sample Product',
   description: 'This is a sample product description.',
@@ -42,7 +43,6 @@ const App = () => {
               <Route path="/payment" element={<PaymentPage deliveryDetails={deliveryDetails} productDetails={productDetails} />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              {isLoggedIn && <Route path="/wishlist" element={<Wishlist />} />} {/* Conditional route based on login status */}
               <Route path="/contact-us" element={<ContactUs />} />
             </Routes>
           </div>
