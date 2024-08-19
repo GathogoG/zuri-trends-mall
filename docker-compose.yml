@@ -7,7 +7,7 @@ services:
       - "5000:5000"
     environment:
       FLASK_ENV: production
-      DATABASE_URL: postgres://user:password@db:5432/your_database
+      DATABASE_URL: postgres://user:password@db:5432/zuri-trends
     volumes:
       - .:/app
     working_dir: /app
