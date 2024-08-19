@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: production
+      DATABASE_URL: postgres://user:password@db:5432/your_database
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: gunicorn --bind 0.0.0.0:5000 server.app:create_app()
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: zuri-trends
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
